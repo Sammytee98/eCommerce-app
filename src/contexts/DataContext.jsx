@@ -1,15 +1,13 @@
 import { createContext, useEffect, useState } from "react";
 import useAxiosFetch from "../hooks/useAxiosFetch";
 
-const DataContext = createContext({});
+export const DataContext = createContext({});
 
-export const DataProvider = ({ children }) => {
-  const [products, setProducts] = useState([]);
-  const { data, fetchErr, isLoading } = useAxiosFetch();
-
-  useEffect(() => {
-    setProducts(data);
-  }, [data]);
+const DataProvider = ({ children }) => {
+  const { data, fetchErr, isLoading } = useAxiosFetch(
+    "https://dummyjson.com/products/category/smartphones"
+  );
+  const { products } = data;
 
   return (
     <DataContext.Provider
@@ -24,4 +22,4 @@ export const DataProvider = ({ children }) => {
   );
 };
 
-export default DataContext;
+export default DataProvider;

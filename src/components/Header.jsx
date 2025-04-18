@@ -1,16 +1,35 @@
-import useWindowSize from "../hooks/useWindowSize";
+import { useState } from "react";
+import { FaCartShopping, FaBars, FaTimes } from "react-icons/fa";
+import Nav from "./Nav";
 
 const Header = () => {
-  const { width, height } = useWindowSize();
-
-  const customStyle = { fontWeight: "bold", fontStyle: "italic" };
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <header>
-      Welcome to the best eCommerce Website{" "}
-      <span className="font-bold italic text-4xl">
-        {width < 768 ? "Small" : width < 922 ? "medium" : "large"}
-      </span>
+    <header className="flex justify-between items-center relative px-5 py-2.5 border-b-2 border-b-neutral-950">
+      <h1 className="font-extrabold font-logo text-4xl">DNK</h1>
+      /Navigation menu for large screen
+      <nav
+        aria-label="large-screen-nav"
+        className="space-x-5 hidden laptop:flex"
+      >
+        <Nav />
+      </nav>
+      /Shopping cart
+      <div>
+        <FaCartShopping className="text-2xl" />
+      </div>
+      /Hamburger menu for small screen navigation
+      <div className="md:hidden cursor-pointer p-2 border-2 border-neutral-950 group-first:">
+        <FaBars />
+      </div>
+      /Navbar for small screen
+      <div className="absolute top-0 left-1/2 bg-neutral-200 flex flex-col items-center space-y-4">
+        <FaTimes />
+        <nav aria-label="mobile-nav">
+          <Nav />
+        </nav>
+      </div>
     </header>
   );
 };
