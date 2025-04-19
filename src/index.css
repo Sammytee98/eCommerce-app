@@ -1,7 +1,7 @@
 @import "tailwindcss";
-@import url("https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Playwrite+RO:wght@100..400&display=swap");
 
 @theme {
-  --font-logo: "Kaushan Script", "cursive";
+  --font-logo: "Playwrite RO", "cursive";
   --breakpoint-laptop: 922px;
 }
