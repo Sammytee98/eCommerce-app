@@ -29,7 +29,7 @@ const Header = () => {
           <Nav />
           <Button
             children="Sign Up"
-            dynamicStyle="w-32 bg-white text-black hover:bg-neutral-200 rounded-sm"
+            dynamicStyle="w-32 border-3 border-white text-white hover:bg-white hover:text-black  rounded-sm"
           />
         </nav>
 
@@ -58,18 +58,18 @@ const Header = () => {
       >
         <FaXmark
           onClick={handleMenuToggle}
-          className="text-3xl self-end border-2 hover:border-dotted hover:border-neutral-950 cursor-pointer transition hover:bg-neutral-100"
+          className="text-3xl self-end hover:border-2 hover:border-dotted hover:border-neutral-950 cursor-pointer transition hover:bg-neutral-100"
         />
         <nav aria-label="mobile-nav" className="w-full mt-5">
-          <Nav flexDirection="flex-col" />
-          <div className="flex flex-col space-y-2.5 mt-5 mx-auto max-w-1/2 ">
+          <Nav flexDirection="flex-col" handleMenuToggle={handleMenuToggle} />
+          <div className="flex flex-col space-y-2.5 mt-5 mx-auto max-w-2/3 ">
             <Button
               children="Log In"
               dynamicStyle="hover:text-blue-500 w-fit mx-auto"
             />
             <Button
               children="Sign Up"
-              dynamicStyle="bg-blue-500 text-white hover:bg-blue-700 rounded-sm"
+              dynamicStyle=" bg-blue-500 text-white hover:bg-blue-700 rounded-sm"
             />
           </div>
         </nav>

@@ -1,8 +1,9 @@
 import { NavLink } from "react-router-dom";
 
-const Nav = ({ flexDirection }) => {
+const Nav = ({ flexDirection, handleMenuToggle }) => {
   return (
     <ul
+      onClick={handleMenuToggle}
       className={`w-full flex ${flexDirection} laptop:justify-center laptop:items-center list-none laptop:space-x-10`}
     >
       <li className=" max-laptop:py-2.5 max-laptop:border-b-2 max-laptop:border-b-neutral-400 ">
