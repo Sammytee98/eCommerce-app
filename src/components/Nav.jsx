@@ -4,7 +4,7 @@ const Nav = ({ flexDirection, handleMenuToggle }) => {
   return (
     <ul
       onClick={handleMenuToggle}
-      className={`w-full flex ${flexDirection} laptop:justify-center laptop:items-center list-none laptop:space-x-10`}
+      className={`w-full flex ${flexDirection} font-open-sans laptop:justify-center laptop:items-center list-none laptop:space-x-10`}
     >
       <li className=" max-laptop:py-2.5 max-laptop:border-b-2 max-laptop:border-b-neutral-400 ">
         <NavLink

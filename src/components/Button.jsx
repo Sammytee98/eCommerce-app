@@ -1,6 +1,9 @@
-const Button = ({ children, dynamicStyle }) => {
+const Button = ({ type, children, dynamicStyle }) => {
   return (
-    <button className={`px-5 py-2 ${dynamicStyle} transition cursor-pointer`}>
+    <button
+      type={type}
+      className={`px-5 py-2 font-oswald ${dynamicStyle} transition cursor-pointer`}
+    >
       {children}
     </button>
   );

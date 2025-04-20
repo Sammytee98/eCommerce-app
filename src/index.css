@@ -1,7 +1,9 @@
 @import "tailwindcss";
-@import url("https://fonts.googleapis.com/css2?family=Playwrite+RO:wght@100..400&display=swap");
 
 @theme {
-  --font-logo: "Playwrite RO", "cursive";
+  --font-oswald: "Oswald", "sans-serif";
+  --font-open-sans: "Open Sans", "sans-serif";
+  --breakpoint-small: 500px;
+  --breakpoint-mobile: 700px;
   --breakpoint-laptop: 922px;
 }

@@ -16,7 +16,7 @@ const Header = () => {
       <section className="grow flex justify-between items-center px-8  py-5">
         <Link
           to="/"
-          className="text-4xl text-white font-logo font-extrabold italic"
+          className="text-4xl text-white font-oswald font-extrabold italic"
         >
           GTS
         </Link>
