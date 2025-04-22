@@ -1,15 +1,16 @@
+import { useState } from "react";
 import { NavLink } from "react-router-dom";
+import { AiOutlineDown } from "react-icons/ai";
 
-const Nav = ({ flexDirection, handleMenuToggle }) => {
+const Nav = ({ flexDirection }) => {
   return (
     <ul
-      onClick={handleMenuToggle}
-      className={`w-full flex ${flexDirection} font-open-sans laptop:justify-center laptop:items-center list-none laptop:space-x-10`}
+      className={`w-full flex ${flexDirection} font-oswald laptop:justify-center laptop:items-center list-none laptop:space-x-10`}
     >
       <li className=" max-laptop:py-2.5 max-laptop:border-b-2 max-laptop:border-b-neutral-400 ">
         <NavLink
           to="/"
-          className="cursor-pointer laptop:hover:text-neutral-200 max-laptop:hover:text-blue-500 transition"
+          className="cursor-pointer hover:text-blue-500 transition"
         >
           Home
         </NavLink>
@@ -17,15 +18,18 @@ const Nav = ({ flexDirection, handleMenuToggle }) => {
       <li className=" max-laptop:py-2.5 max-laptop:border-b-2 max-laptop:border-b-neutral-400">
         <NavLink
           to="products"
-          className="cursor-pointer laptop:hover:text-neutral-200 max-laptop:hover:text-blue-500 transition"
+          className="cursor-pointer hover:text-blue-500 transition"
         >
           Shop All
         </NavLink>
       </li>
+      <li className="flex justify-between items-center space-x-2 max-laptop:py-2.5 max-laptop:border-b-2 max-laptop:border-b-neutral-400 cursor-pointer hover:text-blue-500 transition">
+        <span>Categories</span> <AiOutlineDown />
+      </li>
       <li className=" max-laptop:py-2.5 max-laptop:border-b-2 max-laptop:border-b-neutral-400">
         <NavLink
           to="about"
-          className="cursor-pointer laptop:hover:text-neutral-200 max-laptop:hover:text-blue-500 transition"
+          className="cursor-pointer hover:text-blue-500 transition"
         >
           About
         </NavLink>
@@ -33,7 +37,7 @@ const Nav = ({ flexDirection, handleMenuToggle }) => {
       <li className=" max-laptop:py-2.5 max-laptop:border-b-2 max-laptop:border-b-neutral-400">
         <NavLink
           to="contact"
-          className="cursor-pointer laptop:hover:text-neutral-200 max-laptop:hover:text-blue-500 transition"
+          className="cursor-pointer hover:text-blue-500 transition"
         >
           Contact
         </NavLink>

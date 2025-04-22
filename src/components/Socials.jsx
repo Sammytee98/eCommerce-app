@@ -1,31 +1,43 @@
-import { FaFacebook, FaYoutube, FaInstagram, FaTwitter } from "react-icons/fa";
+import {
+  FaFacebook,
+  FaYoutube,
+  FaInstagram,
+  FaTwitter,
+  FaGoogle,
+} from "react-icons/fa";
 
 const Socials = () => {
   return (
-    <div className="flex space-x-5">
+    <div className="flex space-x-6">
       <a
         href="https://facebook.com"
         className="hover:scale-90 transition-all transform duration-200 hover:rotate-180"
       >
-        <FaFacebook className=" text-xl text-blue-800" />
+        <FaFacebook className=" text-xl" />
       </a>
       <a
         href="https://youtube.com"
         className="hover:scale-90 transition-all transform duration-200 hover:rotate-180"
       >
-        <FaYoutube className=" text-xl text-red-600" />
+        <FaYoutube className=" text-xl" />
       </a>
       <a
         href="https://instagram.com"
         className="hover:scale-90 transition-all transform duration-200 hover:rotate-180"
       >
-        <FaInstagram className=" text-xl text-red-500" />
+        <FaInstagram className=" text-xl" />
       </a>
       <a
         href="https://twitter.com"
         className="hover:scale-90 transition-all transform duration-200 hover:rotate-180"
       >
-        <FaTwitter className=" text-xl text-blue-500" />
+        <FaTwitter className=" text-xl" />
+      </a>
+      <a
+        href="https://gmail.com"
+        className="hover:scale-90 transition-all transform duration-200 hover:rotate-180"
+      >
+        <FaGoogle className=" text-xl" />
       </a>
     </div>
   );

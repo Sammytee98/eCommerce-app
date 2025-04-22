@@ -1,25 +1,25 @@
 import { Link } from "react-router-dom";
 
-const Links = () => {
+const Categories = () => {
   return (
-    <section className="space-y-2  px-5 font-oswald">
-      <h2 className="text-xl font-semibold text-center">QUICK LINKS</h2>
+    <section className="font-oswald space-y-2 px-5">
+      <h2 className="text-xl font-semibold text-center">CATEGORIES</h2>
       <ul className="text-center space-y-1.5 list-none text-base">
         <li className="text-blue-500 hover:text-blue-700 transition">
-          <Link to="/">Home</Link>
+          <Link>Beauty</Link>
         </li>
         <li className="text-blue-500 hover:text-blue-700 transition">
-          <Link to="products">Shop All</Link>
+          <Link>Fashion</Link>
         </li>
         <li className="text-blue-500 hover:text-blue-700 transition">
-          <Link to="about">About</Link>
+          <Link>Laptops</Link>
         </li>
         <li className="text-blue-500 hover:text-blue-700 transition">
-          <Link to="contact">Contact</Link>
+          <Link>Smartphones</Link>
         </li>
       </ul>
     </section>
   );
 };
 
-export default Links;
+export default Categories;
