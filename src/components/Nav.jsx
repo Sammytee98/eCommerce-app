@@ -1,11 +1,18 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { NavLink } from "react-router-dom";
-import { AiOutlineDown } from "react-icons/ai";
+import { AiOutlineDown, AiOutlineUp } from "react-icons/ai";
+import Categories from "./CategoriesLink";
 
-const Nav = ({ flexDirection }) => {
+const Nav = ({ flexDirection, menuOpen }) => {
+  const [categoryOpen, setCategoryOpen] = useState(false);
+
+  const handleCategoryToggle = useCallback(() => {
+    setCategoryOpen((prev) => !prev);
+  }, []);
+
   return (
     <ul
-      className={`w-full flex ${flexDirection} font-oswald laptop:justify-center laptop:items-center list-none laptop:space-x-10`}
+      className={`w-full flex ${flexDirection} font-oswald laptop:justify-center laptop:items-center list-none laptop:space-x-5`}
     >
       <li className=" max-laptop:py-2.5 max-laptop:border-b-2 max-laptop:border-b-neutral-400 ">
         <NavLink
@@ -23,10 +30,27 @@ const Nav = ({ flexDirection }) => {
           Shop All
         </NavLink>
       </li>
-      <li className="flex justify-between items-center space-x-2 max-laptop:py-2.5 max-laptop:border-b-2 max-laptop:border-b-neutral-400 cursor-pointer hover:text-blue-500 transition">
-        <span>Categories</span> <AiOutlineDown />
-      </li>
-      <li className=" max-laptop:py-2.5 max-laptop:border-b-2 max-laptop:border-b-neutral-400">
+      <ul className="relative max-laptop:py-2.5 max-laptop:border-b-2 max-laptop:border-b-neutral-400 cursor-pointer">
+        <li
+          onClick={handleCategoryToggle}
+          className="flex justify-between items-center space-x-2 hover:text-blue-500 transition"
+        >
+          <span>Categories</span>{" "}
+          {categoryOpen ? <AiOutlineUp /> : <AiOutlineDown />}
+        </li>
+        {categoryOpen && (
+          <div
+            onClick={handleCategoryToggle}
+            className="w-full absolute top-12 p-2.5 bg-neutral-100 border-2 border-neutral-300 rounded-sm"
+          >
+            <Categories />
+          </div>
+        )}
+      </ul>
+      <li
+        className="max-laptop:py-2.5 max-laptop:border-b-2
+        max-laptop:border-b-neutral-400"
+      >
         <NavLink
           to="about"
           className="cursor-pointer hover:text-blue-500 transition"
@@ -34,7 +58,7 @@ const Nav = ({ flexDirection }) => {
           About
         </NavLink>
       </li>
-      <li className=" max-laptop:py-2.5 max-laptop:border-b-2 max-laptop:border-b-neutral-400">
+      <li className="max-laptop:py-2.5 max-laptop:border-b-2 max-laptop:border-b-neutral-400">
         <NavLink
           to="contact"
           className="cursor-pointer hover:text-blue-500 transition"

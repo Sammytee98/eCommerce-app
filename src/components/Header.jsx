@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import useWindowSize from "../hooks/useWindowSize";
 import { FaCartShopping, FaBars, FaXmark, FaUser } from "react-icons/fa6";
@@ -6,15 +6,22 @@ import Nav from "./Nav";
 import Button from "./Button";
 
 const Header = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const { width } = useWindowSize();
 
-  const handleMenuToggle = () => {
-    setIsOpen((prev) => !prev);
-  };
+  const handleMenuToggle = useCallback(() => {
+    setMenuOpen((prev) => !prev);
+  }, []);
+
+  useEffect(() => {
+    if (width >= 922 && menuOpen) {
+      setMenuOpen(false);
+    }
+  }, [width, menuOpen]);
 
   return (
     <header className="relative flex justify-between items-center ">
-      <section className="bg-neutral-50 grow flex justify-between items-center px-8 py-5 border-b-2 border-b-neutral-300">
+      <section className="bg-neutral-50 grow flex justify-between items-center px-5 py-5 border-b-2 border-b-neutral-300">
         <Link to="/">
           <img
             src="../../public/favicon.png"
@@ -26,7 +33,7 @@ const Header = () => {
         {/* Navigation menu for large screen */}
         <nav
           aria-label="large-screen-nav"
-          className="hidden w-4/5 laptop:flex text-lg"
+          className="hidden w-3/4 laptop:flex text-lg space-x-2 justify-around"
         >
           <Nav />
           <Button
@@ -59,7 +66,7 @@ const Header = () => {
       {/* Navbar for small screen */}
       <div
         className={` bg-white fixed top-0 overflow-y-auto left-0 bottom-0  right-2/6 z-50 flex flex-col items-center p-3.5 transition-all transform duration-300 ease-in-out ${
-          isOpen ? "visible translate-x-0" : "invisible -translate-x-full"
+          menuOpen ? "visible translate-x-0" : "invisible -translate-x-full"
         }`}
       >
         <FaXmark
@@ -70,7 +77,7 @@ const Header = () => {
           <div className="w-fit text-xl hover:opacity-80 transition cursor-pointer border-2 border-neutral-700 p-2 rounded-full bg-neutral-100">
             <FaUser className="text-neutral-700" />
           </div>
-          <Nav flexDirection="flex-col" handleMenuToggle={handleMenuToggle} />
+          <Nav flexDirection="flex-col" menuOpen={menuOpen} />
           <div className="flex flex-col space-y-2.5 mt-5 mx-auto max-w-2/3 ">
             <Button
               children="Log In"

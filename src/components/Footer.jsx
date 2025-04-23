@@ -19,7 +19,10 @@ const Footer = () => {
         </div>
         <div className="flex gap-8 flex-wrap justify-evenly">
           <Links />
-          <Categories />
+          <section className="font-oswald space-y-2 px-5">
+            <h2 className="text-xl font-semibold text-center">CATEGORIES</h2>
+            <Categories />
+          </section>
           <Contact />
           <Subscription />
         </div>
