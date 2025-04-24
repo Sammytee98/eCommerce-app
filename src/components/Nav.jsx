@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import { AiOutlineDown, AiOutlineUp } from "react-icons/ai";
 import Categories from "./CategoriesLink";
 
-const Nav = ({ flexDirection, menuOpen }) => {
+const Nav = ({ flexDirection }) => {
   const [categoryOpen, setCategoryOpen] = useState(false);
 
   const handleCategoryToggle = useCallback(() => {
@@ -17,7 +17,7 @@ const Nav = ({ flexDirection, menuOpen }) => {
       <li className=" max-laptop:py-2.5 max-laptop:border-b-2 max-laptop:border-b-neutral-400 ">
         <NavLink
           to="/"
-          className="cursor-pointer hover:text-blue-500 transition"
+          className="cursor-pointer hover:text-blue-300/70 transition"
         >
           Home
         </NavLink>
@@ -25,7 +25,7 @@ const Nav = ({ flexDirection, menuOpen }) => {
       <li className=" max-laptop:py-2.5 max-laptop:border-b-2 max-laptop:border-b-neutral-400">
         <NavLink
           to="products"
-          className="cursor-pointer hover:text-blue-500 transition"
+          className="cursor-pointer hover:text-blue-300/70 transition"
         >
           Shop All
         </NavLink>
@@ -33,7 +33,7 @@ const Nav = ({ flexDirection, menuOpen }) => {
       <ul className="relative max-laptop:py-2.5 max-laptop:border-b-2 max-laptop:border-b-neutral-400 cursor-pointer">
         <li
           onClick={handleCategoryToggle}
-          className="flex justify-between items-center space-x-2 hover:text-blue-500 transition"
+          className="flex justify-between items-center space-x-2 hover:text-blue-300/70 transition"
         >
           <span>Categories</span>{" "}
           {categoryOpen ? <AiOutlineUp /> : <AiOutlineDown />}
@@ -41,7 +41,7 @@ const Nav = ({ flexDirection, menuOpen }) => {
         {categoryOpen && (
           <div
             onClick={handleCategoryToggle}
-            className="w-full absolute top-12 p-2.5 bg-neutral-100 border-2 border-neutral-300 rounded-sm"
+            className="w-full absolute top-12 p-2.5 bg-neutral-300 border-3 border-neutral-300 rounded-sm"
           >
             <Categories />
           </div>
@@ -53,7 +53,7 @@ const Nav = ({ flexDirection, menuOpen }) => {
       >
         <NavLink
           to="about"
-          className="cursor-pointer hover:text-blue-500 transition"
+          className="cursor-pointer hover:text-blue-300/70 transition"
         >
           About
         </NavLink>
@@ -61,7 +61,7 @@ const Nav = ({ flexDirection, menuOpen }) => {
       <li className="max-laptop:py-2.5 max-laptop:border-b-2 max-laptop:border-b-neutral-400">
         <NavLink
           to="contact"
-          className="cursor-pointer hover:text-blue-500 transition"
+          className="cursor-pointer hover:text-blue-300/70 transition"
         >
           Contact
         </NavLink>
