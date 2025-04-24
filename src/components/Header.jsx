@@ -20,8 +20,8 @@ const Header = () => {
   }, [width, menuOpen]);
 
   return (
-    <header className="relative flex justify-between items-center ">
-      <section className="bg-neutral-50 grow flex justify-between items-center px-5 py-5 border-b-2 border-b-neutral-300">
+    <header className="relative  flex justify-between items-center ">
+      <section className="bg-blue-300/20 grow flex justify-between items-center px-5 py-3">
         <Link to="/">
           <img
             src="../../public/favicon.png"
@@ -38,28 +38,28 @@ const Header = () => {
           <Nav />
           <Button
             children="Sign Up"
-            dynamicStyle="w-32 bg-blue-500 text-white hover:bg-blue-700 rounded-sm"
+            dynamicStyle="w-32 border-3 border-black hover:border-blue-300/70 hover:bg-blue-300/70 hover:text-white rounded-sm"
           />
         </nav>
 
         {/* Shopping cart */}
         <div className="relative ml-10 hover:opacity-80 transition cursor-pointer">
-          <FaCartShopping className="text-3xl " />
-          <p className="absolute w-6 h-6 -top-4 -right-4 text-lg flex justify-center items-center bg-black text-white rounded-full">
+          <FaCartShopping className="text-2xl" />
+          <p className="absolute w-5 h-5 -top-3 -right-3 text-base font-semibold flex justify-center items-center bg-black text-white rounded-full">
             0
           </p>
         </div>
 
-        <div className="text-xl max-laptop:hidden hover:opacity-80 transition cursor-pointer border-2 border-neutral-700 p-2 rounded-full bg-neutral-100 ml-10">
-          <FaUser className="text-neutral-700" />
+        <div className="text-xl max-laptop:hidden hover:bg-blue-300/70 transition cursor-pointer border-3 border-blue-100 p-2 rounded-full bg-blue-300/50 ml-10">
+          <FaUser />
         </div>
 
         {/* Hamburger menu for small screen navigation */}
         <div
           onClick={handleMenuToggle}
-          className="laptop:hidden -order-1 cursor-pointer p-2 border-2 border-transparent hover:border-black hover:border-dotted transition"
+          className="laptop:hidden -order-1 cursor-pointer p-2 border-3 border-transparent hover:border-white hover:border-dotted transition"
         >
-          <FaBars className="text-3xl" />
+          <FaBars className="text-2xl " />
         </div>
       </section>
 
@@ -71,21 +71,21 @@ const Header = () => {
       >
         <FaXmark
           onClick={handleMenuToggle}
-          className="text-3xl self-end hover:border-2 hover:border-dotted hover:border-neutral-950 cursor-pointer transition hover:bg-neutral-100"
+          className="text-3xl self-end hover:border-3 hover:border-dotted hover:border-neutral-950 cursor-pointer transition hover:bg-neutral-100"
         />
         <nav aria-label="mobile-nav" className="w-full mt-5 text-lg space-y-3">
-          <div className="w-fit text-xl hover:opacity-80 transition cursor-pointer border-2 border-neutral-700 p-2 rounded-full bg-neutral-100">
+          <div className="w-fit text-xl hover:bg-blue-300/50 transition cursor-pointer border-3 border-neutral-700 p-2 rounded-full bg-neutral-100">
             <FaUser className="text-neutral-700" />
           </div>
           <Nav flexDirection="flex-col" menuOpen={menuOpen} />
           <div className="flex flex-col space-y-2.5 mt-5 mx-auto max-w-2/3 ">
             <Button
               children="Log In"
-              dynamicStyle="hover:text-blue-500 w-fit mx-auto"
+              dynamicStyle="hover:text-blue-300/50 w-fit mx-auto"
             />
             <Button
               children="Sign Up"
-              dynamicStyle=" bg-blue-500 text-white hover:bg-blue-700 rounded-sm"
+              dynamicStyle=" bg-blue-300/50 hover:bg-blue-300/70 rounded-sm"
             />
           </div>
         </nav>

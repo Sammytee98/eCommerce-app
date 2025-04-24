@@ -18,7 +18,7 @@ const Subscription = () => {
       <Button
         type="button"
         children="SUBSCRIBE"
-        dynamicStyle="w-2/4 mx-auto bg-blue-500 hover:bg-blue-700 transition cursor-pointer text-white font-open-sans rounded-sm "
+        dynamicStyle="w-2/4 mx-auto bg-blue-300/50 hover:bg-blue-300/70 transition cursor-pointer font-open-sans rounded-sm "
       />
     </form>
   );
