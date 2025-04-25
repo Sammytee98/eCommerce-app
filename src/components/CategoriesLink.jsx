@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { Link } from "react-router-dom";
 
 const Categories = () => {
@@ -22,4 +23,4 @@ const Categories = () => {
   );
 };
 
-export default Categories;
+export default memo(Categories);

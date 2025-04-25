@@ -1,3 +1,4 @@
+import { memo } from "react";
 import Slider from "../../components/ImageSlider";
 import Button from "../../components/Button";
 
@@ -25,4 +26,4 @@ const HeroSection = () => {
   );
 };
 
-export default HeroSection;
+export default memo(HeroSection);

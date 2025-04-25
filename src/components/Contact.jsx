@@ -1,3 +1,4 @@
+import { memo } from "react";
 import Socials from "./Socials";
 
 const Contact = () => {
@@ -9,4 +10,4 @@ const Contact = () => {
   );
 };
 
-export default Contact;
+export default memo(Contact);

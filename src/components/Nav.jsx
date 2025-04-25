@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { memo, useCallback, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { AiOutlineDown, AiOutlineUp } from "react-icons/ai";
 import Categories from "./CategoriesLink";
@@ -70,4 +70,4 @@ const Nav = ({ flexDirection }) => {
   );
 };
 
-export default Nav;
+export default memo(Nav);
