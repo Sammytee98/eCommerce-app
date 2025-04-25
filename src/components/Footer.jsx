@@ -7,7 +7,7 @@ const Footer = () => {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="w-full border-t-2 border-t-neutral-300 bg-neutral-50 max-small:flex max-small:flex-col max-small:items-center space-y-5">
+    <footer className="w-full bg-blue-300/20 max-small:flex max-small:flex-col max-small:items-center space-y-5">
       <section className="w-full p-5 flex flex-col space-y-6">
         <div className="space-y-1.5">
           <img
@@ -15,7 +15,9 @@ const Footer = () => {
             alt="gts logo"
             className="w-24 h-14"
           />
-          <p className=" font-open-sans text-lg">The best gadget store.</p>
+          <p className=" font-open-sans text-base italic">
+            The best gadget store.
+          </p>
         </div>
         <div className="flex gap-8 flex-wrap justify-evenly">
           <Links />
