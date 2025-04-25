@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState, memo } from "react";
 import { Link } from "react-router-dom";
 import useWindowSize from "../hooks/useWindowSize";
 import { FaCartShopping, FaBars, FaXmark, FaUser } from "react-icons/fa6";
@@ -94,4 +94,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default memo(Header);

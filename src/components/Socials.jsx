@@ -1,3 +1,4 @@
+import { memo } from "react";
 import {
   FaFacebook,
   FaYoutube,
@@ -43,4 +44,4 @@ const Socials = () => {
   );
 };
 
-export default Socials;
+export default memo(Socials);

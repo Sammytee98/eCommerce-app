@@ -1,3 +1,4 @@
+import { memo } from "react";
 import Links from "./FooterLinks";
 import Subscription from "./Subscription";
 import Categories from "./CategoriesLink";
@@ -37,4 +38,4 @@ const Footer = () => {
   );
 };
 
-export default Footer;
+export default memo(Footer);

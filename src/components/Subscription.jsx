@@ -1,3 +1,4 @@
+import { memo } from "react";
 import Button from "./Button";
 
 const Subscription = () => {
@@ -24,4 +25,4 @@ const Subscription = () => {
   );
 };
 
-export default Subscription;
+export default memo(Subscription);

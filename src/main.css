@@ -3,8 +3,9 @@
 @theme {
   --font-oswald: "Oswald", "sans-serif";
   --font-open-sans: "Open Sans", "sans-serif";
-  --breakpoint-small: 580px;
+  --breakpoint-small: 560px;
   --breakpoint-mobile: 650px;
   --breakpoint-tablet: 820px;
-  --breakpoint-laptop: 922px;
+  --breakpoint-laptop: 976px;
+  --breakpoint-desktop: 1200px;
 }
