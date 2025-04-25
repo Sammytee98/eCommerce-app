@@ -50,7 +50,7 @@ const Header = () => {
           </p>
         </div>
 
-        <div className="text-xl max-laptop:hidden hover:bg-blue-300/70 transition cursor-pointer border-3 border-blue-100 p-2 rounded-full bg-blue-300/50 ml-10">
+        <div className="text-xl max-laptop:hidden hover:bg-blue-300/50 transition cursor-pointer border-3 border-blue-300/10 p-2 rounded-full bg-blue-300/30 ml-10">
           <FaUser />
         </div>
 
