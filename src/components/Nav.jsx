@@ -41,7 +41,7 @@ const Nav = ({ flexDirection }) => {
         {categoryOpen && (
           <div
             onClick={handleCategoryToggle}
-            className="w-full absolute top-12 p-2.5 bg-neutral-300 border-3 border-neutral-300 rounded-sm"
+            className="w-full absolute top-12 z-50 p-2.5 bg-white border-3 border-blue-300/30 rounded-sm"
           >
             <Categories />
           </div>

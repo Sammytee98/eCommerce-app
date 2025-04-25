@@ -16,17 +16,17 @@ const Slider = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % images.length);
-    }, 3000);
+    }, 10000);
 
     return () => clearInterval(interval);
   }, []);
 
   return (
-    <div className="box-border w-full h-96 overflow-hidden relative">
+    <div className="box-border w-full h-full overflow-hidden relative">
       <motion.div
         className="flex w-full h-full"
         animate={{ x: `-${currentSlide * 100}%` }}
-        transition={{ duration: 1.5, ease: "easeInOut" }}
+        transition={{ duration: 1.8, ease: "easeInOut" }}
       >
         {images.map((src, i) => (
           <div key={i} className="w-full h-full shrink-0">

@@ -13,12 +13,12 @@ const Subscription = () => {
         type="text"
         id="subscription"
         placeholder="Your email address..."
-        className="w-full border-2 border-neutral-300 bg-white px-3 py-1.5 rounded-sm font-inter placeholder:"
+        className="w-full border-3 border-blue-300/30 bg-white px-3 py-1.5 rounded-md outline-none focus:border-blue-300/50 font-inter placeholder:"
       />
       <Button
         type="button"
         children="SUBSCRIBE"
-        dynamicStyle="w-2/4 mx-auto bg-blue-300/50 hover:bg-blue-300/70 transition cursor-pointer font-open-sans rounded-sm "
+        dynamicStyle="w-2/4 mx-auto bg-blue-300/50 hover:bg-blue-300/70 transition cursor-pointer font-open-sans rounded-md "
       />
     </form>
   );
