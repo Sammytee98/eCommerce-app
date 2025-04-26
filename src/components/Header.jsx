@@ -37,7 +37,7 @@ const Header = () => {
         >
           <Nav />
           <Button
-            children="Sign Up"
+            children="SIGN UP"
             dynamicStyle="w-32 border-3 border-black hover:border-blue-300/70 hover:bg-blue-300/70 hover:text-white rounded-sm"
           />
         </nav>

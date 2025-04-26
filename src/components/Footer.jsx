@@ -16,7 +16,7 @@ const Footer = () => {
             alt="gts logo"
             className="w-24 h-14"
           />
-          <p className="text-base italic">The best gadget store.</p>
+          <p className="text-base italic">THE BEST STORE.</p>
         </div>
         <div className="flex gap-8 flex-wrap justify-evenly">
           <QuickLinks />
