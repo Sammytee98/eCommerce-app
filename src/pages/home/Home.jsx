@@ -2,6 +2,7 @@ import HeroSection from "./HeroSection";
 import ProductCategories from "./ProductCategories";
 import TrendingProducts from "./TrendingProducts";
 import GeneralReviews from "./GeneralReviews";
+import ServiceAdvantages from "./ServiceAdvantages";
 
 const Home = () => {
   return (
@@ -10,6 +11,7 @@ const Home = () => {
       <ProductCategories />
       <TrendingProducts />
       <GeneralReviews />
+      <ServiceAdvantages />
     </main>
   );
 };

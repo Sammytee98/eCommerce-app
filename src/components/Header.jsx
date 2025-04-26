@@ -21,7 +21,7 @@ const Header = () => {
 
   return (
     <header className="relative  flex justify-between items-center ">
-      <section className="bg-blue-300/20 grow flex justify-between items-center px-5 py-3">
+      <section className="bg-blue-300/10 grow flex justify-between items-center px-5 py-3">
         <Link to="/">
           <img
             src="../../public/favicon.png"
@@ -50,7 +50,7 @@ const Header = () => {
           </p>
         </div>
 
-        <div className="text-xl max-laptop:hidden hover:bg-blue-300/50 transition cursor-pointer border-3 border-blue-300/10 p-2 rounded-full bg-blue-300/30 ml-10">
+        <div className="text-xl max-laptop:hidden hover:bg-blue-300/50 transition cursor-pointer border-3 border-blue-300/5 p-2 rounded-full bg-blue-300/20 ml-10">
           <FaUser />
         </div>
 
@@ -71,7 +71,7 @@ const Header = () => {
       >
         <FaXmark
           onClick={handleMenuToggle}
-          className="text-3xl self-end hover:border-3 hover:border-dotted hover:border-neutral-950 cursor-pointer transition hover:bg-neutral-100"
+          className="text-3xl self-end hover:border-3 hover:border-dotted hover:border-blue-300/50 cursor-pointer transition hover:bg-blue-300/50"
         />
         <nav aria-label="mobile-nav" className="w-full mt-5 text-lg space-y-3">
           <div className="w-fit text-xl hover:bg-blue-300/50 transition cursor-pointer border-3 border-neutral-700 p-2 rounded-full bg-neutral-100">
@@ -80,11 +80,11 @@ const Header = () => {
           <Nav flexDirection="flex-col" menuOpen={menuOpen} />
           <div className="flex flex-col space-y-2.5 mt-5 mx-auto max-w-2/3 ">
             <Button
-              children="Log In"
+              children="LOG IN"
               dynamicStyle="hover:text-blue-300/50 w-fit mx-auto"
             />
             <Button
-              children="Sign Up"
+              children="SIGN UP"
               dynamicStyle=" bg-blue-300/50 hover:bg-blue-300/70 rounded-sm"
             />
           </div>
