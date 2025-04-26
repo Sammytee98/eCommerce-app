@@ -9,3 +9,7 @@
   --breakpoint-laptop: 976px;
   --breakpoint-desktop: 1200px;
 }
+
+.swiper-pagination-bullet-active {
+  background-color: rgba(147, 197, 253, 0.7) !important;
+}
