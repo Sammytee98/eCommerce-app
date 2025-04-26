@@ -19,7 +19,7 @@ const Nav = ({ flexDirection }) => {
           to="/"
           className="cursor-pointer hover:text-blue-300/70 transition"
         >
-          Home
+          HOME
         </NavLink>
       </li>
       <li className=" max-laptop:py-2.5 max-laptop:border-b-2 max-laptop:border-b-neutral-400">
@@ -27,7 +27,7 @@ const Nav = ({ flexDirection }) => {
           to="products"
           className="cursor-pointer hover:text-blue-300/70 transition"
         >
-          Shop All
+          SHOP ALL
         </NavLink>
       </li>
       <ul className="relative max-laptop:py-2.5 max-laptop:border-b-2 max-laptop:border-b-neutral-400 cursor-pointer">
@@ -35,7 +35,7 @@ const Nav = ({ flexDirection }) => {
           onClick={handleCategoryToggle}
           className="flex justify-between items-center space-x-2 hover:text-blue-300/70 transition"
         >
-          <span>Categories</span>{" "}
+          <span>CATEGORIES</span>{" "}
           {categoryOpen ? <AiOutlineUp /> : <AiOutlineDown />}
         </li>
         {categoryOpen && (
@@ -55,7 +55,7 @@ const Nav = ({ flexDirection }) => {
           to="about"
           className="cursor-pointer hover:text-blue-300/70 transition"
         >
-          About
+          ABOUT
         </NavLink>
       </li>
       <li className="max-laptop:py-2.5 max-laptop:border-b-2 max-laptop:border-b-neutral-400">
@@ -63,7 +63,7 @@ const Nav = ({ flexDirection }) => {
           to="contact"
           className="cursor-pointer hover:text-blue-300/70 transition"
         >
-          Contact
+          CONTACT
         </NavLink>
       </li>
     </ul>

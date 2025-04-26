@@ -14,7 +14,7 @@ const Subscription = () => {
         type="text"
         id="subscription"
         placeholder="Your email address..."
-        className="w-full border-3 border-blue-300/30 bg-white px-3 py-1.5 rounded-md outline-none focus:border-blue-300/50 font-inter placeholder:"
+        className="w-full border-3 border-blue-300/20 bg-white px-3 py-1.5 rounded-md outline-none focus:border-blue-300/50 font-inter placeholder:"
       />
       <Button
         type="button"

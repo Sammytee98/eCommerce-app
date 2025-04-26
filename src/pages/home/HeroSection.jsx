@@ -9,15 +9,15 @@ const HeroSection = () => {
         <Slider />
       </div>
       <div className="absolute top-1/12 transform translate-y-1/12 z-10 max-w-3xl w-full space-y-8 p-4 border-none">
-        <h2 className="text-4xl text-white font-oswald">
-          Style. Tech. Beauty. Home. All in One Place
+        <h2 className="text-4xl font-semibold text-white font-oswald">
+          STYLE. TECH. BEAUTY. HOME. ALL IN ONE PLACE
         </h2>
         <p className="text-base text-white font-open-sans">
-          Explore a wide range of high-quality products handpicked just for you
-          &mdash; all categories, all savings, delivered to your door.
+          EXPLORE A WIDE RANGE OF HIGH-QUALITY PRODUCTS HANDPICKED JUST FOR YOU
+          &mdash; ALL CATEGORIES, ALL SAVINGS, DELIVERED TO YOUR DOOR.
         </p>
         <Button
-          children="Start Shopping"
+          children="START SHOPPING"
           type="button"
           dynamicStyle="border-3 border-blue-300/70 hover:bg-blue-300/70 text-lg text-white z-50 transition rounded-sm"
         />
