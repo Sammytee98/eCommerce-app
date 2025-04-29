@@ -3,17 +3,11 @@ import { createStore, action, thunk } from "easy-peasy";
 
 const store = createStore({
   categoryProducts: {}, // dynamic category-based storage
-  products: [], // merged all categories
   trendingProducts: [], // store trending products
 
   // Set product for one category
   setCategoryProduct: action((state, { category, products }) => {
     state.categoryProducts[category] = products;
-  }),
-
-  // Set all merged products
-  setProducts: action((state, payload) => {
-    state.products = payload;
   }),
 
   // Set trending products
@@ -30,7 +24,6 @@ const store = createStore({
       "laptops",
       "smartphones",
     ];
-    let allProducts = [];
 
     try {
       const fetches = categories.map((cat) =>
@@ -42,11 +35,7 @@ const store = createStore({
         const products = res.data.products;
 
         actions.setCategoryProduct({ category, products }); // Get category products
-
-        allProducts = allProducts.concat(res.data.products); // Merge all products
       });
-
-      actions.setProducts(allProducts); // Set all products
 
       // Set trending products
       const shuffled = [...allProducts].sort(() => 0.5 - Math.random());
