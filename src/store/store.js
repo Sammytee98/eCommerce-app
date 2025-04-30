@@ -26,6 +26,7 @@ const store = createStore({
     ];
 
     try {
+      let allProducts = [];
       const fetches = categories.map((cat) =>
         axios.get(`https://dummyjson.com/products/category/${cat}`)
       );
@@ -35,6 +36,7 @@ const store = createStore({
         const products = res.data.products;
 
         actions.setCategoryProduct({ category, products }); // Get category products
+        allProducts = allProducts.concat(res.data.products);
       });
 
       // Set trending products
@@ -42,8 +44,7 @@ const store = createStore({
       const trending = shuffled.slice(0, 9);
       actions.setTrendingProducts(trending);
     } catch (err) {
-      actions.setisLoading(false);
-      actions.setFetchError(`Error: ${err}`);
+      console.log("Error: ", err.message);
     }
   }),
 });

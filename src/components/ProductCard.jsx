@@ -25,21 +25,21 @@ const ProductCard = ({ id, thumbnail, title, rating, price }) => {
       transition={{ duration: 0.3 }}
       className="w-52 min-h-76 relative bg-blue-300/10 rounded-md  cursor-pointer overflow-hidden"
     >
-      <p className="absolute left-2 top-3 z-50 bg-white text-blue-300/70 rounded-3xl px-2 py-0.5 text-sm">
+      <p className="absolute left-2 top-3 z-10 bg-white text-blue-300/70 rounded-3xl px-2 py-0.5 text-sm">
         Sale!
       </p>
       <img
         src={thumbnail}
         alt={title}
         loading="lazy"
-        className="w-full h-3/6 p-1"
+        className="w-full h-3/6 p-1 object-fill"
       />
       <figcaption className="absolute bottom-0 left-0 right-0 top-3/6 space-y-2 p-3 flex flex-col bg-white">
-        <RatingStar rating={rating} />
         <p className="text-xl">{title}</p>
-        <p className="text-sm flex flex-col text-blue-300/70">
-          <span className="font-semibold">${(price * 0.8).toFixed(2)}</span>
-          <span className="line-through">${price}</span>
+        <RatingStar rating={rating} />
+        <p className="text-base flex flex-col text-neutral-800">
+          <span className="font-semibold">$ {(price * 0.8).toFixed(2)}</span>
+          <span className="line-through">$ {price}</span>
         </p>
       </figcaption>
     </motion.figure>

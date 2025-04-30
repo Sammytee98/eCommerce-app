@@ -1,8 +1,15 @@
-import { memo } from "react";
+import { memo, useCallback } from "react";
 import Slider from "../../components/ImageSlider";
 import Button from "../../components/Button";
+import { useNavigate } from "react-router-dom";
 
 const HeroSection = () => {
+  const navigate = useNavigate();
+
+  const handleClick = useCallback(() => {
+    navigate("products");
+  });
+
   return (
     <section className=" relative w-full min-h-96 flex justify-center items-center px-5">
       <div className="absolute inset-0 bg-inherit bg-cover bg-center bg-no-repeat brightness-50">
@@ -17,6 +24,7 @@ const HeroSection = () => {
           &mdash; ALL CATEGORIES, ALL SAVINGS, DELIVERED TO YOUR DOOR.
         </p>
         <Button
+          onClick={handleClick}
           children="START SHOPPING"
           type="button"
           dynamicStyle="border-3 border-blue-300/70 hover:bg-blue-300/70 text-lg text-white z-50 transition rounded-sm"

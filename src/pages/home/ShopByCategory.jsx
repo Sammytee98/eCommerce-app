@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { motion } from "motion/react";
 import { useMemo } from "react";
 
-const ProductCategories = () => {
+const ShopByCategory = () => {
   const navigate = useNavigate();
   const categoryProducts = useStoreState((state) => state.categoryProducts);
 
@@ -65,7 +65,7 @@ const ProductCategories = () => {
   };
 
   return (
-    <section className="w-full h-auto mt-10 p-5 font-oswald">
+    <section id="categories" className="w-full h-auto mt-10 p-5 font-oswald">
       <div className="space-y-5 flex flex-col items-center">
         <p className="text-blue-300/70 text-base">SHOP BY CATEGORY</p>
         <h3 className="text-3xl font-extrabold">SHOP BY CATEGORY</h3>
@@ -103,4 +103,4 @@ const ProductCategories = () => {
   );
 };
 
-export default ProductCategories;
+export default ShopByCategory;

@@ -13,7 +13,7 @@ const GeneralReviews = () => {
 
           return (
             <motion.div
-              whileHover={{ backgroundColor: "rgba(147, 197, 253, 0.2)" }}
+              whileHover={{ backgroundColor: "rgba(147, 197, 253, 0.15)" }}
               transition={{ duration: 0.3 }}
               key={id}
               className="space-y-2.5 bg-blue-300/10 rounded-md p-5"

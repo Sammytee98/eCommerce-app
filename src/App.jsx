@@ -3,7 +3,7 @@ import MainLayout from "./layouts/MainLayouts";
 import Home from "./pages/home/Home";
 import ShopAll from "./pages/ShopAll";
 import ProductPage from "./components/ProductPage";
-import CategoryPage from "./components/CategoryPage";
+import CategoryPage from "./pages/CategoryPage";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import { useStoreActions } from "easy-peasy";
