@@ -5,7 +5,7 @@ const BreadCrumb = () => {
   const segments = location.pathname.split("/").filter(Boolean);
 
   return (
-    <nav className="text-base text-neutral-500 font-oswald mb-6">
+    <nav className="text-base text-neutral-500 font-oswald mb-5">
       <ol className="flex items-center ">
         <li>
           <Link to="/" className="hover:underline transition">

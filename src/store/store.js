@@ -4,6 +4,7 @@ import { createStore, action, thunk } from "easy-peasy";
 const store = createStore({
   categoryProducts: {}, // dynamic category-based storage
   trendingProducts: [], // store trending products
+  allProducts: [],
 
   // Set product for one category
   setCategoryProduct: action((state, { category, products }) => {
@@ -15,6 +16,10 @@ const store = createStore({
     state.trendingProducts = payload;
   }),
 
+  setAllProducts: action((state, payload) => {
+    state.allProducts = payload;
+  }),
+
   // Thunk to fetch all selected cateegories
   fetchCategoryProducts: thunk(async (actions) => {
     const categories = [
@@ -24,9 +29,9 @@ const store = createStore({
       "laptops",
       "smartphones",
     ];
+    let mergedProducts = [];
 
     try {
-      let allProducts = [];
       const fetches = categories.map((cat) =>
         axios.get(`https://dummyjson.com/products/category/${cat}`)
       );
@@ -36,11 +41,12 @@ const store = createStore({
         const products = res.data.products;
 
         actions.setCategoryProduct({ category, products }); // Get category products
-        allProducts = allProducts.concat(res.data.products);
+        mergedProducts = mergedProducts.concat([...res.data.products]);
       });
 
       // Set trending products
-      const shuffled = [...allProducts].sort(() => 0.5 - Math.random());
+      const shuffled = [...mergedProducts].sort(() => 0.5 - Math.random());
+      actions.setAllProducts([...shuffled]);
       const trending = shuffled.slice(0, 9);
       actions.setTrendingProducts(trending);
     } catch (err) {

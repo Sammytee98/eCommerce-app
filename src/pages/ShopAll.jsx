@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { usePaginatedProducts } from "../hooks/usePaginatedProducts";
-import { Link } from "react-router-dom";
 import ProductCard from "../components/ProductCard";
 import PaginationButton from "../components/PaginationButton";
 import BreadCrumb from "../components/BreadCrumb";
@@ -28,7 +27,7 @@ const ShopAll = () => {
         <h2 className="mt-8 mb-10 text-5xl">SHOP ALL</h2>
       </div>
 
-      <div className=" grid justify-items-center grid-cols-1 small:grid-cols-2 tablet:grid-cols-3 laptop:grid-cols-4 gap-y-7 gap-x-5 my-10">
+      <div className=" grid justify-items-center grid-cols-2 tablet:grid-cols-3 laptop:grid-cols-4 gap-y-7 gap-x-10 my-10">
         {/* Display loading when fetching products */}
         {isFetching && (
           <p className="col-span-2 text-3xl text-center mt-10">Loading...</p>
@@ -45,7 +44,15 @@ const ShopAll = () => {
         {!isFetching &&
           data.products &&
           data?.products.map((product) => {
-            const { id, rating, thumbnail, title, price } = product;
+            const {
+              id,
+              rating,
+              thumbnail,
+              title,
+              price,
+              discountPercentage,
+              category,
+            } = product;
 
             return (
               <ProductCard
@@ -55,6 +62,8 @@ const ShopAll = () => {
                 rating={rating}
                 title={title}
                 price={price}
+                discountPercentage={discountPercentage}
+                category={category}
               />
             );
           })}

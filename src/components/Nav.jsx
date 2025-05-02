@@ -17,7 +17,7 @@ const Nav = ({ flexDirection, handleMenuClose }) => {
 
   return (
     <ul
-      className={`w-full flex ${flexDirection} font-oswald font-medium laptop:justify-center laptop:items-center list-none laptop:space-x-5`}
+      className={`w-full flex ${flexDirection} font-oswald laptop:justify-center laptop:items-center list-none laptop:space-x-5`}
     >
       <li className=" max-laptop:py-2.5 max-laptop:border-b-2 max-laptop:border-b-neutral-400 ">
         <NavLink

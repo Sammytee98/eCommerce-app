@@ -15,7 +15,7 @@ const HeroSection = () => {
       <div className="absolute inset-0 bg-inherit bg-cover bg-center bg-no-repeat brightness-50">
         <Slider />
       </div>
-      <div className="absolute top-1/12 transform translate-y-1/12 z-10 max-w-3xl w-full space-y-8 p-4 border-none">
+      <div className="absolute z-10 max-w-3xl w-full space-y-8 p-4 border-none">
         <h2 className="text-4xl font-semibold text-white font-oswald">
           STYLE. TECH. BEAUTY. HOME. ALL IN ONE PLACE
         </h2>

@@ -4,9 +4,11 @@ import useWindowSize from "../hooks/useWindowSize";
 import { FaBagShopping, FaBars, FaXmark, FaUser } from "react-icons/fa6";
 import Nav from "./Nav";
 import Button from "./Button";
+import CartPage from "../pages/CartPage";
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [cartOpen, setCartOpen] = useState(false);
   const { width } = useWindowSize();
 
   const handleMenuOpen = useCallback(() => {
@@ -28,6 +30,10 @@ const Header = () => {
       setMenuOpen(false);
     }
   }, [width, menuOpen]);
+
+  // const handleCartNavigation = useCallback(() => {
+  //   navigate("cart");
+  // }, []);
 
   return (
     <header className="relative top-0 left-0 right-0 z-50 flex justify-between items-center ">
@@ -54,25 +60,30 @@ const Header = () => {
 
         {/* Shopping cart */}
         <div className="relative ml-10 hover:opacity-80 transition cursor-pointer">
-          <FaBagShopping className="text-2xl" />
+          <FaBagShopping className="text-xl" />
           <p
-            className="absolute w-5 h-5 -top-2.5 -right-2.5
-           text-base font-semibold flex justify-center items-center bg-black text-white rounded-full"
+            className="absolute w-4 h-4 -top-2 -right-2
+           text-sm font-semibold flex justify-center items-center bg-black text-white rounded-full"
           >
             0
           </p>
         </div>
 
-        <div className="text-xl max-laptop:hidden hover:bg-blue-300/50 transition cursor-pointer border-3 border-blue-300/5 p-2 rounded-full bg-blue-300/20 ml-10">
+        <div className="text-sm max-laptop:hidden hover:bg-blue-300/50 transition cursor-pointer border-3 border-blue-300/5 p-2 rounded-full bg-blue-300/20 ml-10">
           <FaUser />
         </div>
+
+        {/* Cart page */}
+        <section className="hidden">
+          <CartPage />
+        </section>
 
         {/* Hamburger menu for small screen navigation */}
         <div
           onClick={handleMenuOpen}
           className="laptop:hidden -order-1 cursor-pointer p-2 border-3 border-transparent hover:border-white hover:border-dotted transition"
         >
-          <FaBars className="text-2xl " />
+          <FaBars className="text-xl " />
         </div>
       </section>
 
@@ -83,9 +94,9 @@ const Header = () => {
           menuOpen ? "visible translate-x-0" : "invisible -translate-x-full"
         }`}
       >
-        <FaXmark className="text-3xl self-end hover:border-3 hover:border-dotted hover:border-blue-300/50 cursor-pointer transition hover:bg-blue-300/50" />
+        <FaXmark className="text-2xl self-end hover:border-3 hover:border-dotted hover:border-blue-300/50 cursor-pointer transition hover:bg-blue-300/50" />
         <nav aria-label="mobile-nav" className="w-full mt-5 text-lg space-y-3">
-          <div className="w-fit text-xl hover:bg-blue-300/50 transition cursor-pointer border-3 border-neutral-700 p-2 rounded-full bg-neutral-100">
+          <div className="w-fit text-sm hover:bg-blue-300/50 transition cursor-pointer border-3 border-neutral-700 p-2 rounded-full bg-neutral-100">
             <FaUser className="text-neutral-700" />
           </div>
           <Nav

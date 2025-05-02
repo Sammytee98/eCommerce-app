@@ -33,7 +33,7 @@ const LogoSlider = () => {
 
   return (
     <section className="my-10 flex justify-center">
-      <div className="max-w-7xl w-full px-4">
+      <div className="max-w-7xl w-full px-2">
         <Swiper
           modules={[Pagination]}
           spaceBetween={5}
@@ -43,7 +43,7 @@ const LogoSlider = () => {
         >
           {logos.map((logo, i) => (
             <SwiperSlide key={i + 1}>
-              <div className="w-48 mx-auto border-3 border-blue-300/30 py-2.5">
+              <div className="w-36 tablet:w-40 laptop:w-44  mx-auto border-3 border-blue-300/30 py-2.5">
                 <img
                   src={logo}
                   alt="Company's Logo"

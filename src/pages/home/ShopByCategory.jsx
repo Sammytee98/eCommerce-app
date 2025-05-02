@@ -61,7 +61,7 @@ const ShopByCategory = () => {
   );
 
   const handleNavigation = (endpoint) => {
-    navigate(`category/${endpoint}`);
+    navigate(`/products/category/${endpoint}`);
   };
 
   return (
@@ -72,16 +72,20 @@ const ShopByCategory = () => {
         <hr className="w-16 border-1 text-blue-300/70" />
       </div>
 
-      <div className="grid justify-items-center grid-cols-1 small:grid-cols-2 tablet:grid-cols-3 laptop:grid-cols-4 desktop:grid-cols-5 gap-x-5 gap-y-7 my-10">
+      <div className="grid justify-items-center grid-cols-2 tablet:grid-cols-3 laptop:grid-cols-4 desktop:grid-cols-5 gap-x-10 gap-y-5 p-2 my-10">
         {data.map((category) => {
           const { id, title, image, productLength } = category;
+          const lowerCaseTitle = title.toLocaleLowerCase();
+          const endpoint =
+            lowerCaseTitle === "furnitures" ? "furniture" : lowerCaseTitle;
+
           return (
             <motion.figure
               whileHover={{ backgroundColor: "rgba(147, 197, 253, 0.2)" }}
-              onClick={() => handleNavigation(title)}
+              onClick={() => handleNavigation(endpoint)}
               transition={{ duration: 0.3 }}
               key={id}
-              className="w-44 h-56 relative bg-blue-300/10 rounded-md  cursor-pointer"
+              className="w-36 tablet:w-52 h-52 relative bg-blue-300/10 rounded-md  cursor-pointer"
             >
               <img src={image} alt={title} className="w-full h-full p-3" />
               <motion.figcaption

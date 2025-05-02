@@ -12,9 +12,17 @@ const TrendingProducts = () => {
         <hr className="w-16 border-1 rounded-md text-blue-300/70" />
       </div>
 
-      <div className="grid justify-items-center grid-cols-1 small:grid-cols-2 tablet:grid-cols-3 laptop:grid-cols-4 desktop:grid-cols-5 gap-x-5 gap-y-7 my-10">
+      <div className="grid justify-items-center grid-cols-2 tablet:grid-cols-3 laptop:grid-cols-4 desktop:grid-cols-5 gap-x-10 gap-y-7 p-2 my-10">
         {trendingProducts.map((product) => {
-          const { id, rating, thumbnail, price, title } = product;
+          const {
+            id,
+            rating,
+            thumbnail,
+            price,
+            discountPercentage,
+            title,
+            category,
+          } = product;
 
           return (
             <ProductCard
@@ -24,6 +32,8 @@ const TrendingProducts = () => {
               thumbnail={thumbnail}
               title={title}
               price={price}
+              discountPercentage={discountPercentage}
+              category={category}
             />
           );
         })}

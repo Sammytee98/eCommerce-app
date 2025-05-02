@@ -22,9 +22,17 @@ const CategoryPage = () => {
 
         <h1 className="mt-8 mb-10 text-5xl ">{category.toUpperCase()}</h1>
       </div>
-      <div className=" grid justify-items-center grid-cols-1 small:grid-cols-2 tablet:grid-cols-3 laptop:grid-cols-4 gap-y-7 gap-x-5 my-10">
+      <div className=" grid justify-items-center grid-cols-2 tablet:grid-cols-3 laptop:grid-cols-4 gap-y-7 gap-x-10 my-10">
         {products.map((product) => {
-          const { id, thumbnail, rating, title, price } = product;
+          const {
+            id,
+            thumbnail,
+            rating,
+            title,
+            price,
+            discountPercentage,
+            category,
+          } = product;
 
           return (
             <ProductCard
@@ -32,8 +40,10 @@ const CategoryPage = () => {
               id={id}
               thumbnail={thumbnail}
               rating={rating}
+              category={category}
               title={title}
               price={price}
+              discountPercentage={discountPercentage}
             />
           );
         })}
