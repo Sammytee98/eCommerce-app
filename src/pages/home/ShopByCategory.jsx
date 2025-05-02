@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { motion } from "motion/react";
 import { useMemo } from "react";
 
-const ProductCategories = () => {
+const ShopByCategory = () => {
   const navigate = useNavigate();
   const categoryProducts = useStoreState((state) => state.categoryProducts);
 
@@ -61,27 +61,31 @@ const ProductCategories = () => {
   );
 
   const handleNavigation = (endpoint) => {
-    navigate(`category/${endpoint}`);
+    navigate(`/products/category/${endpoint}`);
   };
 
   return (
-    <section className="w-full h-auto mt-10 p-5 font-oswald">
+    <section id="categories" className="w-full h-auto mt-10 p-5 font-oswald">
       <div className="space-y-5 flex flex-col items-center">
         <p className="text-blue-300/70 text-base">SHOP BY CATEGORY</p>
         <h3 className="text-3xl font-extrabold">SHOP BY CATEGORY</h3>
         <hr className="w-16 border-1 text-blue-300/70" />
       </div>
 
-      <div className="grid justify-items-center grid-cols-1 small:grid-cols-2 tablet:grid-cols-3 laptop:grid-cols-4 desktop:grid-cols-5 gap-x-5 gap-y-7 my-10">
+      <div className="grid justify-items-center grid-cols-2 tablet:grid-cols-3 laptop:grid-cols-4 desktop:grid-cols-5 gap-x-10 gap-y-5 p-2 my-10">
         {data.map((category) => {
           const { id, title, image, productLength } = category;
+          const lowerCaseTitle = title.toLocaleLowerCase();
+          const endpoint =
+            lowerCaseTitle === "furnitures" ? "furniture" : lowerCaseTitle;
+
           return (
             <motion.figure
               whileHover={{ backgroundColor: "rgba(147, 197, 253, 0.2)" }}
-              onClick={() => handleNavigation(title)}
+              onClick={() => handleNavigation(endpoint)}
               transition={{ duration: 0.3 }}
               key={id}
-              className="w-44 h-56 relative bg-blue-300/10 rounded-md  cursor-pointer"
+              className="w-36 tablet:w-52 h-52 relative bg-blue-300/10 rounded-md  cursor-pointer"
             >
               <img src={image} alt={title} className="w-full h-full p-3" />
               <motion.figcaption
@@ -103,4 +107,4 @@ const ProductCategories = () => {
   );
 };
 
-export default ProductCategories;
+export default ShopByCategory;

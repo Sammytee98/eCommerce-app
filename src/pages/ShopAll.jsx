@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { usePaginatedProducts } from "../hooks/usePaginatedProducts";
-import { Link } from "react-router-dom";
 import ProductCard from "../components/ProductCard";
 import PaginationButton from "../components/PaginationButton";
+import BreadCrumb from "../components/BreadCrumb";
 
 const ShopAll = () => {
   const [page, setPage] = useState(1);
@@ -12,8 +12,6 @@ const ShopAll = () => {
   const totalProducts = data?.total || 0;
   const productsPerPage = 10;
   const totalPages = Math.ceil(totalProducts / productsPerPage);
-  const start = (page - 1) * productsPerPage + 1;
-  const end = Math.min(page * productsPerPage, totalProducts);
 
   const pageNumbers = [...Array(totalPages).keys()].map((num) => num + 1);
 
@@ -24,18 +22,12 @@ const ShopAll = () => {
   return (
     <main className="flex flex-col font-oswald px-5 py-10">
       <div className="ml-10">
-        <div className="text-base text-blue-300/50">
-          <Link to="/">Home</Link>/<Link to="products">Shop</Link>
-        </div>
-        <h2 className="mt-8 mb-10 text-5xl ">SHOP</h2>
-        <div>
-          <span className="text-blue-300/50">
-            Showing {start}-{end} of {totalProducts} results
-          </span>
-        </div>
+        <BreadCrumb />
+
+        <h2 className="mt-8 mb-10 text-5xl">SHOP ALL</h2>
       </div>
 
-      <div className=" grid justify-items-center grid-cols-1 small:grid-cols-2 tablet:grid-cols-3 laptop:grid-cols-4 gap-y-7 gap-x-5 my-10">
+      <div className=" grid justify-items-center grid-cols-2 tablet:grid-cols-3 laptop:grid-cols-4 gap-y-7 gap-x-10 my-10">
         {/* Display loading when fetching products */}
         {isFetching && (
           <p className="col-span-2 text-3xl text-center mt-10">Loading...</p>
@@ -52,7 +44,15 @@ const ShopAll = () => {
         {!isFetching &&
           data.products &&
           data?.products.map((product) => {
-            const { id, rating, thumbnail, title, price } = product;
+            const {
+              id,
+              rating,
+              thumbnail,
+              title,
+              price,
+              discountPercentage,
+              category,
+            } = product;
 
             return (
               <ProductCard
@@ -62,6 +62,8 @@ const ShopAll = () => {
                 rating={rating}
                 title={title}
                 price={price}
+                discountPercentage={discountPercentage}
+                category={category}
               />
             );
           })}

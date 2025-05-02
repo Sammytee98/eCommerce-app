@@ -14,7 +14,7 @@ const RatingStar = ({ rating }) => {
     }
   }
 
-  return <span className="flex gap-1">{stars}</span>;
+  return <span className="flex gap-1 text-sm">{stars}</span>;
 };
 
 export default RatingStar;

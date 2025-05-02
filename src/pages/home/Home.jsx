@@ -1,6 +1,6 @@
 import HeroSection from "./HeroSection";
 import LogoSlider from "./LogoSlider";
-import ProductCategories from "./ProductCategories";
+import ShopByCategory from "./ShopByCategory";
 import TrendingProducts from "./TrendingProducts";
 import GeneralReviews from "./GeneralReviews";
 import ServiceAdvantages from "./ServiceAdvantages";
@@ -10,7 +10,7 @@ const Home = () => {
     <main className="w-full h-full mb-10">
       <HeroSection />
       <LogoSlider />
-      <ProductCategories />
+      <ShopByCategory />
       <TrendingProducts />
       <GeneralReviews />
       <ServiceAdvantages />

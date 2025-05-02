@@ -3,11 +3,16 @@ import { NavLink } from "react-router-dom";
 import { AiOutlineDown, AiOutlineUp } from "react-icons/ai";
 import Categories from "./CategoriesLink";
 
-const Nav = ({ flexDirection }) => {
+const Nav = ({ flexDirection, handleMenuClose }) => {
   const [categoryOpen, setCategoryOpen] = useState(false);
 
-  const handleCategoryToggle = useCallback(() => {
+  const handleCategoryDropdownToggle = useCallback(() => {
     setCategoryOpen((prev) => !prev);
+  }, []);
+
+  const handleCategoryDropDownClose = useCallback(() => {
+    setCategoryOpen(false);
+    handleMenuClose();
   }, []);
 
   return (
@@ -30,9 +35,9 @@ const Nav = ({ flexDirection }) => {
           SHOP ALL
         </NavLink>
       </li>
-      <ul className="relative max-laptop:py-2.5 max-laptop:border-b-2 max-laptop:border-b-neutral-400 cursor-pointer">
+      <ul className="dropdown relative max-laptop:py-2.5 max-laptop:border-b-2 max-laptop:border-b-neutral-400 cursor-pointer">
         <li
-          onClick={handleCategoryToggle}
+          onClick={handleCategoryDropdownToggle}
           className="flex justify-between items-center space-x-2 hover:text-blue-300/70 transition"
         >
           <span>CATEGORIES</span>{" "}
@@ -40,7 +45,7 @@ const Nav = ({ flexDirection }) => {
         </li>
         {categoryOpen && (
           <div
-            onClick={handleCategoryToggle}
+            onClick={handleCategoryDropDownClose}
             className="w-full absolute top-12 z-50 p-2.5 bg-white border-3 border-blue-300/30 rounded-sm"
           >
             <Categories />

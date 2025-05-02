@@ -4,6 +4,7 @@ import { createStore, action, thunk } from "easy-peasy";
 const store = createStore({
   categoryProducts: {}, // dynamic category-based storage
   trendingProducts: [], // store trending products
+  allProducts: [],
 
   // Set product for one category
   setCategoryProduct: action((state, { category, products }) => {
@@ -15,6 +16,10 @@ const store = createStore({
     state.trendingProducts = payload;
   }),
 
+  setAllProducts: action((state, payload) => {
+    state.allProducts = payload;
+  }),
+
   // Thunk to fetch all selected cateegories
   fetchCategoryProducts: thunk(async (actions) => {
     const categories = [
@@ -24,6 +29,7 @@ const store = createStore({
       "laptops",
       "smartphones",
     ];
+    let mergedProducts = [];
 
     try {
       const fetches = categories.map((cat) =>
@@ -35,15 +41,16 @@ const store = createStore({
         const products = res.data.products;
 
         actions.setCategoryProduct({ category, products }); // Get category products
+        mergedProducts = mergedProducts.concat([...res.data.products]);
       });
 
       // Set trending products
-      const shuffled = [...allProducts].sort(() => 0.5 - Math.random());
+      const shuffled = [...mergedProducts].sort(() => 0.5 - Math.random());
+      actions.setAllProducts([...shuffled]);
       const trending = shuffled.slice(0, 9);
       actions.setTrendingProducts(trending);
     } catch (err) {
-      actions.setisLoading(false);
-      actions.setFetchError(`Error: ${err}`);
+      console.log("Error: ", err.message);
     }
   }),
 });
