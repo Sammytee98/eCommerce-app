@@ -4,19 +4,31 @@ import useWindowSize from "../hooks/useWindowSize";
 import { FaBagShopping, FaBars, FaXmark, FaUser } from "react-icons/fa6";
 import Nav from "./Nav";
 import Button from "./Button";
-import CartPage from "../pages/CartPage";
+import ShoppingCart from "./ShoppingCart";
+import { useStoreState } from "easy-peasy";
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [cartOpen, setCartOpen] = useState(false);
   const { width } = useWindowSize();
+  const totalQuantity = useStoreState((state) => state.totalQuantity);
+
+  console.log(totalQuantity);
 
   const handleMenuOpen = useCallback(() => {
     setMenuOpen(true);
   }, []);
 
+  const handleCartOpen = useCallback(() => {
+    setCartOpen(true);
+  }, []);
+
   const handleMenuClose = useCallback(() => {
     setMenuOpen(false);
+  }, []);
+
+  const handleCartClose = useCallback(() => {
+    setCartOpen(false);
   }, []);
 
   const handleNavMenuClose = useCallback((e) => {
@@ -30,10 +42,6 @@ const Header = () => {
       setMenuOpen(false);
     }
   }, [width, menuOpen]);
-
-  // const handleCartNavigation = useCallback(() => {
-  //   navigate("cart");
-  // }, []);
 
   return (
     <header className="relative top-0 left-0 right-0 z-50 flex justify-between items-center ">
@@ -58,25 +66,33 @@ const Header = () => {
           />
         </nav>
 
-        {/* Shopping cart */}
-        <div className="relative ml-10 hover:opacity-80 transition cursor-pointer">
+        {/* Cart Icon */}
+        <div
+          onClick={handleCartOpen}
+          className="relative ml-10 hover:opacity-80 transition cursor-pointer"
+        >
           <FaBagShopping className="text-xl" />
           <p
             className="absolute w-4 h-4 -top-2 -right-2
            text-sm font-semibold flex justify-center items-center bg-black text-white rounded-full"
           >
-            0
+            {totalQuantity}
           </p>
         </div>
 
+        {/* Shopping Cart */}
+        <section
+          className={` bg-white fixed top-0 overflow-y-auto right-0 bottom-0 left-0 mobile:left-1/4 tablet:left-2/6 laptop:left-6/12 desktop:left-7/12 z-50 flex flex-col items-center p-3.5 transition-all transform duration-300 ease-in-out ${
+            cartOpen ? "visible -translate-x-0" : "invisible translate-x-full"
+          }`}
+        >
+          <ShoppingCart handleCartClose={handleCartClose} />
+        </section>
+
+        {/* User Profile Icon */}
         <div className="text-sm max-laptop:hidden hover:bg-blue-300/50 transition cursor-pointer border-3 border-blue-300/5 p-2 rounded-full bg-blue-300/20 ml-10">
           <FaUser />
         </div>
-
-        {/* Cart page */}
-        <section className="hidden">
-          <CartPage />
-        </section>
 
         {/* Hamburger menu for small screen navigation */}
         <div

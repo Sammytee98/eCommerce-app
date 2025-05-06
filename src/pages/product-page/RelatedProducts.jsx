@@ -9,7 +9,6 @@ const RelatedProducts = () => {
     category,
     productId
   );
-  console.log(related);
 
   if (isLoading) return <p>Loading...</p>;
 

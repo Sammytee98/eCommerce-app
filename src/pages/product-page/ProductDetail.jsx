@@ -6,9 +6,13 @@ import americanExpress from "../../assets/payment_icon/american-express.png";
 import discover from "../../assets/payment_icon/discover.png";
 import { useCallback, useContext } from "react";
 import ProductContext from "../../contexts/ProductContext";
+import { useStoreActions } from "easy-peasy";
 
 const ProductDetail = () => {
+  const addToCart = useStoreActions((action) => action.addToCart);
+
   const {
+    product,
     category,
     title,
     discountPrice,
@@ -21,12 +25,16 @@ const ProductDetail = () => {
   const icons = [visa, mastercard, americanExpress, discover];
 
   const increaseQuantity = useCallback(() => {
-    setQuantity((prev) => (prev += 1));
+    setQuantity((prev) => prev + 1);
   }, []);
 
   const decreaseQuantity = useCallback(() => {
-    setQuantity((prev) => (prev === 1 ? 1 : (prev -= 1)));
-  });
+    setQuantity((prev) => (prev === 1 ? 1 : prev - 1));
+  }, []);
+
+  const handleAddToCart = () => {
+    addToCart({ ...product, quantity, discountPrice });
+  };
 
   return (
     <div className="">
@@ -37,7 +45,7 @@ const ProductDetail = () => {
       <div className="flex items-end space-x-1.5 mt-2">
         <p className="text-2xl font-medium text-blue-300/70">
           <span>$ {discountPrice}</span> -{" "}
-          <span className="line-through">$ {price}</span>
+          <span className="line-through font-normal">$ {price}</span>
         </p>
         <p className="">& Free Shipping</p>
       </div>
@@ -70,6 +78,7 @@ const ProductDetail = () => {
         </div>
 
         <motion.button
+          onClick={handleAddToCart}
           whileTap={{ scale: 0.95 }}
           type="button"
           className="w-3/6 bg-blue-300/50 hover:bg-blue-300/80 transition py-0.5 rounded-md cursor-pointer"
