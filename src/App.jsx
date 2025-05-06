@@ -5,7 +5,6 @@ import Home from "./pages/home/Home";
 import ShopAll from "./pages/ShopAll";
 import ProductPage from "./pages/product-page/ProductPage";
 import CategoryPage from "./pages/CategoryPage";
-import CartPage from "./pages/CartPage";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import { useStoreActions } from "easy-peasy";
@@ -34,7 +33,6 @@ const App = () => {
             path="products/category/:category"
             element={<CategoryPage />}
           />
-          {/* <Route path="cart" element={<CartPage />} /> */}
           <Route path="about" element={<About />} />
           <Route path="contact" element={<Contact />} />
         </Route>
