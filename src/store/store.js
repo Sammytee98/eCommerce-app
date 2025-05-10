@@ -5,14 +5,14 @@ const store = createStore({
   // ====================
   // PRODUCT STATE & ACTIONS
   // ====================
-  allProducts: [], // All products fetched
+  products: [], // All products fetched
   trendingProducts: [], // Random selection of trending products
   categoryProducts: {}, // Products grouped by category
 
   // Setters
 
-  setAllProducts: action((state, payload) => {
-    state.allProducts = payload;
+  setProducts: action((state, payload) => {
+    state.products = payload;
   }),
   setTrendingProducts: action((state, payload) => {
     state.trendingProducts = payload;
@@ -23,33 +23,45 @@ const store = createStore({
 
   // Fetch product by category and populate store
   fetchCategoryProducts: thunk(async (actions) => {
-    const categories = [
-      "furniture",
-      "beauty",
-      "fragrances",
-      "laptops",
-      "smartphones",
-    ];
-    let mergedProducts = [];
+    // const categories = [
+    //   "furniture",
+    //   "beauty",
+    //   "fragrances",
+    //   "laptops",
+    //   "smartphones",
+    // ];
+    // let mergedProducts = [];
+    let categories = [];
 
     try {
+      // Fetch category lists
+      const fetchCategories = await axios.get(
+        "https://fakestoreapi.com/products/categories"
+      );
+      categories = fetchCategories.data;
+
+      // Fetch all products
+      const productsRes = await axios.get("https://fakestoreapi.com/products");
+      const allProducts = productsRes.data;
+      const shuffled = allProducts.sort(() => 0.5 - Math.random());
+      actions.setProducts(shuffled);
+      const trending = shuffled.slice(0, 9);
+      actions.setTrendingProducts(trending);
+
       const fetches = categories.map((cat) =>
-        axios.get(`https://dummyjson.com/products/category/${cat}`)
+        axios.get(`https://fakestoreapi.com/products/category/${cat}`)
       );
       const responses = await Promise.all(fetches);
       responses.forEach((res, index) => {
         const category = categories[index];
-        const products = res.data.products;
+        const products = res.data;
 
         actions.setCategoryProduct({ category, products });
-        mergedProducts = mergedProducts.concat(products);
+        // mergedProducts = mergedProducts.concat(products);
       });
 
       // Shuffle and set trending + all products
-      const shuffled = [...mergedProducts].sort(() => 0.5 - Math.random());
-      actions.setAllProducts(shuffled);
-      const trending = shuffled.slice(0, 9);
-      actions.setTrendingProducts(trending);
+      // const shuffled = [...mergedProducts].sort(() => 0.5 - Math.random());
     } catch (err) {
       console.log("Error: ", err.message);
     }
@@ -71,22 +83,10 @@ const store = createStore({
       // Add new product to cart
       state.cartItems.push({ ...product });
     }
-
-    // Recalculating total quantity after adding to cart
-    // state.totalQuantity = state.cartItems.reduce(
-    //   (sum, item) => sum + item.quantity,
-    //   0
-    // );
   }),
 
   removeFromCart: action((state, productId) => {
     state.cartItems = state.cartItems.filter((item) => item.id !== productId);
-
-    // Recalculate total quantity after removal
-    // state.totalQuantity = state.cartItems.reduce(
-    // (sum, item) => sum + item.quantity,
-    // 0
-    // );
   }),
 
   // Computed value to get total quantity

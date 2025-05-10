@@ -6,13 +6,13 @@ const Review = () => {
   const { reviews, openSection, toggleSection } = useContext(ProductContext);
 
   return (
-    <section className="border-2 w-full border-blue-300/30 px-3 py-4">
+    <section className="border-2 w-full border-gray-200 px-3 py-4">
       <button
         onClick={() => toggleSection("review")}
-        className="w-full flex text-2xl hover:text-blue-300/70 transition items-center font-semibold justify-between cursor-pointer"
+        className="w-full flex text-lg tablet:text-xl hover:text-orange-600 transition items-center font-semibold justify-between cursor-pointer"
       >
         <span>{`REVIEW (${reviews.length})`}</span>
-        <span className="text-blue-300/70 text-4xl">
+        <span className="text-orange-600 text-xl tablet:text-2xl">
           {openSection === "review" ? "-" : "+"}
         </span>
       </button>
@@ -20,7 +20,7 @@ const Review = () => {
       {openSection === "review" && (
         <div className="p-5">
           <div>
-            <h3 className="text-xl font-medium">REVIEWS</h3>
+            <h3 className="text-base tablet:text-lg font-medium">REVIEWS</h3>
             <div className="my-4 w-full space-y-2.5">
               {reviews.map((review, i) => {
                 const { rating, date, comment, reviewerName: name } = review;
@@ -28,15 +28,21 @@ const Review = () => {
                 return (
                   <div
                     key={i + 1}
-                    className="w-full h-auto space-y-2 bg-blue-300/10 p-2 rounded-md"
+                    className="w-full h-auto space-y-2 bg-gray-50 p-2 rounded-md"
                   >
                     <div className="flex justify-between items-center">
                       <RatingStar rating={rating} />
-                      <p>{date.slice(0, 10)}</p>
+                      <p className="text-xs tablet:text-sm">
+                        {date.slice(0, 10)}
+                      </p>
                     </div>
 
-                    <p>{comment}</p>
-                    <p className="text-sm text-blue-300/70">by {name}</p>
+                    <p className="text-sm tablet:text-base font-normal italic tracking-wide">
+                      {comment}
+                    </p>
+                    <p className="text-xs tablet:text-sm text-gray-700">
+                      by {name}
+                    </p>
                   </div>
                 );
               })}

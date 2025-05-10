@@ -1,12 +1,14 @@
 import { Routes, Route } from "react-router-dom";
 import MainLayout from "./layouts/MainLayouts";
-import { ProductProvider } from "./contexts/ProductContext";
 import Home from "./pages/home/Home";
 import ShopAll from "./pages/ShopAll";
 import ProductPage from "./pages/product-page/ProductPage";
 import CategoryPage from "./pages/CategoryPage";
+import CartPage from "./pages/CartPage";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
+import Signup from "./pages/Signup";
+import Login from "./pages/Login";
 import { useStoreActions } from "easy-peasy";
 import { useEffect } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -33,8 +35,11 @@ const App = () => {
             path="products/category/:category"
             element={<CategoryPage />}
           />
+          <Route path="cart" element={<CartPage />} />
           <Route path="about" element={<About />} />
           <Route path="contact" element={<Contact />} />
+          <Route path="signup" element={<Signup />} />
+          <Route path="login" element={<Login />} />
         </Route>
       </Routes>
     </QueryClientProvider>

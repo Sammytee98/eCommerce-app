@@ -8,22 +8,30 @@ const categories = [
   "fragrances",
   "beauty",
 ];
+let category = [];
 
 const shuffledArray = (array) => {
   return array.sort(() => Math.random() - 0.5);
 };
 
 const fetchSelectedProducts = async () => {
-  const fetches = categories.map((cat) =>
-    axios.get(`https:///dummyjson.com/products/category/${cat}`)
+  const fetchCategories = await axios.get(
+    "https://fakestoreapi.com/products/categories"
+  );
+  category = fetchCategories.data;
+
+  const fetches = category.map((cat) =>
+    axios.get(`https:///fakestoreapi.com/products/category/${cat}`)
   );
 
   const responses = await Promise.all(fetches);
 
   let allProducts = [];
   responses.forEach((res) => {
-    allProducts = allProducts.concat(res.data.products);
+    allProducts = allProducts.concat(res.data);
   });
+
+  console.log(allProducts);
 
   // Shuffle the products
   const shuffledProducts = shuffledArray(allProducts);

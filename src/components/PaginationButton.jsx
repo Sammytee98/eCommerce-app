@@ -7,30 +7,34 @@ const PaginationButton = ({ page, setPage, totalPages, pageNumbers }) => {
     []
   );
 
+  const prevAndNextStyle =
+    "px-2 py-1 text-xs flex items-center space-x-2 font-normal bg-gray-100 hover:bg-gray-200 transition rounded-md disabled:invisible cursor-pointer";
+
   const handleNextPageClick = useCallback(() => {
     setPage((old) => Math.min(old + 1, totalPages));
   }, []);
 
   return (
-    <div className="p-2 mb-5 flex justify-center items-center space-x-10">
+    <div className="p-2 mb-5 flex justify-center items-center space-x-5">
       <motion.button
         whileTap={{ scale: 0.95 }}
         transition={{ duration: 0.3 }}
         type="button"
         disabled={page === 1}
         onClick={handlePreviousPageClick}
-        className="px-3 py-1 text-lg font-semibold bg-neutral-200 hover:bg-neutral-300 transition rounded-md disabled:opacity-30 cursor-pointer"
+        className={prevAndNextStyle}
       >
-        &lt;&lt;
+        <span>&lt;&lt;</span>
+        <span>Prev</span>
       </motion.button>
-      <div className="space-x-4">
+      <div className="space-x-3">
         {pageNumbers.map((pg, i) => (
           <button
             type="button"
             key={i + 1}
             onClick={() => setPage(pg)}
-            className={`px-2.5 py-0.5 rounded-full cursor-pointer hover:bg-blue-300/30 transition ${
-              page === pg ? "bg-blue-300/50" : "bg-blue-300/15"
+            className={`px-2 py-0.5 text-xs rounded-full cursor-pointer hover:bg-gray-300 transition ${
+              page === pg ? "bg-orange-500 text-white" : "bg-gray-200"
             }`}
           >
             {pg}
@@ -43,9 +47,10 @@ const PaginationButton = ({ page, setPage, totalPages, pageNumbers }) => {
         type="button"
         disabled={page === totalPages}
         onClick={handleNextPageClick}
-        className="px-3 py-1 flex items-center text-lg font-semibold bg-neutral-200 hover:bg-neutral-300 transition rounded-md disabled:opacity-30 cursor-pointer"
+        className={prevAndNextStyle}
       >
-        &gt;&gt;
+        <span>Next</span>
+        <span>&gt;&gt;</span>
       </motion.button>
     </div>
   );

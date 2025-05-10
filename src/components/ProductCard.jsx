@@ -1,7 +1,8 @@
 import { useCallback } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { motion } from "motion/react";
 import RatingStar from "./RatingStar";
+import Button from "./Button";
 
 const ProductCard = ({
   id,
@@ -9,48 +10,46 @@ const ProductCard = ({
   title,
   rating,
   price,
-  discountPercentage,
+  discountPercentage = 3,
   category,
 }) => {
-  const navigate = useNavigate();
-
   const discountPrice = ((price * (100 - discountPercentage)) / 100).toFixed(2);
 
-  // function to handle products navigation to see more description about product
-  const handleNavigate = useCallback(
-    (cat, productId) => {
-      navigate(`/products/${cat}/${productId}`);
-    },
-    [navigate]
-  );
-
   return (
-    <motion.figure
-      onClick={() => handleNavigate(category, id)}
-      whileHover={{
-        scale: 1.03,
-        backgroundColor: "rgba(147, 197, 253, 0.2)",
-      }}
-      whileTap={{ scale: 0.95 }}
-      transition={{ duration: 0.3 }}
-      className="w-36 tablet:w-52 min-h-76 relative bg-blue-300/10 rounded-md  cursor-pointer overflow-hidden"
-    >
-      <p className="absolute right-2 top-3 z-10 bg-white text-blue-300/70 rounded-md px-1 py-0.5 text-xs">
-        -{discountPercentage}%
-      </p>
-      <img
-        src={thumbnail}
-        alt={title}
-        loading="lazy"
-        className="w-full h-3/6 p-1 object-fill"
-      />
-      <figcaption className="absolute bottom-0 left-0 right-0 top-3/6 space-y-2 p-3 flex flex-col bg-white">
-        <p className="text-xl">{title}</p>
-        <RatingStar rating={rating} />
-        <p className="text-base flex flex-col text-neutral-800">
-          <span className="font-semibold">$ {discountPrice}</span>
-          <span className="line-through">$ {price}</span>
+    <motion.figure className="w-36 tablet:w-48 min-h-72 flex flex-col rounded-md  cursor-pointer overflow-hidden ">
+      <div className="relative w-full h-32 bg-gray-200">
+        <p className="absolute right-2 top-3 z-10 bg-orange-100 text-orange-500 px-1 py-[1px] text-[12px] rounded-xs">
+          -{discountPercentage}%
         </p>
+        <img
+          src={thumbnail}
+          alt={title}
+          loading="lazy"
+          className="w-full h-full p-1 object-fill"
+        />
+      </div>
+      <figcaption className="space-y-2 grow p-3  flex flex-col bg-white">
+        <RatingStar rating={rating.rate} />
+        {/* <div className="grow space-y-3"> */}
+        <p className="text-sm grow tablet:text-base">{`${title.slice(
+          0,
+          25
+        )}...`}</p>
+        <p className="text-base tablet:text-lg flex flex-col text-neutral-800 font-medium">
+          $ {discountPrice}
+        </p>
+        {/* </div> */}
+        <motion.div
+          whileHover={{
+            scale: 1.03,
+          }}
+          whileTap={{ scale: 0.95 }}
+          transition={{ duration: 0.3 }}
+        >
+          <Link to={`/products/${category}/${id}`}>
+            <Button children="SHOP NOW" dynamicStyle="w-full" />
+          </Link>
+        </motion.div>
       </figcaption>
     </motion.figure>
   );

@@ -1,7 +1,11 @@
 import { FaXmark } from "react-icons/fa6";
 import { useStoreActions, useStoreState } from "easy-peasy";
+import Button from "./Button";
+import { Link, useLocation } from "react-router-dom";
+import { useCallback } from "react";
 
-const ShoppingCart = ({ handleCartClose }) => {
+const ShoppingCart = ({ setCartOpen }) => {
+  const location = useLocation();
   const cartItems = useStoreState((state) => state.cartItems);
   const removeFromCart = useStoreActions((action) => action.removeFromCart);
 
@@ -10,38 +14,42 @@ const ShoppingCart = ({ handleCartClose }) => {
     0
   );
 
-  const buttonStyle =
-    "w-full tracking-wide mt-2.5 text-lg border-3 border-blue-300/70 py-1.5 rounded-md w-400px hover:bg-blue-300/70 transition cursor-pointer";
+  const handleCartClose = useCallback(() => {
+    setCartOpen(false);
+  }, []);
+
+  if (location.pathname === "/cart") setCartOpen(false);
 
   return (
     <>
-      <div className="w-full h-full py-1 flex flex-col font-oswald">
-        <div className="w-full flex justify-between border-b-2 border-blue-300/20 pb-3">
+      <div className="w-full h-full flex flex-col font-oswald">
+        <div className="w-full flex justify-between items-center border-b-2 border-gray-200 pb-3">
           <h2 className="text-xl font-medium">SHOPPING CART</h2>
           <FaXmark
             onClick={handleCartClose}
-            className="text-2xl  hover:border-3 hover:border-dotted hover:border-blue-300/50 cursor-pointer transition hover:bg-blue-300/50"
+            className="text-xl hover:text-orange-600 cursor-pointer transition"
           />
         </div>
 
-        <div className="grow my-3 overflow-y-auto">
+        <div className="grow my-3 space-y-1 overflow-y-auto">
           {cartItems.length ? (
             cartItems.map((item) => {
-              const { id, thumbnail, title, quantity, discountPrice } = item;
+              const { id, image, title, quantity, discountPrice } = item;
               const totalPrice = (discountPrice * quantity).toFixed(2);
 
               return (
-                <div key={id} className="py-1">
+                <div key={id} className="py-1 ">
                   <div className="flex justify-between items-center">
                     <div className="flex items-center space-x-3">
                       <img
-                        src={thumbnail}
+                        src={image}
                         alt={title}
-                        className="h-10 w-10 bg-blue-300/10 rounded-md"
+                        className="h-10 w-10 bg-gray-100 rounded-md"
+                        loading="lazy"
                       />
                       <div className="space-y-1">
                         <h4 className="text-sm">{title}</h4>
-                        <p className="flex text-xs items-center space-x-1 text-neutral-600 font-normal">
+                        <p className="flex text-xs items-center space-x-1 text-gray-600 font-normal">
                           <span>{quantity}</span>
                           <span className="text-[10px]">X</span>
                           <span>${totalPrice}</span>
@@ -51,9 +59,9 @@ const ShoppingCart = ({ handleCartClose }) => {
 
                     <div
                       onClick={() => removeFromCart(id)}
-                      className="border-2 border-blue-300/70 hover:text-white hover:bg-blue-300/20 transition cursor-pointer rounded-full grid place-items-center"
+                      className="text-[12px] border-1 border-red-600 text-red-600 cursor-pointer rounded-full grid place-items-center"
                     >
-                      <FaXmark className="text-xs text-blue-300/70" />
+                      <FaXmark />
                     </div>
                   </div>
                 </div>
@@ -61,27 +69,27 @@ const ShoppingCart = ({ handleCartClose }) => {
             })
           ) : (
             <div className="h-full grid place-items-center">
-              <p className="text-xl text-neutral-600">
-                No Products in the Cart
-              </p>
+              <p className="text-lg text-gray-500">No Products in the Cart</p>
             </div>
           )}
         </div>
 
         {cartItems.length >= 1 && (
-          <div className="w-full flex justify-between mb-3 items-center border-t-2 border-b-2 border-blue-300/20 py-1.5">
+          <div className="w-full flex justify-between mb-3 items-center border-t-2 border-b-2 border-gray-300 py-1.5">
             <h5>SUBTOTAL:</h5>
             <span>${subtotal.toFixed(2)}</span>
           </div>
         )}
 
-        <button type="button" className={buttonStyle}>
-          {cartItems.length ? "VIEW CART" : "CONTINUE SHOPPING"}
-        </button>
+        <Link to={cartItems.length ? "/cart" : "/products"}>
+          <Button type="button" dynamicStyle="w-full">
+            {cartItems.length ? "VIEW CART" : "CONTINUE SHOPPING"}
+          </Button>
+        </Link>
         {cartItems.length >= 1 && (
-          <button type="button" className={buttonStyle}>
-            CHECKOUT
-          </button>
+          <Link className="mt-2.5">
+            <Button type="button" children="CHECKOUT" dynamicStyle="w-full" />
+          </Link>
         )}
       </div>
     </>

@@ -5,7 +5,7 @@ const BreadCrumb = () => {
   const segments = location.pathname.split("/").filter(Boolean);
 
   return (
-    <nav className="text-base text-neutral-500 font-oswald mb-5">
+    <nav className="text-xs tablet:text-sm text-gray-500 font-oswald mb-5">
       <ol className="flex items-center ">
         <li>
           <Link to="/" className="hover:underline transition">
@@ -17,15 +17,20 @@ const BreadCrumb = () => {
           const label = seg.charAt(0).toUpperCase() + seg.slice(1);
           const isLast = i === segments.length - 1;
           const isCategory = label.toLowerCase() === "category";
+          if (label.includes("%20")) return label.replace("%20", " ");
 
           return (
             <li key={i} className="flex items-center">
-              <span className="mx-1 text-xl">/</span>
+              <span className="mx-1 text-lg tablet:text-xl">/</span>
               {isLast ? (
                 <span className="font-semibold">{label}</span>
               ) : isCategory ? (
-                <Link to="/#categories" className="hover:underline">
+                <Link
+                  to="/#categories"
+                  className="hover:underline flex items-center"
+                >
                   {label}
+                  <span className="mx-1 text-lg tablet:text-xl">/</span>
                 </Link>
               ) : (
                 <Link to={path} className="hover:underline transition">

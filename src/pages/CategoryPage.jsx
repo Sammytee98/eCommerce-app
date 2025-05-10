@@ -15,35 +15,29 @@ const CategoryPage = () => {
       </div>
     );
   }
+
   return (
     <main className="flex flex-col font-oswald px-5 py-10">
       <div className="ml-10">
         <BreadCrumb />
 
-        <h1 className="mt-8 mb-10 text-5xl ">{category.toUpperCase()}</h1>
+        <h1 className="mt-8 mb-10 text-3xl tablet:text-4xl tracking-wider">
+          {category.toUpperCase()}
+        </h1>
       </div>
       <div className=" grid justify-items-center grid-cols-2 tablet:grid-cols-3 laptop:grid-cols-4 gap-y-7 gap-x-10 my-10">
         {products.map((product) => {
-          const {
-            id,
-            thumbnail,
-            rating,
-            title,
-            price,
-            discountPercentage,
-            category,
-          } = product;
+          const { id, image, rating, title, price, category } = product;
 
           return (
             <ProductCard
               key={id}
               id={id}
-              thumbnail={thumbnail}
+              thumbnail={image}
               rating={rating}
               category={category}
               title={title}
               price={price}
-              discountPercentage={discountPercentage}
             />
           );
         })}

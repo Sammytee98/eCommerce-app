@@ -6,23 +6,27 @@ const Description = () => {
     useContext(ProductContext);
 
   return (
-    <section className="border-2 w-full border-blue-300/30 px-3 py-4">
+    <section className="border-2 w-full border-gray-200 px-3 py-4">
       <button
         onClick={() => toggleSection("description")}
-        className="w-full flex text-2xl hover:text-blue-300/70 transition items-center font-semibold justify-between cursor-pointer"
+        className="w-full flex text-lg tablet:text-xl hover:text-orange-600 transition items-center font-semibold justify-between cursor-pointer"
       >
         <span>DESCRIPTION</span>
-        <span className="text-blue-300/70 text-4xl">
+        <span className="text-orange-600 text-xl tablet:text-2xl">
           {openSection === "description" ? "-" : "+"}
         </span>
       </button>
 
       {openSection === "description" && (
         <div className="space-y-4 px-2.5 py-5">
-          <h3 className="font-medium">A FEW WORDS ABOUT THE PRODUCT</h3>
-          <hr className="w-14 border-2 border-blue-300/30" />
-          <h4 className="text-base">{description}</h4>
-          <p className="text-sm">
+          <h3 className="font-medium text-sm tablet:text-base">
+            A FEW WORDS ABOUT THE PRODUCT
+          </h3>
+          <hr className="w-14 border-1 border-gray-200" />
+          <h4 className="text-sm tablet:text-base tracking-wide">
+            {description}
+          </h4>
+          <p className="text-xs tablet:text-sm tracking-wide">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
             vehicula laoreet dolor, at posuere purus euismod quis. Mauris nibh
             nibh, hendrerit vitae mi vel, finibus feugiat ex. Ut interdum, neque

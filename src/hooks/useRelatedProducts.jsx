@@ -3,11 +3,12 @@ import axios from "axios";
 
 const fetchRelatedProducts = async (category, currentId) => {
   const res = await axios.get(
-    `https://dummyjson.com/products/category/${category}`
+    `https://fakestoreapi.com/products/category/${category}`
   );
-  const productsData = res.data.products;
+  const productsData = res.data;
+
   const related = productsData.filter((p) => p.id !== currentId);
-  return related.sort(() => 0.5 - Math.random()).slice(0, 4);
+  return related;
 };
 
 const useRelatedProduct = (category, currentId) => {
