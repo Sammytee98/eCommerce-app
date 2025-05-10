@@ -8,20 +8,23 @@ const Footer = () => {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="w-full font-oswald bg-blue-300/10 max-small:flex max-small:flex-col max-small:items-center space-y-5">
+    <footer className="w-full font-oswald bg-gray-100 border-t-gray-100 space-y-5">
       <section className="w-full p-5 flex flex-col space-y-6">
         <div className="space-y-1.5">
           <img
-            src="../../public/favicon.png"
+            src="../../public/favicon.svg"
             alt="gts logo"
-            className="w-24 h-14"
+            className="rounded-md"
+            loading="lazy"
           />
-          <p className="text-base italic">THE BEST STORE.</p>
+          <p className="text-xs italic">THE BEST STORE.</p>
         </div>
-        <div className="flex gap-8 flex-wrap justify-evenly">
+        <div className="grid mobile:grid-cols-2 tablet:grid-cols-3 laptop:grid-cols-4 space-y-5">
           <QuickLinks />
-          <section className="space-y-2 px-5">
-            <h2 className="text-xl font-semibold text-center">CATEGORIES</h2>
+          <section className="space-y-2 px-3">
+            <h2 className="text-lg tablet:text-xl font-medium text-center">
+              CATEGORIES
+            </h2>
             <Categories />
           </section>
           <Contact />
@@ -29,7 +32,7 @@ const Footer = () => {
         </div>
       </section>
 
-      <p className=" text-center text-base font-oswald text-neutral-600 border-t-2 border-neutral-300 py-4">
+      <p className="text-center text-sm font-oswald text-gray-500 border-t-2 border-gray-200 py-4">
         Copyright &copy; {year} Gadget Store | Powered by GTS
       </p>
     </footer>

@@ -5,55 +5,67 @@ import { useStoreState } from "easy-peasy";
 const ProductContext = createContext(null);
 
 export const ProductProvider = ({ children }) => {
+  const { id } = useParams();
   const [openSection, setOpenSection] = useState(null);
   const [quantity, setQuantity] = useState(1);
-  const { id } = useParams();
 
   const toggleSection = useCallback((section) => {
     setOpenSection((prev) => (prev === section ? null : section));
   }, []);
 
   // console.log(id);
-  const allProducts = useStoreState((state) => state.allProducts);
+  const products = useStoreState((state) => state.products);
 
-  const product = allProducts.find((p) => p.id === Number(id));
+  const product = products.find((p) => p.id === Number(id));
 
   if (!product) {
-    return <div>Loading...</div>;
+    return <p className="text-center">Couldn't find product</p>;
   }
 
   const {
     id: productId,
-    images,
+    image,
     category: cat,
     title,
     price,
-    discountPercentage,
     description,
-    reviews,
-    weight,
-    warrantyInformation: warranty,
   } = product;
+
+  const discountPercentage = 3;
 
   const discountPrice = ((price * (100 - discountPercentage)) / 100).toFixed(2);
 
   const category =
     cat.slice(0, 1).toUpperCase() + cat.slice(1, cat.length).toLowerCase();
 
+  const randomNum = useCallback((num) => {
+    return (Math.random() * num + 1).toFixed(1);
+  }, []);
+
+  const defaultReview = [
+    {
+      comment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      date: "23-03-2021",
+      reviewerName: "John Doe",
+      rating: randomNum(5),
+    },
+  ];
+
   return (
     <ProductContext.Provider
       value={{
         productId,
         product,
-        images,
+        image,
         title,
         price,
         discountPrice,
         description,
+        cat,
         category,
-        reviews,
-        weight,
-        warranty,
+        reviews: defaultReview,
+        weight: randomNum(20),
+        warranty: "1 year warranty",
         openSection,
         toggleSection,
         quantity,

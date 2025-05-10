@@ -14,7 +14,7 @@ import Logo8 from "../../assets/logo/logo8.svg?react";
 import Logo9 from "../../assets/logo/logo9.svg?react";
 import Logo10 from "../../assets/logo/logo10.svg?react";
 
-const LogoSlider = () => {
+const LogoSwiper = () => {
   const { width } = useWindowSize();
   const logos = [
     Logo1,
@@ -43,7 +43,7 @@ const LogoSlider = () => {
         >
           {logos.map((logo, i) => (
             <SwiperSlide key={i + 1}>
-              <div className="w-36 tablet:w-40 laptop:w-44  mx-auto border-3 border-blue-300/30 py-2.5">
+              <div className="w-36 tablet:w-40 laptop:w-44  mx-auto border-3 border-gray-200 py-2 rounded-md">
                 <img
                   src={logo}
                   alt="Company's Logo"
@@ -58,4 +58,4 @@ const LogoSlider = () => {
   );
 };
 
-export default LogoSlider;
+export default LogoSwiper;

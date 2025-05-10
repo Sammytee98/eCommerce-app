@@ -3,17 +3,25 @@ import ProductImageSwiper from "./ProductImageSwiper";
 import ProductDetail from "./ProductDetail";
 import MoreInfo from "./MoreInfo";
 import RelatedProducts from "./RelatedProducts";
+import CartNotification from "../../components/CartNotification";
+import { useState } from "react";
 
 const ProductPage = () => {
+  const [notificationOpen, setNotificationOpen] = useState(false);
+
   return (
-    <main className="my-10 p-5 font-oswald">
+    <main className="px-2 font-oswald">
       <ProductProvider>
-        <div className="flex flex-col desktop:flex-row items-center space-y-5 desktop:space-x-5">
-          <ProductImageSwiper />
-          <ProductDetail />
+        {notificationOpen && <CartNotification />}
+
+        <div className="my-10">
+          <div className="flex flex-col laptop:flex-row items-center space-y-5 laptop:space-x-5 ">
+            <ProductImageSwiper />
+            <ProductDetail setNotificationOpen={setNotificationOpen} />
+          </div>
+          <MoreInfo />
+          <RelatedProducts />
         </div>
-        <MoreInfo />
-        <RelatedProducts />
       </ProductProvider>
     </main>
   );

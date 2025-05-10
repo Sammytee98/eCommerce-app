@@ -3,21 +3,18 @@ import { Link } from "react-router-dom";
 
 const Categories = () => {
   return (
-    <ul className="text-center space-y-1.5 list-none text-base">
-      <li className="hover:text-blue-300/70 transition">
-        <Link to="/products/category/beauty">BEAUTY</Link>
+    <ul className="text-center space-y-1.5 list-none text-xs tablet:text-sm">
+      <li className="hover:text-orange-600 transition">
+        <Link to="/products/category/electronics">ELECTRONICS</Link>
       </li>
-      <li className="hover:text-blue-300/70 transition">
-        <Link to="/products/category/fragrances">FRAGRANCES</Link>
+      <li className="hover:text-orange-600 transition">
+        <Link to="/products/category/jewelery">JEWELERY</Link>
       </li>
-      <li className="hover:text-blue-300/70 transition">
-        <Link to="/products/category/furniture">FURNITURES</Link>
+      <li className="hover:text-orange-600 transition">
+        <Link to={`/products/category/men's clothing`}>MEN'S CLOTHING</Link>
       </li>
-      <li className="hover:text-blue-300/70 transition">
-        <Link to="/products/category/laptops">LAPTOPS</Link>
-      </li>
-      <li className="hover:text-blue-300/70 transition">
-        <Link to="/products/category/smartphones">SMARTPHONES</Link>
+      <li className="hover:text-orange-600 transition">
+        <Link to={`/products/category/women's clothing`}>WOMEN'S CLOTHING</Link>
       </li>
     </ul>
   );

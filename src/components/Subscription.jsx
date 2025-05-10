@@ -3,10 +3,10 @@ import Button from "./Button";
 
 const Subscription = () => {
   return (
-    <form className="w-sm flex flex-col space-y-3">
+    <form className="w-full flex flex-col space-y-3">
       <label
         htmlFor="subscription"
-        className="text-xl font-oswald text-center font-semibold"
+        className="text-lg tablet:text-xl font-oswald text-center font-medium"
       >
         SUBSCRIBE
       </label>
@@ -14,12 +14,12 @@ const Subscription = () => {
         type="text"
         id="subscription"
         placeholder="Your email address..."
-        className="w-full border-3 border-blue-300/20 bg-white px-3 py-1.5 rounded-md outline-none focus:border-blue-300/50 font-inter placeholder:"
+        className="w-full border-3 text-sm border-gray-100 bg-white px-3 py-1.5 rounded-md outline-none focus:border-orange-400 font-oswald"
       />
       <Button
         type="button"
         children="SUBSCRIBE"
-        dynamicStyle="w-2/4 mx-auto bg-blue-300/50 hover:bg-blue-300/70 transition cursor-pointer font-open-sans rounded-md "
+        dynamicStyle="w-3/4 mx-auto transition cursor-pointer font-oswald "
       />
     </form>
   );

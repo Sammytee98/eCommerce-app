@@ -6,26 +6,32 @@ import ProductContext from "../../contexts/ProductContext";
 import { useContext } from "react";
 
 const ProductImageSwiper = () => {
-  const { images, title, product } = useContext(ProductContext);
+  const { image, title, product } = useContext(ProductContext);
+  const imageArr = [
+    image,
+    "https://placehold.co/300x200/eeeeee/333333?text=Product+Image",
+  ];
 
   return (
-    <div className="w-full laptop:min-w-[500px]">
+    <div className="w-full laptop:min-w-[500px] desktop:max-w-[700px]">
       <Swiper
         modules={[Pagination]}
         spaceBetween={5}
         slidesPerView={1}
         pagination={{ clickable: true }}
+        className="space-y-2"
       >
         {product &&
-          images.map((image, i) => (
+          imageArr.map((image, i) => (
             <SwiperSlide key={i + 1}>
-              <div className="relative  bg-blue-300/10 rounded-md">
+              <div className="relative p-5 bg-gray-100 rounded-md">
                 <img
                   src={image}
                   alt={title}
-                  className="w-full h-[500px] laptop:h-[650px] mx-auto"
+                  className="w-full h-[450px] laptop:h-[600px] mx-auto"
+                  loading="lazy"
                 />
-                <p className="absolute top-4 left-4 text-sm bg-white px-2 py-1 rounded-2xl">
+                <p className="absolute top-4 left-4 text-sm bg-orange-100 text-orange-500 px-3 py-0.5 rounded-xs">
                   Sale!
                 </p>
               </div>
