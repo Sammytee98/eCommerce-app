@@ -17,7 +17,7 @@ const ProductPage = () => {
         <div className="my-10">
           <div className="flex flex-col laptop:flex-row items-center space-y-5 laptop:space-x-5 ">
             <ProductImageSwiper />
-            <ProductDetail setNotificationOpen={setNotificationOpen} />
+            <ProductDetail />
           </div>
           <MoreInfo />
           <RelatedProducts />

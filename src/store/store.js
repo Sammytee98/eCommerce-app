@@ -23,14 +23,6 @@ const store = createStore({
 
   // Fetch product by category and populate store
   fetchCategoryProducts: thunk(async (actions) => {
-    // const categories = [
-    //   "furniture",
-    //   "beauty",
-    //   "fragrances",
-    //   "laptops",
-    //   "smartphones",
-    // ];
-    // let mergedProducts = [];
     let categories = [];
 
     try {
@@ -59,9 +51,6 @@ const store = createStore({
         actions.setCategoryProduct({ category, products });
         // mergedProducts = mergedProducts.concat(products);
       });
-
-      // Shuffle and set trending + all products
-      // const shuffled = [...mergedProducts].sort(() => 0.5 - Math.random());
     } catch (err) {
       console.log("Error: ", err.message);
     }
@@ -82,6 +71,20 @@ const store = createStore({
     } else {
       // Add new product to cart
       state.cartItems.push({ ...product });
+    }
+  }),
+
+  updateCartItem: action((state, { id, action }) => {
+    const item = state.cartItems.find((prod) => prod.id === id);
+    if (action === "increase") {
+      item.quantity = item.quantity + 1;
+    } else if (action === "decrease") {
+      item.quantity = item.quantity - 1;
+      if (item.quantity === 0) {
+        state.cartItems = state.cartItems.filter(
+          (cartItem) => cartItem.id !== id
+        );
+      }
     }
   }),
 

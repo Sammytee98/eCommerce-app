@@ -17,8 +17,6 @@ body {
 }
 .swiper-pagination-bullet {
   background-color: rgba(31, 41, 55, 1) !important;
-  width: 15px !important;
-  height: 15px !important;
 }
 .swiper-pagination-bullet-active {
   background-color: rgba(249, 115, 22, 1) !important;

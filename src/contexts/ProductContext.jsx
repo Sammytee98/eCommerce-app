@@ -8,6 +8,7 @@ export const ProductProvider = ({ children }) => {
   const { id } = useParams();
   const [openSection, setOpenSection] = useState(null);
   const [quantity, setQuantity] = useState(1);
+  const [notificationOpen, setNotificationOpen] = useState(false);
 
   const toggleSection = useCallback((section) => {
     setOpenSection((prev) => (prev === section ? null : section));
@@ -70,6 +71,8 @@ export const ProductProvider = ({ children }) => {
         toggleSection,
         quantity,
         setQuantity,
+        notificationOpen,
+        setNotificationOpen,
       }}
     >
       {children}

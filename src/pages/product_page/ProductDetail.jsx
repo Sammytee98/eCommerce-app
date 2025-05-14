@@ -1,15 +1,16 @@
 import BreadCrumb from "../../components/BreadCrumb";
 import { motion } from "motion/react";
+import QualityControl from "../../components/ui/QualitityControl";
 import visa from "../../assets/payment_icon/visa.png";
 import mastercard from "../..//assets/payment_icon/mastercard.png";
 import americanExpress from "../../assets/payment_icon/american-express.png";
 import discover from "../../assets/payment_icon/discover.png";
-import { useCallback, useContext, useEffect } from "react";
+import { useCallback, useContext } from "react";
 import ProductContext from "../../contexts/ProductContext";
 import { useStoreActions } from "easy-peasy";
 import { HiOutlineShoppingCart } from "react-icons/hi2";
 
-const ProductDetail = ({ setNotificationOpen }) => {
+const ProductDetail = () => {
   const addToCart = useStoreActions((action) => action.addToCart);
 
   const {
@@ -21,6 +22,7 @@ const ProductDetail = ({ setNotificationOpen }) => {
     description,
     quantity,
     setQuantity,
+    setNotificationOpen,
   } = useContext(ProductContext);
 
   const icons = [visa, mastercard, americanExpress, discover];
@@ -65,27 +67,11 @@ const ProductDetail = ({ setNotificationOpen }) => {
       <hr className="mt-6 mb-4 border-gray-300" />
 
       <div className="flex space-x-3">
-        <div className="w-fit flex">
-          <motion.button
-            whileTap={{ scale: 1.02 }}
-            transition={{ duration: 0.2 }}
-            onClick={decreaseQuantity}
-            type="button"
-            className="border-2 border-gray-200 rounded-l-md px-3 py-0.5 cursor-pointer hover:bg-gray-200 transition"
-          >
-            &#8722;
-          </motion.button>
-          <p className="border-2 border-gray-200 px-3 py-0.5">{quantity}</p>
-          <motion.button
-            whileTap={{ scale: 1.02 }}
-            transition={{ duration: 0.2 }}
-            onClick={increaseQuantity}
-            type="button"
-            className="border-2 border-gray-200 rounded-r-md px-3 py-0.5 cursor-pointer hover:bg-gray-200 transition"
-          >
-            &#43;
-          </motion.button>
-        </div>
+        <QualityControl
+          quantity={quantity}
+          increaseQuantity={increaseQuantity}
+          decreaseQuantity={decreaseQuantity}
+        />
 
         <motion.button
           onClick={handleAddToCart}
