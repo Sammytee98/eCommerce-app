@@ -19,7 +19,7 @@ const ProductImageSwiper = () => {
         spaceBetween={5}
         slidesPerView={1}
         pagination={{ clickable: true }}
-        className="space-y-2"
+        className="space-y-1"
       >
         {product &&
           imageArr.map((image, i) => (
