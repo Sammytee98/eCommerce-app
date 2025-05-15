@@ -11,6 +11,7 @@ const ProductCard = ({
   price,
   discountPercentage = 3,
   category,
+  handleClick,
 }) => {
   const discountPrice = ((price * (100 - discountPercentage)) / 100).toFixed(2);
 
@@ -45,7 +46,7 @@ const ProductCard = ({
           whileTap={{ scale: 0.95 }}
           transition={{ duration: 0.3 }}
         >
-          <Link to={`/products/${category}/${id}`}>
+          <Link to={`/products/${category}/${id}`} onClick={handleClick}>
             <Button children="SHOP NOW" dynamicStyle="w-full" />
           </Link>
         </motion.div>
