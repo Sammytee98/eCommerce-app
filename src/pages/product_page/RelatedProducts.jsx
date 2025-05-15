@@ -1,11 +1,13 @@
-import { useContext } from "react";
+import { useContext, useCallback } from "react";
 import ProductContext from "../../contexts/ProductContext";
 import useRelatedProduct from "../../hooks/useRelatedProducts";
 import ProductCard from "../../components/ProductCard";
 
 const RelatedProducts = () => {
-  const { cat, productId } = useContext(ProductContext);
+  const { cat, productId, setNotificationOpen } = useContext(ProductContext);
   const { data: related = [], isLoading } = useRelatedProduct(cat, productId);
+
+  const handleClick = useCallback(() => setNotificationOpen(false), []);
 
   return (
     <section className="w-full h-auto mt-10 p-5 font-oswald">
@@ -37,6 +39,7 @@ const RelatedProducts = () => {
                 price={price}
                 title={title}
                 category={category}
+                handleClick={handleClick}
               />
             );
           })}

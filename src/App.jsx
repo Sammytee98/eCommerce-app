@@ -12,6 +12,7 @@ import Login from "./pages/Login";
 import { useStoreActions } from "easy-peasy";
 import { useEffect } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ProductProvider } from "./contexts/ProductContext";
 
 const App = () => {
   const queryClient = new QueryClient();
@@ -30,7 +31,14 @@ const App = () => {
         <Route element={<MainLayout />}>
           <Route path="/" element={<Home />} />
           <Route path="products" element={<ShopAll />} />
-          <Route path="products/:category/:id" element={<ProductPage />} />
+          <Route
+            path="products/:category/:id"
+            element={
+              <ProductProvider>
+                <ProductPage />
+              </ProductProvider>
+            }
+          />
           <Route
             path="products/category/:category"
             element={<CategoryPage />}
