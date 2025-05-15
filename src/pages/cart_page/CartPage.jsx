@@ -13,10 +13,12 @@ const CartPage = () => {
         CART&#40;<span className="text-orange-500">{totalQuantity}</span>&#41;
       </h2>
       {!cartItems.length && <EmptyCartMessage />}
-      <div className="laptop:flex tablet:space-x-2">
-        <CartItems cartItems={cartItems} />
-        <CartTotals cartItems={cartItems} />
-      </div>
+      {cartItems.length > 0 && (
+        <div className="laptop:flex tablet:space-x-2">
+          <CartItems cartItems={cartItems} />
+          <CartTotals cartItems={cartItems} />
+        </div>
+      )}
     </main>
   );
 };
