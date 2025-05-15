@@ -2,12 +2,18 @@ import { FaXmark } from "react-icons/fa6";
 import { useStoreActions, useStoreState } from "easy-peasy";
 import Button from "./Button";
 import { Link, useLocation } from "react-router-dom";
-import { useCallback } from "react";
+import { useCallback, useEffect } from "react";
 
 const ShoppingCart = ({ setCartOpen }) => {
   const location = useLocation();
   const cartItems = useStoreState((state) => state.cartItems);
   const removeFromCart = useStoreActions((action) => action.removeFromCart);
+
+  useEffect(() => {
+    if (location.pathname === "/cart") {
+      setCartOpen(false);
+    }
+  }, [location.pathname, setCartOpen]);
 
   const subtotal = cartItems.reduce(
     (acc, item) => acc + item.discountPrice * item.quantity,
@@ -17,8 +23,6 @@ const ShoppingCart = ({ setCartOpen }) => {
   const handleCartClose = useCallback(() => {
     setCartOpen(false);
   }, []);
-
-  if (location.pathname === "/cart") setCartOpen(false);
 
   return (
     <>
