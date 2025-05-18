@@ -13,13 +13,16 @@ const CartNotification = () => {
       <ScrollToTop />
       <div className="flex space-x-3 items-center">
         <FaCheckCircle className="text-green-500 text-sm" />
-        <p className="flex items-center text-sm">
+        <p className="flex items-center text-sm text-wrap">
           <strong>{quantity}</strong>{" "}
           <span className="text-[12px] mx-1.5">x</span>{" "}
-          <span className="italic mr-1.5 truncate max-w-[200px]" title={title}>
+          <span
+            className="italic mr-1.5 truncate max-w-[200px] max-mobile:max-w-[100px]"
+            title={title}
+          >
             {`"${title}"`}
           </span>{" "}
-          have been added to your cart.
+          <span>have been added to your cart.</span>
         </p>
       </div>
       <Link to="/cart" className="max-mobile:self-end">
