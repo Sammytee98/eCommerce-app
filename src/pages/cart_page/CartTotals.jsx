@@ -5,15 +5,17 @@ const CartTotals = ({ cartItems }) => {
   const modifiedItem = cartItems.map((item) => {
     return { ...item, subtotal: item.quantity * item.discountPrice };
   });
-  const subtotal = modifiedItem.reduce(
+
+  const subtotalCalc = modifiedItem.reduce(
     (total, item) => total + item.subtotal,
     0
   );
 
+  const subtotal = subtotalCalc.toFixed(2);
   return (
     <section className="border-1 border-gray-300">
       <h3 className="w-full py-2 px-3 bg-gray-300  font-bold">CART TOTALS</h3>
-      <div className="space-y-4 p-3.5">
+      <div className="space-y-6 p-3.5">
         <div>
           <div className="flex justify-between items-center border-b-1 border-gray-300 text-sm py-2">
             <strong className="text-gray-700">Subtotal:</strong>
@@ -38,8 +40,8 @@ const CartTotals = ({ cartItems }) => {
           <Button children="APPLY" />
         </form>
 
-        <Link>
-          <Button children="PROCEED TO CHECKOUT" dynamicStyle="w-full" />
+        <Link to="/checkout">
+          <Button children="PROCEED TO CHECKOUT" dynamicStyle="w-full py-2.5" />
         </Link>
       </div>
     </section>

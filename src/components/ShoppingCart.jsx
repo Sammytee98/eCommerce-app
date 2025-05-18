@@ -85,7 +85,10 @@ const ShoppingCart = ({ setCartOpen }) => {
           </div>
         )}
 
-        <Link to={cartItems.length ? "/cart" : "/products"}>
+        <Link
+          to={cartItems.length ? "/cart" : "/products"}
+          onClick={handleCartClose}
+        >
           <Button type="button" dynamicStyle="w-full">
             {cartItems.length ? "VIEW CART" : "CONTINUE SHOPPING"}
           </Button>
