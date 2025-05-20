@@ -1,5 +1,6 @@
 import useFormContext from "../../hooks/useFormContext";
 import FormInputs from "./FormInputs";
+import Button from "../../components/ui/Button";
 
 const Checkout = () => {
   const {
@@ -7,25 +8,23 @@ const Checkout = () => {
     page,
     setPage,
     title,
-    // canSubmit,
+    canSubmit,
     disablePrev,
     disableNext,
     prevHide,
     nextHide,
     continueToPaymentHide,
+    confirmAndPayButtonHide,
+    handleChange,
+    handleSubmit,
   } = useFormContext();
+
+  const { tacAgreement } = formData;
 
   const handlePrev = () => setPage((prev) => prev - 1);
   const handleNext = () => {
     setPage((prev) => prev + 1);
     console.log("Submitted:", formData);
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    const data = JSON.stringify(formData);
-    console.log(data);
   };
 
   return (
@@ -39,40 +38,51 @@ const Checkout = () => {
 
       {page < 2 && <hr className="border-1 border-gray-200 " />}
 
+      <div className="flex space-x-2 items-center text-sm">
+        <input
+          type="checkbox"
+          name="agreement"
+          id="agreement"
+          value={tacAgreement}
+          onChange={handleChange}
+        />
+        <label htmlFor="agreement">I agree to the Terms and Conditions</label>
+      </div>
+
       <div className="w-full flex items-center ">
-        <button
+        <Button
           type="button"
           onClick={handlePrev}
           disabled={disablePrev}
-          className={`text-base bg-orange-500 hover:bg-orange-600 text-white px-2 py-1 transition cursor-pointer rounded-md flex items-center ${prevHide} ${
-            disablePrev && "opacity-50"
-          }`}
+          className={`${prevHide} ${disablePrev && "opacity-50"}`}
         >
           &lt;&lt; Prev
-        </button>
+        </Button>
         <div className="grow"></div>
-        <button
+        <Button
           type="button"
           onClick={handleNext}
           disabled={disableNext}
-          className={`text-base bg-orange-500 hover:bg-orange-600 text-white px-2 py-1 transition cursor-pointer rounded-md flex items-center ${nextHide} ${
-            disableNext && "opacity-50"
-          }`}
+          className={`${nextHide} ${disableNext && "opacity-50"}`}
         >
           Next &gt;&gt;
-        </button>
+        </Button>
 
-        <button
+        <Button
           onClick={handleNext}
           type="button"
-          className={`text-base bg-orange-500 hover:bg-orange-600 transition cursor-pointer px-4 py-1 rounded-md text-white self-end ${continueToPaymentHide}`}
-        >
-          Continue to Payment
-        </button>
+          className={`self-end ${continueToPaymentHide}`}
+          children="Continue to Payment"
+        />
 
-        <button type="submit" className={``}>
-          Pay Now
-        </button>
+        <Button
+          type="submit"
+          disabled={!canSubmit}
+          className={`${confirmAndPayButtonHide} w-full py-2.5 font-bold tracking-wider ${
+            !canSubmit && "opacity-30"
+          }`}
+          children="Confirm & Pay"
+        />
       </div>
     </form>
   );

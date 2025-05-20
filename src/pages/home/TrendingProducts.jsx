@@ -1,5 +1,5 @@
 import { useStoreState } from "easy-peasy";
-import ProductCard from "../../components/ProductCard";
+import ProductCard from "../../components/ui/ProductCard";
 
 const TrendingProducts = () => {
   const trendingProducts = useStoreState((state) => state.trendingProducts);

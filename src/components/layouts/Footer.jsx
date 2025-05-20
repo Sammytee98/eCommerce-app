@@ -1,8 +1,8 @@
 import { memo } from "react";
-import QuickLinks from "./QuickLinks";
-import Subscription from "./Subscription";
-import Categories from "./CategoriesLink";
-import Contact from "./Contact";
+import QuickLinks from "../QuickLinks";
+import Subscription from "../ui/Subscription";
+import Categories from "../CategoriesLink";
+import Contact from "../Contact";
 
 const Footer = () => {
   const year = new Date().getFullYear();

@@ -1,7 +1,7 @@
 import { memo, useCallback, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { AiOutlineDown, AiOutlineUp } from "react-icons/ai";
-import Categories from "./CategoriesLink";
+import Categories from "../CategoriesLink";
 
 const Nav = ({ flexDirection, handleMenuClose }) => {
   const [categoryOpen, setCategoryOpen] = useState(false);

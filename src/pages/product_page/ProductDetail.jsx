@@ -1,4 +1,4 @@
-import BreadCrumb from "../../components/BreadCrumb";
+import BreadCrumb from "../../components/ui/BreadCrumb";
 import { motion } from "motion/react";
 import QualityControl from "../../components/ui/QualitityControl";
 import visa from "../../assets/payment_icon/visa.png";
@@ -42,7 +42,7 @@ const ProductDetail = () => {
     setTimeout(() => {
       setNotificationOpen(false);
       setQuantity(1);
-    }, 10000);
+    }, 5000);
   };
 
   return (

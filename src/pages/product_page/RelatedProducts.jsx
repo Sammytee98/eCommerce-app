@@ -1,7 +1,7 @@
 import { useContext, useCallback } from "react";
 import ProductContext from "../../contexts/ProductContext";
 import useRelatedProduct from "../../hooks/useRelatedProducts";
-import ProductCard from "../../components/ProductCard";
+import ProductCard from "../../components/ui/ProductCard";
 
 const RelatedProducts = () => {
   const { cat, productId, setNotificationOpen } = useContext(ProductContext);

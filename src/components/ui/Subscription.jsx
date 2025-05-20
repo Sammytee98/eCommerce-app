@@ -19,7 +19,7 @@ const Subscription = () => {
       <Button
         type="button"
         children="SUBSCRIBE"
-        dynamicStyle="w-3/4 mx-auto transition cursor-pointer font-oswald "
+        className="w-3/4 mx-auto transition cursor-pointer font-oswald "
       />
     </form>
   );

@@ -1,7 +1,7 @@
 import { useStoreState } from "easy-peasy";
 import { useParams } from "react-router-dom";
-import BreadCrumb from "../components/BreadCrumb";
-import ProductCard from "../components/ProductCard";
+import BreadCrumb from "../components/ui/BreadCrumb";
+import ProductCard from "../components/ui/ProductCard";
 
 const CategoryPage = () => {
   const { category } = useParams();

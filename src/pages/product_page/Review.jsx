@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import RatingStar from "../../components/RatingStar";
+import RatingStar from "../../components/ui/RatingStar";
 import ProductContext from "../../contexts/ProductContext";
 
 const Review = () => {

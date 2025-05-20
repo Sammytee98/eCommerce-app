@@ -47,7 +47,7 @@ const ProductCard = ({
           transition={{ duration: 0.3 }}
         >
           <Link to={`/products/${category}/${id}`} onClick={handleClick}>
-            <Button children="SHOP NOW" dynamicStyle="w-full" />
+            <Button children="SHOP NOW" className="w-full" />
           </Link>
         </motion.div>
       </figcaption>

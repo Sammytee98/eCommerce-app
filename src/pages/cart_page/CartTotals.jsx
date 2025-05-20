@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import Button from "../../components/Button";
+import Button from "../../components/ui/Button";
 
 const CartTotals = ({ cartItems }) => {
   const modifiedItem = cartItems.map((item) => {
@@ -41,7 +41,7 @@ const CartTotals = ({ cartItems }) => {
         </form>
 
         <Link to="/checkout">
-          <Button children="PROCEED TO CHECKOUT" dynamicStyle="w-full py-2.5" />
+          <Button children="PROCEED TO CHECKOUT" className="w-full py-2.5" />
         </Link>
       </div>
     </section>

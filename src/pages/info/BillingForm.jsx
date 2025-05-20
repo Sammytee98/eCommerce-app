@@ -1,7 +1,7 @@
 import useFormContext from "../../hooks/useFormContext";
 import ScrollToTop from "../../layouts/ScrollToTop";
 
-const BillingForm = () => {
+const BillingForm = ({ inputFieldStyle }) => {
   const { countries, formData, handleChange } = useFormContext();
 
   const {
@@ -15,9 +15,6 @@ const BillingForm = () => {
     billCountry,
     billZipCode,
   } = formData;
-
-  const inputFieldStyle =
-    "text-xs border-2 border-gray-300 px-2 py-1 rounded-md outline-none focus:border-orange-500";
 
   return (
     <>

@@ -1,6 +1,6 @@
 import { memo } from "react";
 import Slider from "../../components/ImageSlider";
-import Button from "../../components/Button";
+import Button from "../../components/ui/Button";
 import { Link } from "react-router-dom";
 
 const HeroSection = () => {
@@ -21,7 +21,7 @@ const HeroSection = () => {
           <Button
             children="START SHOPPING"
             type="button"
-            dynamicStyle="text-lg text-white z-50 transition"
+            className="text-lg py-2 text-white z-50 transition"
           />
         </Link>
       </div>
