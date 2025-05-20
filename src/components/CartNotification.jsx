@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import Button from "./Button";
+import Button from "./ui/Button";
 import { FaCheckCircle } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import ProductContext from "../contexts/ProductContext";

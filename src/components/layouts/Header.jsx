@@ -1,11 +1,11 @@
 import { useCallback, useEffect, useState, memo } from "react";
 import { Link } from "react-router-dom";
-import useWindowSize from "../hooks/useWindowSize";
+import useWindowSize from "../../hooks/useWindowSize";
 import { FaBars, FaXmark, FaUser } from "react-icons/fa6";
 import { HiMiniShoppingBag } from "react-icons/hi2";
-import Nav from "./Nav";
-import Button from "./Button";
-import ShoppingCart from "./ShoppingCart";
+import Nav from "../ui/Nav";
+import Button from "../ui/Button";
+import ShoppingCart from "../ShoppingCart";
 import { useStoreState } from "easy-peasy";
 
 const Header = () => {
@@ -59,7 +59,7 @@ const Header = () => {
         >
           <Nav />
           <Link to="signup">
-            <Button children="SIGN UP" dynamicStyle="w-32 rounded-sm" />
+            <Button children="SIGN UP" className="w-32 rounded-sm" />
           </Link>
         </nav>
 
@@ -125,7 +125,7 @@ const Header = () => {
               LOG IN
             </Link>
             <Link to="signup">
-              <Button children="SIGN IN" dynamicStyle="w-full" />
+              <Button children="SIGN IN" className="w-full" />
             </Link>
           </div>
         </nav>

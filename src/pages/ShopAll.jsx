@@ -1,14 +1,13 @@
 import { useEffect, useState } from "react";
 import { usePaginatedProducts } from "../hooks/usePaginatedProducts";
-import ProductCard from "../components/ProductCard";
-import PaginationButton from "../components/PaginationButton";
-import BreadCrumb from "../components/BreadCrumb";
+import ProductCard from "../components/ui/ProductCard";
+import PaginationButton from "../components/ui/PaginationButton";
+import BreadCrumb from "../components/ui/BreadCrumb";
 
 const ShopAll = () => {
   const [page, setPage] = useState(1);
   const { data, error, isFetching } = usePaginatedProducts(page);
 
-  // const products = data?.products;
   const totalProducts = data?.total || 0;
   const productsPerPage = 10;
   const totalPages = Math.ceil(totalProducts / productsPerPage);

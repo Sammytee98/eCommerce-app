@@ -1,18 +1,16 @@
-import ProductContext, { ProductProvider } from "../../contexts/ProductContext";
+import ProductContext from "../../contexts/ProductContext";
 import ProductImageSwiper from "./ProductImageSwiper";
 import ProductDetail from "./ProductDetail";
 import MoreInfo from "./MoreInfo";
 import RelatedProducts from "./RelatedProducts";
 import CartNotification from "../../components/CartNotification";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 
 const ProductPage = () => {
-  // const [notificationOpen, setNotificationOpen] = useState(false);
   const { notificationOpen } = useContext(ProductContext);
 
   return (
     <main className="px-2 font-oswald">
-      {/* <ProductProvider> */}
       {notificationOpen && <CartNotification />}
 
       <div className="my-10">
@@ -23,7 +21,6 @@ const ProductPage = () => {
         <MoreInfo />
         <RelatedProducts />
       </div>
-      {/* </ProductProvider> */}
     </main>
   );
 };

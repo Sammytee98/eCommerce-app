@@ -1,21 +1,23 @@
 import BillingForm from "./BillingForm";
 import ShippingForm from "./ShippingForm";
 import ReviewOrder from "./ReviewOrder";
-import Payment from "./Payment";
+import PaymentSection from "./PaymentSection";
 import useFormContext from "../../hooks/useFormContext";
 
 const FormInputs = () => {
   const { page } = useFormContext();
+  const inputFieldStyle =
+    "w-full h-10 text-xs border-2 border-gray-300 px-2 rounded-md border-gray-300 focus:outline-orange-500";
 
   const display = {
-    0: <BillingForm />,
-    1: <ShippingForm />,
+    0: <BillingForm inputFieldStyle={inputFieldStyle} />,
+    1: <ShippingForm inputFieldStyle={inputFieldStyle} />,
     2: <ReviewOrder />,
-    3: <Payment />,
+    3: <PaymentSection />,
   };
 
   const content = (
-    <div className=" tablet:shadow-sm grid grid-cols-2 gap-3 px-3 py-5 rounded-md">
+    <div className=" tablet:shadow-sm grid grid-cols-2 gap-3 rounded-md">
       {display[page]}
     </div>
   );

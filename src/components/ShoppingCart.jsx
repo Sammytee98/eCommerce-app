@@ -1,6 +1,6 @@
 import { FaXmark } from "react-icons/fa6";
 import { useStoreActions, useStoreState } from "easy-peasy";
-import Button from "./Button";
+import Button from "./ui/Button";
 import { Link, useLocation } from "react-router-dom";
 import { useCallback, useEffect } from "react";
 
@@ -85,17 +85,19 @@ const ShoppingCart = ({ setCartOpen }) => {
           </div>
         )}
 
-        <Link
-          to={cartItems.length ? "/cart" : "/products"}
-          onClick={handleCartClose}
-        >
-          <Button type="button" dynamicStyle="w-full">
+        <Link to={cartItems.length ? "/cart" : "/products"}>
+          <Button onClick={handleCartClose} type="button" className="w-full">
             {cartItems.length ? "VIEW CART" : "CONTINUE SHOPPING"}
           </Button>
         </Link>
         {cartItems.length >= 1 && (
-          <Link className="mt-2.5">
-            <Button type="button" children="CHECKOUT" dynamicStyle="w-full" />
+          <Link to="checkout" className="mt-2.5">
+            <Button
+              type="button"
+              onClick={handleCartClose}
+              children="CHECKOUT"
+              className="w-full"
+            />
           </Link>
         )}
       </div>

@@ -1,7 +1,7 @@
 import useFormContext from "../../hooks/useFormContext";
 import ScrollToTop from "../../layouts/ScrollToTop";
 
-const ShippingForm = () => {
+const ShippingForm = ({ inputFieldStyle }) => {
   const { countries, formData, handleChange } = useFormContext();
 
   const {
@@ -17,23 +17,21 @@ const ShippingForm = () => {
     shipZipCode,
   } = formData;
 
-  const inputFieldStyle =
-    "text-xs border-2 border-gray-300 px-2 py-1 rounded-md";
-
   return (
     <>
       <ScrollToTop />
-      <div className="flex item-center space-x-2 col-span-full mb-5">
+      <div className="flex items-center space-x-2 col-span-full mb-5">
         <input
           type="checkbox"
           name="sameAsBilling"
           id="sameAsBilling"
           checked={sameAsBilling}
           onChange={handleChange}
+          className="w-3 h-3 mt-0.5 peer"
         />
         <label
-          htmlFor="sameasBilling"
-          className="text-xs tablet:sm tracking-wide"
+          htmlFor="sameAsBilling"
+          className="text-xs tablet:sm tracking-wide peer-hover:cursor-pointer"
         >
           Same as Billing Address
         </label>

@@ -1,5 +1,5 @@
 import customerReviews from "../../data/GeneralReviewsData";
-import RatingStar from "../../components/RatingStar";
+import RatingStar from "../../components/ui/RatingStar";
 import { motion } from "motion/react";
 
 const GeneralReviews = () => {
