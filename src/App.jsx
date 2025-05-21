@@ -1,11 +1,12 @@
 import { Routes, Route } from "react-router-dom";
 import MainLayout from "./layouts/MainLayouts";
-import Home from "./pages/home/Home";
+import Home from "./pages/Home";
 import ShopAll from "./pages/ShopAll";
-import ProductPage from "./pages/product_page/ProductPage";
-import CategoryPage from "./pages/CategoryPage";
-import CartPage from "./pages/cart_page/CartPage";
-import Checkout from "./pages/info/Checkout";
+import ProductPage from "./pages/Product";
+import CategoryPage from "./pages/Category";
+import Cart from "./pages/Cart";
+import Checkout from "./pages/Checkout";
+import Confirmation from "./pages/Confirmation";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Signup from "./pages/Signup";
@@ -14,7 +15,7 @@ import { useStoreActions } from "easy-peasy";
 import { useEffect } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ProductProvider } from "./contexts/ProductContext";
-import { FormProvider } from "./contexts/FormContext";
+import { CheckoutProvider } from "./contexts/CheckoutContext";
 
 const App = () => {
   const queryClient = new QueryClient();
@@ -45,13 +46,21 @@ const App = () => {
             path="products/category/:category"
             element={<CategoryPage />}
           />
-          <Route path="cart" element={<CartPage />} />
+          <Route path="cart" element={<Cart />} />
           <Route
             path="checkout"
             element={
-              <FormProvider>
+              <CheckoutProvider>
                 <Checkout />
-              </FormProvider>
+              </CheckoutProvider>
+            }
+          />
+          <Route
+            path="/checkout/order-confirmation"
+            element={
+              <CheckoutProvider>
+                <Confirmation />
+              </CheckoutProvider>
             }
           />
           <Route path="about" element={<About />} />

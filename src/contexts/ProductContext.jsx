@@ -9,13 +9,17 @@ export const ProductProvider = ({ children }) => {
   const [openSection, setOpenSection] = useState(null);
   const [quantity, setQuantity] = useState(1);
   const [notificationOpen, setNotificationOpen] = useState(false);
+  const products = useStoreState((state) => state.products);
+
+  const randomNum = useCallback((num) => {
+    return (Math.random() * num + 1).toFixed(1);
+  }, []);
 
   const toggleSection = useCallback((section) => {
     setOpenSection((prev) => (prev === section ? null : section));
   }, []);
 
   // console.log(id);
-  const products = useStoreState((state) => state.products);
 
   const product = products.find((p) => p.id === Number(id));
 
@@ -38,10 +42,6 @@ export const ProductProvider = ({ children }) => {
 
   const category =
     cat.slice(0, 1).toUpperCase() + cat.slice(1, cat.length).toLowerCase();
-
-  const randomNum = useCallback((num) => {
-    return (Math.random() * num + 1).toFixed(1);
-  }, []);
 
   const defaultReview = [
     {
