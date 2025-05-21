@@ -74,11 +74,6 @@ const store = createStore({
     }
   }),
 
-  clearCartItems: action((state) => {
-    state.cartItems = [];
-    state.totalQuantity = 0;
-  }),
-
   updateCartItem: action((state, { id, action }) => {
     const item = state.cartItems.find((prod) => prod.id === id);
     if (action === "increase") {
