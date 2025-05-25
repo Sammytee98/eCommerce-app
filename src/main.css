@@ -9,6 +9,7 @@
   --font-oswald: "Oswald", "sans-serif";
   --font-open-sans: "Open Sans", "sans-serif";
   --text-shadow-heading: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  --shadow-cs: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 html,

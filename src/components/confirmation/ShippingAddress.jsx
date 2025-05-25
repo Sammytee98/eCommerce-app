@@ -1,7 +1,9 @@
-import useCheckoutContext from "../../hooks/useCheckoutContext";
+import { useStoreState } from "easy-peasy";
+// import useCheckoutContext from "../../hooks/useCheckoutContext";
 
 const ShippingAddress = () => {
-  const { formData } = useCheckoutContext();
+  const customerAddress = useStoreState((state) => state.customerAddress);
+  // const { formData } = useCheckoutContext();
 
   const {
     shipFirstName,
@@ -10,7 +12,7 @@ const ShippingAddress = () => {
     shipCity,
     shipState,
     shipCountry,
-  } = formData;
+  } = customerAddress;
 
   return (
     <section className="min-w-xs p-4 bg-gray-100 rounded-md shadow-md text-sm text-gray-700 space-y-3">

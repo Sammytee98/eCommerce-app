@@ -8,6 +8,9 @@ const store = createStore({
   products: [], // All products fetched
   trendingProducts: [], // Random selection of trending products
   categoryProducts: {}, // Products grouped by category
+  customerAddress: {}, // Customer billing and shipping address
+  customerCC: {}, // Customer card details
+  userPaymentMethod: {}, // User payment method
 
   // Setters
 
@@ -19,6 +22,15 @@ const store = createStore({
   }),
   setCategoryProduct: action((state, { category, products }) => {
     state.categoryProducts[category] = products;
+  }),
+  setCustomerAddress: action((state, payload) => {
+    state.customerAddress = payload;
+  }),
+  setCustomerCC: action((state, payload) => {
+    state.customerCC = payload;
+  }),
+  setUserPaymentMethod: action((state, payload) => {
+    state.userPaymentMethod = payload;
   }),
 
   // Fetch product by category and populate store
@@ -100,6 +112,15 @@ const store = createStore({
   // Computed value to get total quantity
   totalQuantity: computed((state) => {
     return state.cartItems.reduce((sum, item) => sum + item.quantity, 0);
+  }),
+
+  // ====================
+  // TOTAL PAID STATE & ACION
+  // ====================
+  totalPaid: 0,
+
+  setTotalPaid: action((state, total) => {
+    state.totalPaid = state.totalPaid = total;
   }),
 });
 

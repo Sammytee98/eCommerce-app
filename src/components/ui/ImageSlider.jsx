@@ -1,5 +1,5 @@
 import { useState, useEffect, memo } from "react";
-import { motion } from "motion/react";
+import { motion } from "framer-motion";
 
 const Slider = ({ slide1, slide2, slide3, slide4, slide5, slide6, slide7 }) => {
   const [currentSlide, setCurrentSlide] = useState(0);

@@ -1,4 +1,4 @@
-import { createContext, useCallback, useState } from "react";
+import { createContext, useCallback, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useStoreState } from "easy-peasy";
 
@@ -23,9 +23,11 @@ export const ProductProvider = ({ children }) => {
 
   const product = products.find((p) => p.id === Number(id));
 
-  if (!product) {
-    return <p className="text-center">Couldn't find product</p>;
-  }
+  setTimeout(() => {
+    if (!product) {
+      return <p className="text-center">Couldn't find product</p>;
+    }
+  }, 10000);
 
   const {
     id: productId,

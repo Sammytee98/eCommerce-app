@@ -1,4 +1,4 @@
-import { motion } from "motion/react";
+import { motion } from "framer-motion";
 import { useCallback } from "react";
 
 const PaginationButton = ({ page, setPage, totalPages, pageNumbers }) => {

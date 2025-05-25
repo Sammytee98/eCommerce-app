@@ -3,20 +3,24 @@ import OrderSummaryBox from "../components/confirmation/OrderSummaryBox";
 import ShippingAddress from "../components/confirmation/ShippingAddress";
 import Button from "../components/ui/Button";
 import { useNavigate } from "react-router-dom";
-import { useStoreActions } from "easy-peasy";
 import { useCallback } from "react";
+import { motion } from "framer-motion";
 
 const Confirmation = () => {
   const navigate = useNavigate();
-  const clearCartItems = useStoreActions((action) => action.clearCartItems);
 
   const handleClick = useCallback(() => {
     navigate("/products");
-    clearCartItems();
   }, []);
 
   return (
-    <main className=" flex flex-col items-center font-oswald space-y-8 pb-8 pt-4 px-2">
+    <motion.main
+      initial={{ opacity: 0, y: "-100%" }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: "-100%" }}
+      transition={{ duration: 0.4 }}
+      className=" flex flex-col items-center font-oswald space-y-8 pb-8 pt-4 px-2"
+    >
       <SuccessIcon />
 
       <div className="w-full space-y-2 text-center">
@@ -45,7 +49,7 @@ const Confirmation = () => {
           onClick={handleClick}
         />
       </div>
-    </main>
+    </motion.main>
   );
 };
 

@@ -1,6 +1,7 @@
 import useCheckoutContext from "../hooks/useCheckoutContext";
-import FormInputs from "../components/forms/FormInputs";
+import FormInputs from "../components/checkout/FormInputs";
 import Button from "../components/ui/Button";
+import { motion } from "framer-motion";
 
 const Checkout = () => {
   const {
@@ -19,6 +20,8 @@ const Checkout = () => {
     handleSubmit,
   } = useCheckoutContext();
 
+  console.log(!canSubmit);
+
   const { tacAgreement } = formData;
 
   const handlePrev = () => setPage((prev) => prev - 1);
@@ -28,7 +31,11 @@ const Checkout = () => {
   };
 
   return (
-    <form
+    <motion.form
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -20 }}
+      transition={{ duration: 0.3, ease: "easeOut" }}
       onSubmit={handleSubmit}
       className="w-full max-w-[800px] mx-auto p-4 space-y-8 font-oswald space"
     >
@@ -39,7 +46,7 @@ const Checkout = () => {
       {page < 2 && <hr className="border-1 border-gray-200 " />}
 
       {page === Object.keys(title).length - 1 && (
-        <div className="flex space-x-2 items-center text-sm">
+        <div className="flex space-x-1 items-center text-sm">
           <input
             type="checkbox"
             name="tacAgreement"
@@ -82,13 +89,13 @@ const Checkout = () => {
         <Button
           type="submit"
           disabled={!canSubmit}
-          className={`${confirmAndPayButtonHide} w-full py-2.5 font-bold tracking-wider ${
-            !canSubmit && "opacity-30"
+          className={`${confirmAndPayButtonHide} w-full py-2.5 font-bold tracking-wider  ${
+            !canSubmit && "opacity-20 cursor-not-allowed"
           }`}
           children="Confirm & Pay"
         />
       </div>
-    </form>
+    </motion.form>
   );
 };
 

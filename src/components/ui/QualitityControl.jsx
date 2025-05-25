@@ -1,5 +1,4 @@
-import { motion } from "motion/react";
-// import { useCallback } from "react";
+import { motion } from "framer-motion";
 
 const QualityControl = ({ quantity, increaseQuantity, decreaseQuantity }) => {
   return (

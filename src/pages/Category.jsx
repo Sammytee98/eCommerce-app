@@ -2,6 +2,7 @@ import { useStoreState } from "easy-peasy";
 import { useParams } from "react-router-dom";
 import BreadCrumb from "../components/ui/BreadCrumb";
 import ProductCard from "../components/ui/ProductCard";
+import { motion } from "framer-motion";
 
 const CategoryPage = () => {
   const { category } = useParams();
@@ -17,7 +18,13 @@ const CategoryPage = () => {
   }
 
   return (
-    <main className="flex flex-col font-oswald px-5 py-10">
+    <motion.main
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -20 }}
+      transition={{ duration: 0.3, ease: "easeOut" }}
+      className="flex flex-col font-oswald px-5 py-10"
+    >
       <div className="ml-10">
         <BreadCrumb />
 
@@ -42,7 +49,7 @@ const CategoryPage = () => {
           );
         })}
       </div>
-    </main>
+    </motion.main>
   );
 };
 

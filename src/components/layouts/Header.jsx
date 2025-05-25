@@ -3,10 +3,11 @@ import { Link } from "react-router-dom";
 import useWindowSize from "../../hooks/useWindowSize";
 import { FaBars, FaXmark, FaUser } from "react-icons/fa6";
 import { HiMiniShoppingBag } from "react-icons/hi2";
-import Nav from "../ui/Nav";
+import Nav from "./Nav";
 import Button from "../ui/Button";
 import ShoppingCart from "../ShoppingCart";
 import { useStoreState } from "easy-peasy";
+import { AnimatePresence, motion } from "framer-motion";
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -41,7 +42,12 @@ const Header = () => {
   }, [width, menuOpen]);
 
   return (
-    <header className="relative top-0 left-0 right-0 z-50 flex justify-between items-center ">
+    <motion.header
+      initial={{ opacity: 0, y: "-100%" }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, ease: "easeOut" }}
+      className="sticky top-0 left-0 right-0 z-50 flex justify-between items-center shadow"
+    >
       <section className="bg-gray-50 grow flex justify-between items-center px-5 py-3">
         <Link to="/">
           <img
@@ -57,7 +63,8 @@ const Header = () => {
           aria-label="large-screen-nav"
           className="hidden w-3/4 laptop:flex text-lg space-x-2 justify-around"
         >
-          <Nav />
+          <Nav mobile={false} />
+
           <Link to="signup">
             <Button children="SIGN UP" className="w-32 rounded-sm" />
           </Link>
@@ -78,18 +85,19 @@ const Header = () => {
         </div>
 
         {/* Shopping Cart */}
-        <section
-          className={` bg-white fixed top-0 overflow-y-auto right-0 bottom-0 left-0 mobile:left-1/4 tablet:left-2/6 laptop:left-6/12 desktop:left-7/12 z-50 flex flex-col items-center p-3.5 transition-all transform duration-300 ease-in-out ${
-            cartOpen ? "visible -translate-x-0" : "invisible translate-x-full"
-          }`}
-        >
-          <ShoppingCart setCartOpen={setCartOpen} />
-        </section>
-
-        {/* User Profile Icon */}
-        {/* <div className="text-sm max-laptop:hidden hover:bg-blue-300/50 transition cursor-pointer border-3 border-blue-300/5 p-2 rounded-full bg-blue-300/20 ml-10">
-          <FaUser />
-        </div> */}
+        <AnimatePresence>
+          {cartOpen && (
+            <motion.aside
+              initial={{ x: "100%", y: "-100%", opacity: 0 }}
+              animate={{ x: 0, y: 0, opacity: 1 }}
+              exit={{ x: "100%", y: "-100%", opacity: 0 }}
+              transition={{ duration: 0.3, ease: "easeInOut" }}
+              className="bg-white fixed top-0 overflow-y-auto right-0 bottom-0 left-0 mobile:left-1/4 tablet:left-2/6 laptop:left-6/12 desktop:left-7/12 z-50 flex flex-col items-center p-3.5"
+            >
+              <ShoppingCart setCartOpen={setCartOpen} />
+            </motion.aside>
+          )}
+        </AnimatePresence>
 
         {/* Hamburger menu for small screen navigation */}
         <div
@@ -101,36 +109,47 @@ const Header = () => {
       </section>
 
       {/* Navbar for small screen */}
-      <div
-        onClick={handleNavMenuClose}
-        className={` bg-white fixed top-0 overflow-y-auto left-0 bottom-0  right-2/6 z-50 flex flex-col items-center p-3.5 transition-all transform duration-300 ease-in-out ${
-          menuOpen ? "visible translate-x-0" : "invisible -translate-x-full"
-        }`}
-      >
-        <FaXmark className="text-lg self-end text-gray-800 hover:text-orange-600 cursor-pointer transition" />
-        <nav aria-label="mobile-nav" className="w-full mt-5 text-lg space-y-3">
-          <div className="w-fit text-sm hover:bg-blue-300/50 transition cursor-pointer border-3 border-neutral-700 p-2 rounded-full bg-neutral-100">
-            <FaUser className="text-neutral-700" />
-          </div>
-          <Nav
-            flexDirection="flex-col"
-            menuOpen={menuOpen}
-            handleMenuClose={handleMenuClose}
-          />
-          <div className="flex flex-col space-y-2.5 mt-5 ">
-            <Link
-              to="login"
-              className="hover:text-orange-600 bg-neutral mx-auto font-oswald text-base"
+      <AnimatePresence>
+        {menuOpen && (
+          <motion.div
+            initial={{ x: "-100%", opacity: 0, y: "-100%" }}
+            animate={{ x: 0, opacity: 1, y: 0 }}
+            exit={{ x: "-100%", opacity: 0, y: "-100%" }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+            onClick={handleNavMenuClose}
+            className="bg-white fixed top-0 overflow-y-auto left-0 bottom-0  right-2/6 z-50 flex flex-col items-center p-3.5"
+          >
+            <FaXmark className="text-lg self-end text-gray-800 hover:text-orange-600 cursor-pointer transition" />
+            <nav
+              aria-label="mobile-nav"
+              className="w-full mt-5 text-lg space-y-3"
             >
-              LOG IN
-            </Link>
-            <Link to="signup">
-              <Button children="SIGN IN" className="w-full" />
-            </Link>
-          </div>
-        </nav>
-      </div>
-    </header>
+              <div className="w-fit text-sm hover:bg-blue-300/50 transition cursor-pointer border-3 border-neutral-700 p-2 rounded-full bg-neutral-100">
+                <FaUser className="text-neutral-700" />
+              </div>
+              <Nav
+                flexDirection="flex-col"
+                menuOpen={menuOpen}
+                handleMenuClose={handleMenuClose}
+                mobile={true}
+              />
+              <div className="flex flex-col space-y-2.5 mt-5 ">
+                <Link
+                  to="login"
+                  className="hover:text-orange-600 bg-neutral mx-auto font-oswald text-base"
+                >
+                  LOG IN
+                </Link>
+
+                <Link to="signup">
+                  <Button children="SIGN IN" className="w-full" />
+                </Link>
+              </div>
+            </nav>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.header>
   );
 };
 

@@ -4,12 +4,19 @@ import { FaCheckCircle } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import ProductContext from "../../contexts/ProductContext";
 import ScrollToTop from "../../layouts/ScrollToTop";
+import { motion } from "framer-motion";
 
 const CartNotification = () => {
   const { title, quantity } = useContext(ProductContext);
 
   return (
-    <div className="w-full flex flex-col mobile:flex-row mobile:justify-between mobile:items-center space-y-3 border-t-2 border-t-orange-500 bg-gray-100 p-3 rounded-b-md">
+    <motion.div
+      initial={{ opacity: 0, y: -50 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -50 }}
+      transition={{ duration: 0.5, ease: "easeOut" }}
+      className="w-full flex flex-col mobile:flex-row mobile:justify-between mobile:items-center space-y-3 border-t-2 border-t-orange-500 bg-gray-100 p-3 rounded-b-md"
+    >
       <ScrollToTop />
       <div className="flex space-x-3 items-center">
         <FaCheckCircle className="text-green-500 text-sm" />
@@ -28,7 +35,7 @@ const CartNotification = () => {
       <Link to="/cart" className="max-mobile:self-end">
         <Button children="VIEW CART" type="button" />
       </Link>
-    </div>
+    </motion.div>
   );
 };
 

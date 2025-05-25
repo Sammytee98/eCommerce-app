@@ -1,12 +1,23 @@
 import { useCallback, useEffect, useState, createContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { Country, State } from "country-state-city";
+import { useStoreActions } from "easy-peasy";
 
 const CheckoutContext = createContext({});
 
 export const CheckoutProvider = ({ children }) => {
+  const setCustomerAddress = useStoreActions(
+    (action) => action.setCustomerAddress
+  );
+  const setCustomerCC = useStoreActions((action) => action.setCustomerCC);
+  const setUserPaymentMethod = useStoreActions(
+    (action) => action.setUserPaymentMethod
+  );
+  const setTotalPaid = useStoreActions((action) => action.setTotalPaid);
+  const clearCartItems = useStoreActions((action) => action.clearCartItems);
+
+  const [orderTotal, setOrderTotal] = useState(0.0);
   const navigate = useNavigate();
-  const [totalPaid, setTotalPaid] = useState(0.0);
   const [page, setPage] = useState(0);
   const [formData, setFormData] = useState({
     billFirstName: "",
@@ -209,18 +220,18 @@ export const CheckoutProvider = ({ children }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const data = JSON.stringify(formData);
-    const cardData = JSON.stringify(cardDetails);
-    console.log(data);
-    console.log(cardData);
+    setCustomerAddress(formData);
+    setCustomerCC(cardDetails);
+    setUserPaymentMethod(paymentMethod);
+    setTotalPaid(orderTotal);
+
     navigate("/checkout/order-confirmation");
+    clearCartItems();
   };
 
   return (
     <CheckoutContext.Provider
       value={{
-        totalPaid,
-        setTotalPaid,
         countries,
         title,
         page,
@@ -240,6 +251,8 @@ export const CheckoutProvider = ({ children }) => {
         handleCardDetailsChange,
         canSubmit,
         handleSubmit,
+        orderTotal,
+        setOrderTotal,
       }}
     >
       {children}
