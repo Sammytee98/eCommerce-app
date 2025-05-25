@@ -20,7 +20,7 @@ const ShippingForm = ({ inputFieldStyle }) => {
   return (
     <>
       <ScrollToTop />
-      <div className="flex items-center space-x-2 col-span-full mb-5">
+      <div className="flex items-center space-x-1 col-span-full mb-5">
         <input
           type="checkbox"
           name="sameAsBilling"

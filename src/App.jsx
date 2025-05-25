@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import MainLayout from "./layouts/MainLayouts";
 import Home from "./pages/Home";
 import ShopAll from "./pages/ShopAll";
@@ -16,9 +16,11 @@ import { useEffect } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ProductProvider } from "./contexts/ProductContext";
 import { CheckoutProvider } from "./contexts/CheckoutContext";
+import { AnimatePresence } from "framer-motion";
 
 const App = () => {
   const queryClient = new QueryClient();
+  const location = useLocation();
 
   const fetchCategoryProducts = useStoreActions(
     (actions) => actions.fetchCategoryProducts
@@ -30,45 +32,47 @@ const App = () => {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <Routes>
-        <Route element={<MainLayout />}>
-          <Route path="/" element={<Home />} />
-          <Route path="products" element={<ShopAll />} />
-          <Route
-            path="products/:category/:id"
-            element={
-              <ProductProvider>
-                <ProductPage />
-              </ProductProvider>
-            }
-          />
-          <Route
-            path="products/category/:category"
-            element={<CategoryPage />}
-          />
-          <Route path="cart" element={<Cart />} />
-          <Route
-            path="checkout"
-            element={
-              <CheckoutProvider>
-                <Checkout />
-              </CheckoutProvider>
-            }
-          />
-          <Route
-            path="/checkout/order-confirmation"
-            element={
-              <CheckoutProvider>
-                <Confirmation />
-              </CheckoutProvider>
-            }
-          />
-          <Route path="about" element={<About />} />
-          <Route path="contact" element={<Contact />} />
-          <Route path="signup" element={<Signup />} />
-          <Route path="login" element={<Login />} />
-        </Route>
-      </Routes>
+      <AnimatePresence mode="wait">
+        <Routes location={location} key={location.pathname}>
+          <Route element={<MainLayout />}>
+            <Route path="/" element={<Home />} />
+            <Route path="products" element={<ShopAll />} />
+            <Route
+              path="products/:category/:id"
+              element={
+                <ProductProvider>
+                  <ProductPage />
+                </ProductProvider>
+              }
+            />
+            <Route
+              path="products/category/:category"
+              element={<CategoryPage />}
+            />
+            <Route path="cart" element={<Cart />} />
+            <Route
+              path="checkout"
+              element={
+                <CheckoutProvider>
+                  <Checkout />
+                </CheckoutProvider>
+              }
+            />
+            <Route
+              path="/checkout/order-confirmation"
+              element={
+                <CheckoutProvider>
+                  <Confirmation />
+                </CheckoutProvider>
+              }
+            />
+            <Route path="about" element={<About />} />
+            <Route path="contact" element={<Contact />} />
+            <Route path="signup" element={<Signup />} />
+            <Route path="login" element={<Login />} />
+          </Route>
+        </Routes>
+      </AnimatePresence>
     </QueryClientProvider>
   );
 };

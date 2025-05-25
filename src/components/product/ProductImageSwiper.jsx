@@ -4,6 +4,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import ProductContext from "../../contexts/ProductContext";
 import { useContext } from "react";
+import { motion } from "framer-motion";
 
 const ProductImageSwiper = () => {
   const { image, title, product } = useContext(ProductContext);
@@ -13,7 +14,12 @@ const ProductImageSwiper = () => {
   ];
 
   return (
-    <div className="w-full laptop:min-w-[500px] desktop:max-w-[700px]">
+    <motion.div
+      initial={{ opacity: 0, x: -30 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.5 }}
+      className="w-full laptop:min-w-[500px] desktop:max-w-[700px]"
+    >
       <Swiper
         modules={[Pagination]}
         spaceBetween={5}
@@ -38,7 +44,7 @@ const ProductImageSwiper = () => {
             </SwiperSlide>
           ))}
       </Swiper>
-    </div>
+    </motion.div>
   );
 };
 

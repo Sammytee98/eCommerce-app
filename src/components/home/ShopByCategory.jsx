@@ -4,7 +4,7 @@ import jeweleryPNG from "../../assets/jewelery.png";
 import menClothingPNG from "../../assets/mens-clothing.png";
 import womenClothingPNG from "../../assets/womens-clothing.png";
 import { useNavigate } from "react-router-dom";
-import { motion } from "motion/react";
+import { motion } from "framer-motion";
 import { useMemo } from "react";
 
 const ShopByCategory = () => {
@@ -77,15 +77,20 @@ const ShopByCategory = () => {
 
           return (
             <motion.figure
-              whileHover={{ backgroundColor: "rgba(243, 244, 246, 0.8)" }}
+              whileHover={{
+                backgroundColor: "rgba(249, 115, 22, 0.1)",
+              }}
+              transition={{ duration: 0.5, ease: "easeOut" }}
               onClick={() => handleNavigation(endpoint)}
-              transition={{ duration: 0.3 }}
               key={id}
               className="w-36 tablet:w-52 h-48 relative bg-gray-100 rounded-md  cursor-pointer"
             >
               <img src={image} alt={title} className="w-full h-full p-3" />
               <motion.figcaption
-                whileHover={{ scale: 1.05 }}
+                whileHover={{
+                  scale: 1.05,
+                  boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)",
+                }}
                 whileTap={{ scale: 0.95 }}
                 transition={{ duration: 0.3 }}
                 className="absolute bottom-6 left-0 right-1/5 bg-white/95 z-10 px-5 py-2.5 rounded-r-md flex flex-col items-center"

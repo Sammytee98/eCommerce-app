@@ -1,6 +1,6 @@
 import customerReviews from "../../data/GeneralReviewsData";
 import RatingStar from "../ui/RatingStar";
-import { motion } from "motion/react";
+import { motion } from "framer-motion";
 
 const GeneralReviews = () => {
   return (
@@ -15,7 +15,7 @@ const GeneralReviews = () => {
 
           return (
             <motion.div
-              whileHover={{ backgroundColor: "rgba(243, 244, 246, 0.8)" }}
+              whileHover={{ backgroundColor: "rgba(243, 244, 246, 0.9)" }}
               transition={{ duration: 0.3 }}
               key={id}
               className="space-y-4 bg-gray-50 rounded-md px-5 py-10 flex flex-col items-center"

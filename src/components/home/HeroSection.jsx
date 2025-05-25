@@ -9,6 +9,7 @@ import slide4 from "../../assets/slider/slide4.avif";
 import slide5 from "../../assets/slider/slide5.jpg";
 import slide6 from "../../assets/slider/slide6.avif";
 import slide7 from "../../assets/slider/slide7.avif";
+import { motion } from "framer-motion";
 
 const HeroSection = () => {
   return (
@@ -24,21 +25,39 @@ const HeroSection = () => {
           slide7={slide7}
         />
       </div>
-      <div className="absolute z-10 max-w-3xl w-full space-y-6 p-4 border-none">
-        <h2 className="text-3xl laptop:text-5xl text-shadow-heading font-extrabold text-orange-600 font-oswald tracking-wide leading-tight">
-          SMART LIVING STARTS HERE <br /> &mdash; TECH, BEAUTY & HOME ESSENTIALS
-        </h2>
-        <p className="text-sm tablet:text-base  tracking-wide text-white font-oswald">
-          EXPLORE HANDPICKED GADGETS, SELF-CARE MUST-HAVES, AND STYLISH
-          FURNITURES &mdash; ALL IN ONE SMOOTH SHOPPING EXPERIENCE.
-        </p>
-        <Link to="products">
-          <Button
-            children="START SHOPPING"
-            type="button"
-            className="text-lg py-2 text-white z-50 transition"
-          />
-        </Link>
+      <div className="absolute z-10 max-w-3xl w-full space-y-8 p-4 border-none">
+        <motion.h2
+          initial={{ opacity: 0, y: "-100%" }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+          className="text-3xl laptop:text-5xl text-shadow-heading font-extrabold text-orange-600 font-oswald tracking-wide leading-tight uppercase"
+        >
+          Smart living starts here <br /> &mdash; tech, beauty & home essentials
+        </motion.h2>
+        <motion.p
+          initial={{ opacity: 0, x: "-100%" }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut", delay: 0.3 }}
+          className="text-sm tablet:text-base  tracking-wide text-white font-oswald uppercase"
+        >
+          explore handpicked gadgets and self-care-must-haves &mdash; all in one
+          smooth shopping experience.
+        </motion.p>
+
+        <motion.div
+          initial={{ opacity: 0, y: "100%" }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut", delay: 1 }}
+          className="w-fit rounded-md"
+        >
+          <Link to="products">
+            <Button
+              children="START SHOPPING"
+              type="button"
+              className="text-lg py-2 text-white z-50 transition"
+            />
+          </Link>
+        </motion.div>
       </div>
     </section>
   );

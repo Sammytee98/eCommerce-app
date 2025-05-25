@@ -6,7 +6,7 @@ const Description = () => {
     useContext(ProductContext);
 
   return (
-    <section className="border-2 w-full border-gray-200 px-3 py-4">
+    <section className="border-2 w-full border-gray-200 px-3 py-4 space-y-5">
       <button
         onClick={() => toggleSection("description")}
         className="w-full flex text-lg tablet:text-xl hover:text-orange-600 transition items-center font-semibold justify-between cursor-pointer"
@@ -18,7 +18,14 @@ const Description = () => {
       </button>
 
       {openSection === "description" && (
-        <div className="space-y-4 px-2.5 py-5">
+        <section
+          key="description"
+          initial={{ y: -20 }}
+          animate={{ y: 0 }}
+          exit={{ y: -20 }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
+          className="space-y-4 px-2.5 py-5"
+        >
           <h3 className="font-medium text-sm tablet:text-base">
             A FEW WORDS ABOUT THE PRODUCT
           </h3>
@@ -34,7 +41,7 @@ const Description = () => {
             elit at ante. Duis faucibus sed tortor quis vulputate. Sed lorem
             neque, venenatis pretium dolor non, suscipit malesuada arcu.
           </p>
-        </div>
+        </section>
       )}
     </section>
   );

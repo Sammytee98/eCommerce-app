@@ -1,5 +1,5 @@
 import BreadCrumb from "../ui/BreadCrumb";
-import { motion } from "motion/react";
+import Button from "../ui/Button";
 import QualityControl from "../ui/QualitityControl";
 import visa from "../../assets/payment_icon/visa.png";
 import mastercard from "../..//assets/payment_icon/mastercard.png";
@@ -9,6 +9,7 @@ import { useCallback, useContext } from "react";
 import ProductContext from "../../contexts/ProductContext";
 import { useStoreActions } from "easy-peasy";
 import { HiOutlineShoppingCart } from "react-icons/hi2";
+import { motion } from "framer-motion";
 
 const ProductDetail = () => {
   const addToCart = useStoreActions((action) => action.addToCart);
@@ -46,7 +47,11 @@ const ProductDetail = () => {
   };
 
   return (
-    <div className="">
+    <motion.div
+      initial={{ opacity: 0, x: 30 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.5 }}
+    >
       <BreadCrumb />
       <h2 className="text-gray-600 text-sm">{category}</h2>
       <h3 className="mt-2 text-lg tablet:text-xl tracking-wide">{title}</h3>
@@ -56,8 +61,7 @@ const ProductDetail = () => {
           <span className="line-through font-light text-gray-500">
             $ {price}
           </span>{" "}
-          -{" "}
-          <span className="text-orange-500 font-medium">$ {discountPrice}</span>
+          - <span className="text-orange-500 font-bold">$ {discountPrice}</span>
         </p>
         <p className="text-xs">& Free Shipping</p>
       </div>
@@ -73,15 +77,14 @@ const ProductDetail = () => {
           decreaseQuantity={decreaseQuantity}
         />
 
-        <motion.button
+        <Button
           onClick={handleAddToCart}
-          whileTap={{ scale: 0.95 }}
           type="button"
           className="grow text-base text-white flex justify-around items-center bg-orange-500 hover:bg-orange-600 transition py-0.5 px-3 rounded-md cursor-pointer"
         >
           <HiOutlineShoppingCart className="pointer-events-none" />
           ADD TO CART
-        </motion.button>
+        </Button>
       </div>
 
       <hr className="my-4 border-gray-300" />
@@ -105,7 +108,7 @@ const ProductDetail = () => {
           ))}
         </div>
       </fieldset>
-    </div>
+    </motion.div>
   );
 };
 
