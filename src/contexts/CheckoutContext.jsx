@@ -1,11 +1,72 @@
 import { useCallback, useEffect, useState, createContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { Country, State } from "country-state-city";
+import { Country } from "country-state-city";
 import { useStoreActions } from "easy-peasy";
+import { useForm, useFormState } from "react-hook-form";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 const CheckoutContext = createContext({});
 
+// Billing Input validation
+const schema = z.object({
+  billFirstName: z
+    .string()
+    .min(2, { message: "This field must contain at least 2 character(s)" }),
+  billLastName: z
+    .string()
+    .min(2, { message: "This field must contain at least 2 character(s)" }),
+  billEmail: z.string().email({ message: "Invalid email address" }),
+  billAddress1: z.string().min(1, { message: "This field cannot be empty" }),
+  billAddress2: z.string().optional(),
+  billCity: z.string().min(1, { message: "This field cannot be empty" }),
+  billState: z.string().min(1, { message: "This field cannot be empty" }),
+  billCountry: z.string().min(1, { message: "Please select a country" }),
+  billZipCode: z.string().min(5, { message: "This field cannot be empty" }),
+
+  terms: z.literal(true, {
+    errorMap: () => ({ message: "You must accept the terms." }),
+  }),
+
+  // Shipping input validation
+  sameAsBilling: z.boolean().optional(),
+
+  shipFirstName: z
+    .string()
+    .min(2, { message: "This field must contain at least 2 character(s)" }),
+  shipLastName: z
+    .string()
+    .min(2, { message: "This field must contain at least 2 character(s)" }),
+  shipEmail: z.string().email({ message: "Invalid email address" }),
+  shipAddress1: z.string().min(1, { message: "This field cannot be empty" }),
+  shipAddress2: z.string().optional(),
+  shipCity: z.string().min(1, { message: "This field cannot be empty" }),
+  shipState: z.string().min(1, { message: "This field cannot be empty" }),
+  shipCountry: z.string().min(1, { message: "Please select a country" }),
+  shipZipCode: z.string().min(5, { message: "This field cannot be empty" }),
+
+  //Payment method shema
+  paymentMethod: z.enum(["card", "paypal", "cod"], {
+    errorMap: () => ({ message: "please select a payment method" }),
+  }),
+});
+
 export const CheckoutProvider = ({ children }) => {
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    setError,
+    watch,
+    control,
+    getValues,
+  } = useForm({
+    mode: "all",
+    resolver: zodResolver(schema),
+  });
+
+  const { errors, isValid, isSubmitting } = useFormState({ control });
+
   const setCustomerAddress = useStoreActions(
     (action) => action.setCustomerAddress
   );
@@ -19,6 +80,7 @@ export const CheckoutProvider = ({ children }) => {
   const [orderTotal, setOrderTotal] = useState(0.0);
   const navigate = useNavigate();
   const [page, setPage] = useState(0);
+  // const [paymentMethod, setPaymentMethod] = useState("");
   const [formData, setFormData] = useState({
     billFirstName: "",
     billLastName: "",
@@ -29,7 +91,7 @@ export const CheckoutProvider = ({ children }) => {
     billState: "",
     billCountry: "",
     billZipCode: "",
-    tacAgreement: false,
+    terms: false,
     sameAsBilling: false,
     shipFirstName: "",
     shipLastName: "",
@@ -41,11 +103,7 @@ export const CheckoutProvider = ({ children }) => {
     shipCountry: "",
     shipZipCode: "",
   });
-  const [paymentMethod, setPaymentMethod] = useState({
-    card: false,
-    paypal: false,
-    cod: false,
-  });
+
   const [cardDetails, setCardDetails] = useState({
     cardHolderName: "",
     cardNumber: "",
@@ -61,121 +119,82 @@ export const CheckoutProvider = ({ children }) => {
     3: "Payment Section",
   };
 
+  const sameAsBilling = watch("sameAsBilling");
+
   useEffect(() => {
-    if (formData.sameAsBilling) {
-      setFormData((prevData) => ({
-        ...prevData,
-        shipFirstName: prevData.billFirstName,
-        shipLastName: prevData.billLastName,
-        shipEmail: prevData.billEmail,
-        shipAddress1: prevData.billAddress1,
-        shipAddress2: prevData.billAddress2,
-        shipCity: prevData.billCity,
-        shipState: prevData.billState,
-        shipCountry: prevData.billCountry,
-        shipZipCode: prevData.billZipCode,
-      }));
+    if (sameAsBilling) {
+      setValue("shipFirstName", getValues("billFirstName"));
+      setValue("shipLastName", getValues("billLastName"));
+      setValue("shipEmail", getValues("billEmail"));
+      setValue("shipAddress1", getValues("billAddress1"));
+      setValue("shipAddress2", getValues("billAddress2"));
+      setValue("shipCity", getValues("billCity"));
+      setValue("shipState", getValues("billState"));
+      setValue("shipCountry", getValues("billCountry"));
+      setValue("shipZipCode", getValues("billZipCode"));
     } else {
-      setFormData((prevData) => ({
-        ...prevData,
-        shipFirstName: "",
-        shipLastName: "",
-        shipEmail: "",
-        shipAddress1: "",
-        shipAddress2: "",
-        shipCity: "",
-        shipState: "",
-        shipCountry: "",
-        shipZipCode: "",
-      }));
+      setValue("shipFirstName", "");
+      setValue("shipLastName", "");
+      setValue("shipEmail", "");
+      setValue("shipAddress1", "");
+      setValue("shipAddress2", "");
+      setValue("shipCity", "");
+      setValue("shipState", "");
+      setValue("shipCountry", "");
+      setValue("shipZipCode", "");
     }
-  }, [formData.sameAsBilling]);
+  }, [sameAsBilling]);
 
-  // Auto-update Country when State changes
-  useEffect(() => {
-    const allStates = State.getAllStates();
+  const billingFields = [
+    "billFirstName",
+    "billLastName",
+    "billEmail",
+    "billAddress1",
+    "billCity",
+    "billState",
+    "billCountry",
+    "billZipCode",
+  ];
 
-    // For Billing State
-    if (formData.billState) {
-      const matchedBill = allStates.find(
-        (s) => s.name.toLowerCase() === formData.billState.toLowerCase()
-      );
+  const shippingFields = [
+    "shipFirstName",
+    "shipLastName",
+    "shipEmail",
+    "shipAddress1",
+    "shipCity",
+    "shipState",
+    "shipCountry",
+    "shipZipCode",
+  ];
+  console.log(getValues("paymentMethod"));
 
-      if (matchedBill) {
-        const countryName = Country.getCountryByCode(
-          matchedBill.countryCode
-        )?.name;
+  const watchBillingValues = watch(billingFields);
+  const watchShippingValues = watch(shippingFields);
 
-        if (countryName && formData.billCountry !== countryName) {
-          setFormData((prevData) => ({
-            ...prevData,
-            billCountry: countryName,
-          }));
-        }
-      }
-    }
+  const isBillingValid = billingFields.every(
+    (field, i) => !!watchBillingValues[i] && !errors[field]
+  );
 
-    // For Shipping State
-    if (formData.shipState) {
-      const matchedShip = allStates.find(
-        (s) => s.name.toLowerCase() === formData.shipState.toLowerCase()
-      );
+  const isShippingValid = shippingFields.every(
+    (field, i) => !!watchShippingValues[i] && !errors[field]
+  );
 
-      if (matchedShip) {
-        const countryName = Country.getCountryByCode(
-          matchedShip.countryCode
-        )?.name;
-
-        if (countryName && formData.shipCountry !== countryName) {
-          setFormData((prevData) => ({
-            ...prevData,
-            shipCountry: countryName,
-          }));
-        }
-      }
-    }
-  }, [formData.billState, formData.shipState]);
-
-  const { billAddress2, sameAsBilling, shipAddress2, ...requiredInputs } =
-    formData;
-
-  const canSubmit = [...Object.values(requiredInputs)].every(Boolean);
-
-  const emailValidation = useCallback((value) => {
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    const isValidEmail = emailPattern.test(value);
-    return isValidEmail;
-  }, []);
-
-  const canNextPage1 =
-    Object.keys(formData)
-      .filter((key) => key.startsWith("bill") && key !== "billAddress2")
-      .map((key) => formData[key])
-      .every(Boolean) && emailValidation(formData.billEmail);
-
-  const canNextPage2 =
-    Object.keys(formData)
-      .filter((key) => key.startsWith("ship") && key !== "shipAddress2")
-      .map((key) => formData[key])
-      .every(Boolean) && emailValidation(formData.billEmail);
-
-  const key = Object.entries(title).find(
-    ([_, value]) => value === "Review & Confirm Order"
-  )?.[0];
+  const key = Number(
+    Object.entries(title).find(
+      ([_, value]) => value === "Review & Confirm Order"
+    )?.[0]
+  );
 
   const disablePrev = page === 0;
 
   const disableNext =
-    page === Object.keys(title).length - 1 ||
-    (page === 0 && !canNextPage1) ||
-    (page === 1 && !canNextPage2);
+    (page === 0 && !isBillingValid) || (page === 1 && !isShippingValid);
+  console.log(disableNext);
 
   const prevHide = (page === 0 || page > key) && "hidden";
 
-  // const nextHide = page === Object.keys(title).length - 1 && "invisible";
   const nextHide = page >= key && "hidden";
 
-  // const submitHide = page !== Object.keys(title).length - 1 && "hidden";
   const continueToPaymentHide =
     title[page] !== "Review & Confirm Order" && "hidden";
 
@@ -189,6 +208,10 @@ export const CheckoutProvider = ({ children }) => {
 
     setFormData((prev) => ({ ...prev, [name]: value }));
     console.log(formData);
+  };
+  const handleSameAsBilling = (e) => {
+    console.log(e.target.checked);
+    setValue("sameAsBilling", e.target.checked);
   };
 
   const handleCardDetailsChange = (e) => {
@@ -217,16 +240,24 @@ export const CheckoutProvider = ({ children }) => {
     setCardDetails((prev) => ({ ...prev, [name]: formattedValue }));
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const onSubmit = async (data) => {
+    const paymentMethod = getValues("paymentMethod");
 
-    setCustomerAddress(formData);
-    setCustomerCC(cardDetails);
-    setUserPaymentMethod(paymentMethod);
-    setTotalPaid(orderTotal);
+    try {
+      await new Promise((resolve) =>
+        setTimeout(() => {
+          setCustomerAddress(data);
+          setCustomerCC(cardDetails);
+          setUserPaymentMethod(paymentMethod);
+          setTotalPaid(orderTotal);
 
-    navigate("/checkout/order-confirmation");
-    clearCartItems();
+          navigate("/checkout/order-confirmation");
+          clearCartItems();
+        }, 8000)
+      );
+    } catch (error) {
+      setError("root");
+    }
   };
 
   return (
@@ -245,12 +276,19 @@ export const CheckoutProvider = ({ children }) => {
         nextHide,
         continueToPaymentHide,
         confirmAndPayButtonHide,
-        paymentMethod,
-        setPaymentMethod,
         cardDetails,
         handleCardDetailsChange,
-        canSubmit,
+        sameAsBilling,
+        handleSameAsBilling,
+        getValues,
+        register,
         handleSubmit,
+        onSubmit,
+        errors,
+        watch,
+        setValue,
+        isValid,
+        isSubmitting,
         orderTotal,
         setOrderTotal,
       }}

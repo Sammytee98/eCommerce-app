@@ -7,18 +7,20 @@ import OrderRecap from "./OrderRecap";
 import useCheckoutContext from "../../hooks/useCheckoutContext";
 
 const PaymentSection = () => {
-  const { paymentMethod, setPaymentMethod } = useCheckoutContext();
+  const { paymentMethod, setPaymentMethod, watch } = useCheckoutContext();
 
-  const handlePaymentSelect = (e) => {
-    const { value, id } = e.target;
-    const selected = value || id;
-    setPaymentMethod((prev) => ({
-      ...prev,
-      card: selected === "card",
-      paypal: selected === "paypal",
-      cod: selected === "cod",
-    }));
-  };
+  const selectedPayment = watch("paymentMethod");
+
+  // const handlePaymentSelect = (e) => {
+  //   const { value, id } = e.target;
+  //   const selected = value || id;
+  //   setPaymentMethod((prev) => ({
+  //     ...prev,
+  //     card: selected === "card",
+  //     paypal: selected === "paypal",
+  //     cod: selected === "cod",
+  //   }));
+  // };
 
   return (
     <section className="w-full p-5 tablet:p-8 bg-gray-100 rounded-md space-y-6 col-span-full">
@@ -26,13 +28,14 @@ const PaymentSection = () => {
 
       <h3 className="text-xl text-gray-900 font-semibold">Payment Details</h3>
 
-      <PaymentMethod handlePaymentSelect={handlePaymentSelect} />
+      {/* <PaymentMethod handlePaymentSelect={handlePaymentSelect} /> */}
+      <PaymentMethod />
 
-      {paymentMethod.card && <CardDetails />}
+      {selectedPayment === "card" && <CardDetails />}
 
-      {paymentMethod.paypal && <PaypalPayment />}
+      {selectedPayment === "paypal" && <PaypalPayment />}
 
-      {paymentMethod.cod && <CodPayment />}
+      {selectedPayment === "cod" && <CodPayment />}
 
       <OrderRecap />
     </section>

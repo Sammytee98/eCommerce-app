@@ -68,7 +68,7 @@ const ShopByCategory = () => {
         <hr className="w-12 border-1 text-orange-500" />
       </div>
 
-      <div className="grid justify-items-center grid-cols-2 tablet:grid-cols-3 laptop:grid-cols-4 desktop:grid-cols-5 gap-x-10 gap-y-5 p-2 my-10">
+      <div className="w-full grid items-center grid-cols-2 tablet:grid-cols-3 laptop:grid-cols-4 gap-10 p-2 my-10">
         {data.map((category) => {
           const { id, title, image, productLength } = category;
           const lowerCaseTitle = title.toLocaleLowerCase();
@@ -83,7 +83,7 @@ const ShopByCategory = () => {
               transition={{ duration: 0.5, ease: "easeOut" }}
               onClick={() => handleNavigation(endpoint)}
               key={id}
-              className="w-36 tablet:w-52 h-48 relative bg-gray-100 rounded-md  cursor-pointer"
+              className="w-36 tablet:w-52 h-48 relative bg-gray-100 rounded-md cursor-pointer"
             >
               <img src={image} alt={title} className="w-full h-full p-3" />
               <motion.figcaption

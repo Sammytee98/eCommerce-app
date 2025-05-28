@@ -1,18 +1,28 @@
 import useCheckoutContext from "../../hooks/useCheckoutContext";
 
 const ShippingInfoReview = ({ labelStyle, listStyle }) => {
-  const { formData } = useCheckoutContext();
-  const {
-    sameAsBilling,
-    shipFirstName,
-    shipLastName,
-    shipEmail,
-    shipAddress1,
-    shipCity,
-    shipState,
-    shipCountry,
-    shipZipCode,
-  } = formData;
+  const { formData, sameAsBilling, getValues } = useCheckoutContext();
+  // const {
+  //   sameAsBilling,
+  //   shipFirstName,
+  //   shipLastName,
+  //   shipEmail,
+  //   shipAddress1,
+  //   shipCity,
+  //   shipState,
+  //   shipCountry,
+  //   shipZipCode,
+  // } = formData;
+
+  const info = {
+    name: getValues("shipFirstName") + getValues("shipLastName"),
+    email: getValues("shipEmail"),
+    address: getValues("shipAddress1"),
+    city: getValues("shipCity"),
+    state: getValues("shipState"),
+    country: getValues("shipCountry"),
+    zipCode: getValues("shipZipCode"),
+  };
 
   return (
     <div className="w-full bg-gray-100 px-4 py-2 rounded-md space-y-5">
@@ -26,34 +36,33 @@ const ShippingInfoReview = ({ labelStyle, listStyle }) => {
         <ul className="list-none text-gray-600 space-y-1.5">
           <li className={listStyle}>
             {" "}
-            <p className={labelStyle}>Full Name:</p>{" "}
-            <span>{`${shipFirstName} ${shipLastName}`}</span>{" "}
+            <p className={labelStyle}>Full Name:</p> <span>{info.name}</span>{" "}
           </li>
           <li className={listStyle}>
             {" "}
             <p className={labelStyle}>Email Address:</p>{" "}
-            <span>{shipEmail}</span>{" "}
+            <span>{info.email}</span>{" "}
           </li>
           <li className={listStyle}>
             {" "}
             <p className={labelStyle}>Street Address:</p>{" "}
-            <span>{shipAddress1}</span>{" "}
+            <span>{info.address}</span>{" "}
           </li>
           <li className={listStyle}>
             {" "}
-            <p className={labelStyle}>City:</p> <span>{shipCity}</span>{" "}
+            <p className={labelStyle}>City:</p> <span>{info.city}</span>{" "}
           </li>
           <li className={listStyle}>
             {" "}
-            <p className={labelStyle}>State:</p> <span>{shipState}</span>{" "}
+            <p className={labelStyle}>State:</p> <span>{info.state}</span>{" "}
+          </li>
+          <li className={listStyle}>
+            {" "}
+            <p className={labelStyle}>Country:</p> <span>{info.country}</span>{" "}
           </li>
           <li className={listStyle}>
             <p className={labelStyle}>Zip Code</p>
-            <span>{shipZipCode}</span>
-          </li>
-          <li className={listStyle}>
-            {" "}
-            <p className={labelStyle}>Country:</p> <span>{shipCountry}</span>{" "}
+            <span>{info.zipCode}</span>
           </li>
         </ul>
       )}

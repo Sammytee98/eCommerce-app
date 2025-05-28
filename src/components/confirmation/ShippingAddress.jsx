@@ -3,7 +3,6 @@ import { useStoreState } from "easy-peasy";
 
 const ShippingAddress = () => {
   const customerAddress = useStoreState((state) => state.customerAddress);
-  // const { formData } = useCheckoutContext();
 
   const {
     shipFirstName,
@@ -15,7 +14,7 @@ const ShippingAddress = () => {
   } = customerAddress;
 
   return (
-    <section className="min-w-xs p-4 bg-gray-100 rounded-md shadow-md text-sm text-gray-700 space-y-3">
+    <section className="p-4 bg-gray-100 rounded-md shadow-md text-sm text-gray-700 space-y-3">
       <h4 className="text-xl font-medium text-gray-800">Shipping Address</h4>
       <div className="space-y-1.5">
         <p>

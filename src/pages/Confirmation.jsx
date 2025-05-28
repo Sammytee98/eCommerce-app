@@ -19,7 +19,7 @@ const Confirmation = () => {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: "-100%" }}
       transition={{ duration: 0.4 }}
-      className=" flex flex-col items-center font-oswald space-y-8 pb-8 pt-4 px-2"
+      className=" flex flex-col items-center font-oswald space-y-8 pb-8 pt-4 px-6"
     >
       <SuccessIcon />
 
@@ -32,20 +32,20 @@ const Confirmation = () => {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 tablet:grid-cols-2 gap-8">
+      <div className="grid grid-cols-1 tablet:grid-cols-2 gap-8 w-full max-w-[900px]">
         <OrderSummaryBox />
         <ShippingAddress />
       </div>
 
-      <div className="w-auto flex flex-col tablet:flex-row gap-4 tablet:gap-8">
+      <div className="w-full max-w-[900px] grid grid-cols-1 tablet:grid-cols-2 gap-4 tablet:gap-8">
         <Button
           children="Go to Orders"
-          className="py-2.5 min-w-xs"
+          className="py-2.5"
           onClick={() => alert("Order page is not implemented yet.")}
         />
         <Button
           children="Continue Shoping"
-          className="py-2.5 min-w-xs"
+          className="py-2.5 "
           onClick={handleClick}
         />
       </div>

@@ -1,5 +1,5 @@
 import { memo, useCallback, useState } from "react";
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { AiOutlineDown, AiOutlineUp } from "react-icons/ai";
 import Categories from "../CategoriesLink";
 import { AnimatePresence, motion } from "framer-motion";
@@ -46,12 +46,12 @@ const Nav = ({ flexDirection, handleMenuClose, menuOpen }) => {
         variants={navItem}
         className=" max-laptop:py-2.5 max-laptop:border-b-2 max-laptop:border-b-gray-200 "
       >
-        <NavLink
+        <Link
           to="/"
           className="cursor-pointer hover:text-orange-600 transition"
         >
           HOME
-        </NavLink>
+        </Link>
       </motion.li>
 
       <motion.li
@@ -60,12 +60,12 @@ const Nav = ({ flexDirection, handleMenuClose, menuOpen }) => {
         variants={navItem}
         className=" max-laptop:py-2.5 max-laptop:border-b-2 max-laptop:border-b-gray-200"
       >
-        <NavLink
-          to="products"
+        <Link
+          to="/products"
           className="cursor-pointer hover:text-orange-600 transition"
         >
           SHOP ALL
-        </NavLink>
+        </Link>
       </motion.li>
 
       <ul className="dropdown relative max-laptop:py-2.5 max-laptop:border-b-2 max-laptop:border-b-gray-200 cursor-pointer">
@@ -87,7 +87,7 @@ const Nav = ({ flexDirection, handleMenuClose, menuOpen }) => {
               exit={{ y: "-100%", opacity: 0 }}
               transition={{ duration: 0.3, ease: "easeOut" }}
               onClick={handleCategoryDropDownClose}
-              className="w-full absolute top-12 z-50 p-2.5 bg-white border-2 border-gray-200 rounded-sm"
+              className="w-full min-w-48 absolute top-12 laptop:-left-16 z-50 p-2.5 bg-white border-2 border-gray-200 rounded-sm"
             >
               <Categories />
             </motion.div>
@@ -102,12 +102,12 @@ const Nav = ({ flexDirection, handleMenuClose, menuOpen }) => {
         className="max-laptop:py-2.5 max-laptop:border-b-2
         max-laptop:border-b-gray-200"
       >
-        <NavLink
-          to="about"
+        <Link
+          to="/about"
           className="cursor-pointer hover:text-orange-600 transition"
         >
           ABOUT
-        </NavLink>
+        </Link>
       </motion.li>
 
       <motion.li
@@ -116,12 +116,12 @@ const Nav = ({ flexDirection, handleMenuClose, menuOpen }) => {
         variants={navItem}
         className="max-laptop:py-2.5 max-laptop:border-b-2 max-laptop:border-b-gray-200"
       >
-        <NavLink
-          to="contact"
+        <Link
+          to="/contact"
           className="cursor-pointer hover:text-orange-600 transition"
         >
           CONTACT
-        </NavLink>
+        </Link>
       </motion.li>
     </motion.ul>
   );

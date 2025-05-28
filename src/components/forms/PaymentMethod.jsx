@@ -1,4 +1,8 @@
+import useCheckoutContext from "../../hooks/useCheckoutContext";
+
 const PaymentMethod = ({ handlePaymentSelect }) => {
+  const { register, errors } = useCheckoutContext();
+
   return (
     <section className="w-full space-y-2">
       <h4 className="text-sm font-medium">Select a payment method</h4>
@@ -7,11 +11,11 @@ const PaymentMethod = ({ handlePaymentSelect }) => {
         <div className="flex items-center space-x-2">
           <input
             className="hidden peer"
-            onClick={handlePaymentSelect}
             type="radio"
-            name="payment"
+            // onClick={handlePaymentSelect}
             id="card"
             value="card"
+            {...register("paymentMethod")}
           />{" "}
           <label
             htmlFor="card"
@@ -23,11 +27,11 @@ const PaymentMethod = ({ handlePaymentSelect }) => {
         <div className="flex items-center space-x-2">
           <input
             className="hidden peer"
-            onClick={handlePaymentSelect}
+            // onClick={handlePaymentSelect}
             type="radio"
-            name="payment"
             id="paypal"
             value="paypal"
+            {...register("paymentMethod")}
           />{" "}
           <label
             htmlFor="paypal"
@@ -39,11 +43,11 @@ const PaymentMethod = ({ handlePaymentSelect }) => {
         <div className="flex items-center space-x-2">
           <input
             className="hidden peer"
-            onClick={handlePaymentSelect}
+            // onClick={handlePaymentSelect}
             type="radio"
-            name="payment"
             id="cod"
             value="cod"
+            {...register("paymentMethod")}
           />{" "}
           <label
             htmlFor="cod"
@@ -53,6 +57,11 @@ const PaymentMethod = ({ handlePaymentSelect }) => {
           </label>
         </div>
       </div>
+      {errors.PaymentMethod && (
+        <p className="text-xs text-red-600 mt-2">
+          {errors.PaymentMethod.message}
+        </p>
+      )}
     </section>
   );
 };

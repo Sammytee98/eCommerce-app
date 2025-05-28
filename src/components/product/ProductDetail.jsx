@@ -39,10 +39,10 @@ const ProductDetail = () => {
   const handleAddToCart = () => {
     addToCart({ ...product, quantity, discountPrice });
     setNotificationOpen(true);
+    setQuantity(1);
 
     setTimeout(() => {
       setNotificationOpen(false);
-      setQuantity(1);
     }, 5000);
   };
 
