@@ -10,7 +10,7 @@ const store = createStore({
   categoryProducts: {}, // Products grouped by category
   customerAddress: {}, // Customer billing and shipping address
   customerCC: {}, // Customer card details
-  userPaymentMethod: {}, // User payment method
+  userPaymentMethod: null, // User payment method
 
   // Setters
 

@@ -1,10 +1,8 @@
 import { useState, useEffect, memo } from "react";
 import { motion } from "framer-motion";
 
-const Slider = ({ slide1, slide2, slide3, slide4, slide5, slide6, slide7 }) => {
+const Slider = ({ images }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
-
-  const images = [slide1, slide2, slide3, slide4, slide5, slide6, slide7];
 
   useEffect(() => {
     const interval = setInterval(() => {

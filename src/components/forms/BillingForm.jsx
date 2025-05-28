@@ -2,19 +2,8 @@ import useCheckoutContext from "../../hooks/useCheckoutContext";
 import ScrollToTop from "../../layouts/ScrollToTop";
 
 const BillingForm = ({ inputFieldStyle }) => {
-  const { countries, formData, handleChange } = useCheckoutContext();
-
-  const {
-    billFirstName,
-    billLastName,
-    billEmail,
-    billAddress1,
-    billAddress2,
-    billCity,
-    billState,
-    billCountry,
-    billZipCode,
-  } = formData;
+  const { countries, formData, handleChange, register, errors } =
+    useCheckoutContext();
 
   return (
     <>
@@ -27,16 +16,17 @@ const BillingForm = ({ inputFieldStyle }) => {
           First Name
         </label>
         <input
-          onChange={handleChange}
           type="text"
-          name="billFirstName"
           id="firstName"
           placeholder="John"
-          pattern="([A-Z])[\w+.]{1,}"
-          value={billFirstName}
-          required
-          className={inputFieldStyle}
+          className={`${inputFieldStyle} ${
+            errors.billFirstName && "border-red-600"
+          }`}
+          {...register("billFirstName")}
         />
+        {errors.billFirstName && (
+          <p className="text-xs text-red-600">{errors.billFirstName.message}</p>
+        )}
       </div>
 
       <div className="flex flex-col space-y-1">
@@ -44,16 +34,17 @@ const BillingForm = ({ inputFieldStyle }) => {
           Last Name
         </label>
         <input
-          onChange={handleChange}
           type="text"
-          name="billLastName"
           id="lastName"
           placeholder="Doe"
-          pattern="([A-Z])[\w+.]{1,}"
-          value={billLastName}
-          required
-          className={inputFieldStyle}
+          className={`${inputFieldStyle} ${
+            errors.billLastName && "border-red-600"
+          }`}
+          {...register("billLastName")}
         />
+        {errors.billLastName && (
+          <p className="text-xs text-red-600">{errors.billLastName.message}</p>
+        )}
       </div>
 
       <div className="flex flex-col space-y-1 col-span-full">
@@ -61,16 +52,17 @@ const BillingForm = ({ inputFieldStyle }) => {
           Email
         </label>
         <input
-          onChange={handleChange}
           type="email"
-          name="billEmail"
           id="email"
           placeholder="johndoe@gmail.com"
-          pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$"
-          value={billEmail}
-          required
-          className={inputFieldStyle}
+          className={`${inputFieldStyle} ${
+            errors.billEmail && "border-red-600"
+          }`}
+          {...register("billEmail")}
         />
+        {errors.billEmail && (
+          <p className="text-xs text-red-600">{errors.billEmail.message}</p>
+        )}
       </div>
 
       <div className="flex flex-col space-y-1 col-span-full">
@@ -81,27 +73,25 @@ const BillingForm = ({ inputFieldStyle }) => {
           Address
         </label>
         <input
-          onChange={handleChange}
           type="text"
-          name="billAddress1"
           id="billAddress1"
           placeholder="123 Hollywood Blvd"
-          pattern="[\w\d\s.#]{2,}"
-          value={billAddress1}
-          required
-          className={inputFieldStyle}
+          className={`${inputFieldStyle} ${
+            errors.billAddress1 && "border-red-600"
+          }`}
+          {...register("billAddress1")}
         />
+        {errors.billAddress1 && (
+          <p className="text-xs text-red-600">{errors.billAddress1.message}</p>
+        )}
 
         <label htmlFor="billAddress2"></label>
         <input
-          onChange={handleChange}
           type="text"
-          name="billAdress2"
           id="bilAddress2"
           placeholder="Apt. 2 *optional"
-          pattern="[\w\d\s.#]{2,}"
-          value={billAddress2}
           className={inputFieldStyle}
+          {...register("billAddress2")}
         />
       </div>
 
@@ -112,14 +102,16 @@ const BillingForm = ({ inputFieldStyle }) => {
         <input
           onChange={handleChange}
           type="text"
-          name="billCity"
           id="city"
           placeholder="New York City"
-          pattern="([A-Z])[\w+.]{1,}"
-          value={billCity}
-          required
-          className={inputFieldStyle}
+          className={`${inputFieldStyle} ${
+            errors.billCity && "border-red-600"
+          }`}
+          {...register("billCity")}
         />
+        {errors.billCity && (
+          <p className="text-xs text-red-600">{errors.billCity.message}</p>
+        )}
       </div>
 
       <div className="flex flex-col space-y-1 col-span-full">
@@ -129,24 +121,25 @@ const BillingForm = ({ inputFieldStyle }) => {
         <input
           onChange={handleChange}
           type="text"
-          name="billState"
           id="state"
           placeholder="New York"
-          pattern="([A-Z])[\w+.]{1,}"
-          value={billState}
-          required
-          className={inputFieldStyle}
+          className={`${inputFieldStyle} ${
+            errors.billState && "border-red-600"
+          }`}
+          {...register("billState")}
         />
+        {errors.billState && (
+          <p className="text-xs text-red-600">{errors.billState.message}</p>
+        )}
       </div>
 
       <div className="flex flex-col space-y-1 col-span-full">
         <p className="text-xs text-gray-700 font-medium">Country</p>
         <select
-          onChange={handleChange}
-          required
-          name="billCountry"
-          value={billCountry}
-          className={inputFieldStyle}
+          className={`${inputFieldStyle} ${
+            errors.billCountry && "border-red-600"
+          }`}
+          {...register("billCountry")}
         >
           <option value="">Select Country</option>
           {countries.map((country, i) => {
@@ -159,24 +152,26 @@ const BillingForm = ({ inputFieldStyle }) => {
             );
           })}
         </select>
+        {errors.billCountry && (
+          <p className="text-xs text-red-600">{errors.billCountry.message}</p>
+        )}
       </div>
       <div className="flex flex-col space-y-1 col-span-full">
         <label htmlFor="zipCode" className="text-xs text-gray-700 font-medium">
           Zip Code
         </label>
         <input
-          onChange={handleChange}
           type="text"
-          name="billZipCode"
           id="zipCode"
           placeholder="12345"
-          pattern="[0-9]{5}"
-          maxLength="5"
-          minLength="4"
-          value={billZipCode}
-          required
-          className={inputFieldStyle}
+          className={`${inputFieldStyle} ${
+            errors.billZipCode && "border-red-600"
+          }`}
+          {...register("billZipCode")}
         />
+        {errors.billZipCode && (
+          <p className="text-xs text-red-600">{errors.billZipCode.message}</p>
+        )}
       </div>
     </>
   );

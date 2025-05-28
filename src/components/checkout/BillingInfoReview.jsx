@@ -1,17 +1,16 @@
 import useCheckoutContext from "../../hooks/useCheckoutContext";
 
 const BillingInfoReview = ({ labelStyle, listStyle }) => {
-  const { formData } = useCheckoutContext();
-  const {
-    billFirstName,
-    billLastName,
-    billEmail,
-    billAddress1,
-    billCity,
-    billState,
-    billCountry,
-    billZipCode,
-  } = formData;
+  const { formData, getValues } = useCheckoutContext();
+  const info = {
+    name: getValues("billFirstName") + getValues("billLastName"),
+    email: getValues("billEmail"),
+    address: getValues("billAddress1"),
+    city: getValues("billCity"),
+    state: getValues("billState"),
+    country: getValues("billCountry"),
+    zipCode: getValues("billZipCode"),
+  };
 
   return (
     <div className="w-full bg-gray-100 px-4 py-2 rounded-md space-y-5">
@@ -20,33 +19,32 @@ const BillingInfoReview = ({ labelStyle, listStyle }) => {
       <ul className="list-none text-gray-600 space-y-1.5">
         <li className={listStyle}>
           {" "}
-          <p className={labelStyle}>Full Name:</p>{" "}
-          <span>{`${billFirstName} ${billLastName}`}</span>{" "}
+          <p className={labelStyle}>Full Name:</p> <span>{info.name}</span>{" "}
         </li>
         <li className={listStyle}>
           {" "}
-          <p className={labelStyle}>Email Address:</p> <span>{billEmail}</span>{" "}
+          <p className={labelStyle}>Email Address:</p> <span>{info.email}</span>{" "}
         </li>
         <li className={listStyle}>
           {" "}
           <p className={labelStyle}>Street Address:</p>{" "}
-          <span>{billAddress1}</span>{" "}
+          <span>{info.address}</span>{" "}
         </li>
         <li className={listStyle}>
           {" "}
-          <p className={labelStyle}>City:</p> <span>{billCity}</span>{" "}
+          <p className={labelStyle}>City:</p> <span>{info.city}</span>{" "}
         </li>
         <li className={listStyle}>
           {" "}
-          <p className={labelStyle}>State:</p> <span>{billState}</span>{" "}
+          <p className={labelStyle}>State:</p> <span>{info.state}</span>{" "}
+        </li>
+        <li className={listStyle}>
+          {" "}
+          <p className={labelStyle}>Country:</p> <span>{info.country}</span>{" "}
         </li>
         <li className={listStyle}>
           <p className={labelStyle}>Zip Code</p>
-          <span>{billZipCode}</span>
-        </li>
-        <li className={listStyle}>
-          {" "}
-          <p className={labelStyle}>Country:</p> <span>{billCountry}</span>{" "}
+          <span>{info.zipCode}</span>
         </li>
       </ul>
     </div>

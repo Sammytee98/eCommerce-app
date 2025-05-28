@@ -8,22 +8,14 @@ import slide3 from "../../assets/slider/slide3.jpg";
 import slide4 from "../../assets/slider/slide4.avif";
 import slide5 from "../../assets/slider/slide5.jpg";
 import slide6 from "../../assets/slider/slide6.avif";
-import slide7 from "../../assets/slider/slide7.avif";
 import { motion } from "framer-motion";
 
 const HeroSection = () => {
+  const images = [slide1, slide2, slide3, slide4, slide5, slide6];
   return (
     <section className=" relative w-full min-h-96 flex justify-center items-center px-5">
       <div className="absolute inset-0 bg-inherit bg-cover bg-center bg-no-repeat brightness-60">
-        <Slider
-          slide1={slide1}
-          slide2={slide2}
-          slide3={slide3}
-          slide4={slide4}
-          slide5={slide5}
-          slide6={slide6}
-          slide7={slide7}
-        />
+        <Slider images={images} />
       </div>
       <div className="absolute z-10 max-w-3xl w-full space-y-8 p-4 border-none">
         <motion.h2

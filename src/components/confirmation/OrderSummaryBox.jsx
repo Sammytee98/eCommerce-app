@@ -40,7 +40,7 @@ const OrderSummaryBox = () => {
       initial="hidden"
       animate="animate"
       variants={containerVariants}
-      className="min-w-xs p-4 grid grid-cols-1 tablet:space-x-6 space-y-4 tablet:grid-cols-2 bg-gray-100 rounded-md shadow-md"
+      className="p-4 grid grid-cols-1 tablet:space-x-6 space-y-4 tablet:grid-cols-2 bg-gray-100 rounded-md shadow-md"
     >
       <motion.div
         variants={itemVariants}
@@ -82,9 +82,9 @@ const OrderSummaryBox = () => {
       >
         <p>Payment Method</p>
         <p className="text-base text-gray-800 font-medium">
-          {userPaymentMethod.paypal
+          {userPaymentMethod === "paypal"
             ? "Paypal"
-            : userPaymentMethod.cod
+            : userPaymentMethod === "cod"
             ? "Cash on Delivery"
             : `Card ending in ${cardNumber.slice(14)}`}
         </p>

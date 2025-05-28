@@ -4,6 +4,7 @@ import ProductCard from "../components/ui/ProductCard";
 import PaginationButton from "../components/ui/PaginationButton";
 import BreadCrumb from "../components/ui/BreadCrumb";
 import { motion } from "framer-motion";
+import LoadingSpinner from "../components/ui/LoadingSpinner";
 
 const ShopAll = () => {
   const [page, setPage] = useState(1);
@@ -50,7 +51,10 @@ const ShopAll = () => {
       >
         {/* Display loading when fetching products */}
         {isFetching && (
-          <p className="col-span-full text-3xl text-center mt-10">Loading...</p>
+          <div className="col-span-full text-3xl flex space-x-2 justify-center items-center mt-10">
+            <LoadingSpinner size={35} />
+            <p>Fetching...</p>
+          </div>
         )}
 
         {/* Display error message if failed to fetch products */}
@@ -82,14 +86,16 @@ const ShopAll = () => {
       </motion.div>
 
       {/* Pagination Button bar */}
-      {!isFetching && data?.products && (
-        <PaginationButton
-          page={page}
-          setPage={setPage}
-          totalPages={totalPages}
-          pageNumbers={pageNumbers}
-        />
-      )}
+      <div className="mt-5">
+        {!isFetching && data?.products && (
+          <PaginationButton
+            page={page}
+            setPage={setPage}
+            totalPages={totalPages}
+            pageNumbers={pageNumbers}
+          />
+        )}
+      </div>
     </motion.main>
   );
 };
