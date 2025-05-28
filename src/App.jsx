@@ -11,6 +11,7 @@ import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
+import Error from "./pages/Error";
 import { useStoreActions } from "easy-peasy";
 import { useEffect } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -70,6 +71,7 @@ const App = () => {
             <Route path="contact" element={<Contact />} />
             <Route path="signup" element={<Signup />} />
             <Route path="login" element={<Login />} />
+            <Route path="*" element={<Error />} />
           </Route>
         </Routes>
       </AnimatePresence>
