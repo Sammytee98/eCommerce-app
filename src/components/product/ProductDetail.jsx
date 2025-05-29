@@ -1,4 +1,4 @@
-import BreadCrumb from "../ui/BreadCrumb";
+import BreadCrumb from "../layouts/BreadCrumb";
 import Button from "../ui/Button";
 import QualityControl from "../ui/QualitityControl";
 import visa from "../../assets/payment_icon/visa.png";

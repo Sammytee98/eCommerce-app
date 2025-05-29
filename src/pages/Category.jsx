@@ -1,6 +1,6 @@
 import { useStoreState } from "easy-peasy";
 import { useParams } from "react-router-dom";
-import BreadCrumb from "../components/ui/BreadCrumb";
+import BreadCrumb from "../components/layouts/BreadCrumb";
 import ProductCard from "../components/ui/ProductCard";
 import { motion } from "framer-motion";
 

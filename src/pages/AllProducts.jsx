@@ -2,13 +2,21 @@ import { useEffect, useState } from "react";
 import { usePaginatedProducts } from "../hooks/usePaginatedProducts";
 import ProductCard from "../components/ui/ProductCard";
 import PaginationButton from "../components/ui/PaginationButton";
-import BreadCrumb from "../components/ui/BreadCrumb";
+import BreadCrumb from "../components/layouts/BreadCrumb";
 import { motion } from "framer-motion";
 import LoadingSpinner from "../components/ui/LoadingSpinner";
+import Filter from "../components/All Products/Filter";
+import Sort from "../components/All Products/Sort";
 
-const ShopAll = () => {
+const AllProducts = () => {
   const [page, setPage] = useState(1);
-  const { data, error, isFetching } = usePaginatedProducts(page);
+  const [selectedCategory, setSelectedCategory] = useState("all");
+  const [sortBy, setSortBy] = useState("");
+  const { data, error, isFetching } = usePaginatedProducts(
+    page,
+    selectedCategory,
+    sortBy
+  );
 
   const totalProducts = data?.total || 0;
   const productsPerPage = 10;
@@ -19,6 +27,16 @@ const ShopAll = () => {
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, [page]);
+
+  const handleCategorySelect = (e) => {
+    setSelectedCategory(e.target.value);
+    setPage(1);
+  };
+
+  const handleSorting = (e) => {
+    setSortBy(e.target.value);
+    setPage(1);
+  };
 
   const containerVariants = {
     hidden: {},
@@ -37,10 +55,17 @@ const ShopAll = () => {
       transition={{ duration: 0.3, ease: "easeOut" }}
       className="flex flex-col font-oswald px-5 py-10"
     >
-      <div className="">
-        <BreadCrumb />
-
-        <h2 className="mt-8 mb-10 text-3xl tablet:text-4xl">SHOP ALL</h2>
+      <BreadCrumb />
+      <div className="w-full space-y-5 mb-16 grid grid-cols-2 mobile:grid-cols-3 gap-4 mobile:gap-8">
+        <h2 className=" not-mobile:col-span-2 text-3xl tablet:text-4xl">
+          SHOP ALL
+        </h2>
+        <Filter
+          selectedCategory={selectedCategory}
+          handleCategorySelect={handleCategorySelect}
+        />
+        <Sort sortBy={sortBy} handleSorting={handleSorting} />
+        <div className="flex justify-between space-x-8 "></div>
       </div>
 
       <motion.div
@@ -51,9 +76,9 @@ const ShopAll = () => {
       >
         {/* Display loading when fetching products */}
         {isFetching && (
-          <div className="col-span-full text-3xl flex space-x-2 justify-center items-center mt-10">
+          <div className="col-span-full text-2xl flex space-x-2 justify-center items-center mt-10">
             <LoadingSpinner size={35} />
-            <p>Fetching...</p>
+            <p>fetching...</p>
           </div>
         )}
 
@@ -100,4 +125,4 @@ const ShopAll = () => {
   );
 };
 
-export default ShopAll;
+export default AllProducts;
