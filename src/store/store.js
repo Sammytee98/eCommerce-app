@@ -1,5 +1,16 @@
 import axios from "axios";
 import { createStore, action, thunk, computed } from "easy-peasy";
+import { setLocalStorage, getLocalStorage } from "../hooks/localStorage";
+
+const getInitialItems = (key) => {
+  try {
+    const items = getLocalStorage(key);
+    return items ? items : [];
+  } catch (error) {
+    console.error(`Error reading ${key} from localStorage`, error);
+    return [];
+  }
+};
 
 const store = createStore({
   // ====================
@@ -71,7 +82,7 @@ const store = createStore({
   // ====================
   // CART STATE & ACTIONS
   // ====================
-  cartItems: [], // Array of items in the cart
+  cartItems: getInitialItems("cart"), // Array of items in the cart
   // totalQuantity: 0, // Total item quantity in the cart
 
   addToCart: action((state, product) => {
@@ -84,11 +95,15 @@ const store = createStore({
       // Add new product to cart
       state.cartItems.push({ ...product });
     }
+
+    setLocalStorage("cart", state.cartItems);
   }),
 
   clearCartItems: action((state) => {
     state.cartItems = [];
     state.totalQuantity = 0;
+
+    setLocalStorage("cart", state.cartItems);
   }),
 
   updateCartItem: action((state, { id, action }) => {
@@ -103,10 +118,14 @@ const store = createStore({
         );
       }
     }
+
+    setLocalStorage("cart", state.cartItems);
   }),
 
   removeFromCart: action((state, productId) => {
     state.cartItems = state.cartItems.filter((item) => item.id !== productId);
+
+    setLocalStorage("cart", state.cartItems);
   }),
 
   // Computed value to get total quantity
@@ -126,7 +145,7 @@ const store = createStore({
   // ====================
   // WISHLIST STATE & ACTIONS
   // ====================
-  wishlistItems: [], // Array of items in the wishlist
+  wishlistItems: getInitialItems("wishlist"), // Array of items in the wishlist
 
   addToWishlist: action((state, product) => {
     const existing = state.wishlistItems.find((item) => item.id === product.id);
@@ -137,16 +156,22 @@ const store = createStore({
       // Add new product to cart
       state.wishlistItems.push({ ...product });
     }
+
+    setLocalStorage("wishlist", state.wishlistItems);
   }),
 
   removeFromWishlist: action((state, productId) => {
     state.wishlistItems = state.wishlistItems.filter(
       (item) => item.id !== productId
     );
+
+    setLocalStorage("wishlist", state.wishlistItems);
   }),
 
   clearCartItems: action((state) => {
     state.wishListItems = [];
+
+    setLocalStorage("wishlist", state.wishlistItems);
   }),
 });
 

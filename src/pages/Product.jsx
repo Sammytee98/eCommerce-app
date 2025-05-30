@@ -23,7 +23,7 @@ const ProductPage = () => {
       {notificationOpen.wishlist && (
         <WishlistNotification
           children={
-            addToWish
+            addToWish && notificationOpen.wishlist
               ? "Item has been added to wishlist"
               : "Item has been removed from wishlist"
           }
