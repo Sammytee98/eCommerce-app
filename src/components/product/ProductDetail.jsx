@@ -5,17 +5,23 @@ import visa from "../../assets/payment_icon/visa.png";
 import mastercard from "../..//assets/payment_icon/mastercard.png";
 import americanExpress from "../../assets/payment_icon/american-express.png";
 import discover from "../../assets/payment_icon/discover.png";
-import { useCallback, useContext } from "react";
+import { useCallback, useContext, useEffect, useState } from "react";
 import ProductContext from "../../contexts/ProductContext";
 import { useStoreActions } from "easy-peasy";
 import { HiOutlineShoppingCart } from "react-icons/hi2";
+import { FaRegHeart, FaHeart } from "react-icons/fa6";
 import { motion } from "framer-motion";
 
 const ProductDetail = () => {
   const addToCart = useStoreActions((action) => action.addToCart);
+  const addToWishlist = useStoreActions((action) => action.addToWishlist);
+  const removeFromWishlist = useStoreActions(
+    (action) => action.removeFromWishlist
+  );
 
   const {
     product,
+    productId,
     category,
     title,
     discountPrice,
@@ -24,6 +30,8 @@ const ProductDetail = () => {
     quantity,
     setQuantity,
     setNotificationOpen,
+    addToWish,
+    setAddToWish,
   } = useContext(ProductContext);
 
   const icons = [visa, mastercard, americanExpress, discover];
@@ -38,13 +46,43 @@ const ProductDetail = () => {
 
   const handleAddToCart = () => {
     addToCart({ ...product, quantity, discountPrice });
-    setNotificationOpen(true);
+    setNotificationOpen((prev) => ({ ...prev, cart: true }));
     setQuantity(1);
 
     setTimeout(() => {
-      setNotificationOpen(false);
+      setNotificationOpen((prev) => ({ ...prev, cart: false }));
     }, 5000);
   };
+
+  const handleAddtoWishlist = () => {
+    addToWishlist({ ...product, discountPrice, quantity });
+  };
+
+  const handleRemoveFromWishlist = () => {
+    removeFromWishlist(productId);
+  };
+
+  const handleWishlistToggle = () => {
+    setAddToWish((prev) => !prev);
+  };
+
+  useEffect(() => {
+    if (addToWish) {
+      handleAddtoWishlist();
+      setNotificationOpen((prev) => ({ ...prev, wishlist: true }));
+
+      setTimeout(() => {
+        setNotificationOpen((prev) => ({ ...prev, wishlist: false }));
+      }, 4000);
+    } else {
+      handleRemoveFromWishlist();
+      setNotificationOpen((prev) => ({ ...prev, wishlist: true }));
+
+      setTimeout(() => {
+        setNotificationOpen((prev) => ({ ...prev, wishlist: false }));
+      }, 4000);
+    }
+  }, [addToWish]);
 
   return (
     <motion.div
@@ -71,6 +109,13 @@ const ProductDetail = () => {
       <hr className="mt-6 mb-4 border-gray-300" />
 
       <div className="flex space-x-3">
+        <button className="cursor-pointer" onClick={handleWishlistToggle}>
+          {addToWish ? (
+            <FaHeart className="text-orange-500" />
+          ) : (
+            <FaRegHeart className="text-orange-500" />
+          )}
+        </button>
         <QualityControl
           quantity={quantity}
           increaseQuantity={increaseQuantity}

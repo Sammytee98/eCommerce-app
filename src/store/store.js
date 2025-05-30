@@ -122,6 +122,32 @@ const store = createStore({
   setTotalPaid: action((state, total) => {
     state.totalPaid = state.totalPaid = total;
   }),
+
+  // ====================
+  // WISHLIST STATE & ACTIONS
+  // ====================
+  wishlistItems: [], // Array of items in the wishlist
+
+  addToWishlist: action((state, product) => {
+    const existing = state.wishlistItems.find((item) => item.id === product.id);
+
+    if (existing) {
+      return;
+    } else {
+      // Add new product to cart
+      state.wishlistItems.push({ ...product });
+    }
+  }),
+
+  removeFromWishlist: action((state, productId) => {
+    state.wishlistItems = state.wishlistItems.filter(
+      (item) => item.id !== productId
+    );
+  }),
+
+  clearCartItems: action((state) => {
+    state.wishListItems = [];
+  }),
 });
 
 export default store;

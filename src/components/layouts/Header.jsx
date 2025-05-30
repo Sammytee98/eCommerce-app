@@ -1,17 +1,20 @@
 import { useCallback, useEffect, useState, memo } from "react";
 import { Link } from "react-router-dom";
 import useWindowSize from "../../hooks/useWindowSize";
-import { FaBars, FaXmark, FaUser } from "react-icons/fa6";
+import { FaBars, FaXmark, FaUser, FaRegHeart, FaHeart } from "react-icons/fa6";
 import { HiMiniShoppingBag } from "react-icons/hi2";
 import Nav from "./Nav";
 import Button from "../ui/Button";
 import ShoppingCart from "../ShoppingCart";
 import { useStoreState } from "easy-peasy";
 import { AnimatePresence, motion } from "framer-motion";
+import MobileMenu from "./MobileMenu";
+import Wishlist from "../Wishlist";
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [cartOpen, setCartOpen] = useState(false);
+  const [wishlistOpen, setWishlistOpen] = useState(false);
   const { width } = useWindowSize();
   const totalQuantity = useStoreState((state) => state.totalQuantity);
 
@@ -24,6 +27,10 @@ const Header = () => {
     setCartOpen(true);
     setMenuOpen(false);
   }, []);
+
+  const handleWishlistOpen = useCallback(() => {
+    setWishlistOpen(true);
+  });
 
   const handleMenuClose = useCallback(() => {
     setMenuOpen(false);
@@ -70,21 +77,57 @@ const Header = () => {
           </Link>
         </nav>
 
-        {/* Cart Icon */}
-        <div
-          onClick={handleCartOpen}
-          className="relative ml-10 group hover:opacity-80 transition cursor-pointer"
-        >
-          <HiMiniShoppingBag className="text-lg text-gray-700 group-hover:text-orange-600 transition" />
-          <p
-            className="absolute w-4 h-4 -top-2.5 -right-2
-           text-xs font-semibold grid place-items-center bg-orange-500 text-white rounded-full"
+        {/* Cart and WishList Icon */}
+        <div className="flex items-center">
+          {/* Wishlist icon */}
+          <button
+            type="button"
+            onClick={handleWishlistOpen}
+            className="flex flex-col items-center cursor-pointer"
           >
-            {totalQuantity}
-          </p>
+            {wishlistOpen ? (
+              <FaHeart className="text-orange-500" />
+            ) : (
+              <FaRegHeart className="text-orange-500" />
+            )}
+            {width > 992 && <p className="text-xs font-medium">Wishlist</p>}
+          </button>
+
+          {/* Cart icon */}
+          <button
+            type="button"
+            onClick={handleCartOpen}
+            className="ml-10 group hover:opacity-80 transition cursor-pointer flex flex-col items-center"
+          >
+            <div className="relative">
+              <HiMiniShoppingBag className="text-lg text-orange-500 group-hover:text-orange-600 transition" />
+              <p
+                className="absolute w-3 h-3 -top-1 -right-0.5
+           text-[13px] font-semibold flex justify-center items-center bg-orange-500 text-white rounded-full"
+              >
+                {totalQuantity}
+              </p>
+            </div>
+            {width > 992 && <p className="text-xs font-medium">Cart</p>}
+          </button>
         </div>
 
-        {/* Shopping Cart */}
+        {/* Wishlist slider */}
+        <AnimatePresence>
+          {wishlistOpen && (
+            <motion.aside
+              initial={{ y: "-100%", opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: "-100%", opacity: 0 }}
+              transition={{ duration: 0.3, ease: "easeInOut" }}
+              className="bg-white fixed top-0 overflow-y-auto right-0 bottom-0 left-0 mobile:left-1/4 tablet:left-2/6 laptop:left-6/12 desktop:left-7/12 z-50 flex flex-col items-center"
+            >
+              <Wishlist setWishlistOpen={setWishlistOpen} />
+            </motion.aside>
+          )}
+        </AnimatePresence>
+
+        {/* Shopping cart slider */}
         <AnimatePresence>
           {cartOpen && (
             <motion.aside
@@ -111,42 +154,11 @@ const Header = () => {
       {/* Navbar for small screen */}
       <AnimatePresence>
         {menuOpen && (
-          <motion.div
-            initial={{ x: "-100%", opacity: 0, y: "-100%" }}
-            animate={{ x: 0, opacity: 1, y: 0 }}
-            exit={{ x: "-100%", opacity: 0, y: "-100%" }}
-            transition={{ duration: 0.3, ease: "easeInOut" }}
-            onClick={handleNavMenuClose}
-            className="bg-white fixed top-0 overflow-y-auto left-0 bottom-0  right-2/6 z-50 flex flex-col items-center p-3.5"
-          >
-            <FaXmark className="text-lg self-end text-gray-800 hover:text-orange-600 cursor-pointer transition" />
-            <nav
-              aria-label="mobile-nav"
-              className="w-full mt-5 text-lg space-y-3"
-            >
-              <div className="w-fit text-sm hover:bg-blue-300/50 transition cursor-pointer border-3 border-neutral-700 p-2 rounded-full bg-neutral-100">
-                <FaUser className="text-neutral-700" />
-              </div>
-              <Nav
-                flexDirection="flex-col"
-                menuOpen={menuOpen}
-                handleMenuClose={handleMenuClose}
-                mobile={true}
-              />
-              <div className="flex flex-col space-y-2.5 mt-5 ">
-                <Link
-                  to="login"
-                  className="hover:text-orange-600 bg-neutral mx-auto font-oswald text-base"
-                >
-                  LOG IN
-                </Link>
-
-                <Link to="signup">
-                  <Button children="SIGN IN" className="w-full" />
-                </Link>
-              </div>
-            </nav>
-          </motion.div>
+          <MobileMenu
+            handleMenuClose={handleMenuClose}
+            handleNavMenuClose={handleNavMenuClose}
+            menuOpen={menuOpen}
+          />
         )}
       </AnimatePresence>
     </motion.header>
