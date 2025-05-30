@@ -8,7 +8,12 @@ export const ProductProvider = ({ children }) => {
   const { id } = useParams();
   const [openSection, setOpenSection] = useState(null);
   const [quantity, setQuantity] = useState(1);
-  const [notificationOpen, setNotificationOpen] = useState(false);
+  const [notificationOpen, setNotificationOpen] = useState({
+    cart: false,
+    wishlist: false,
+  });
+  const [addToWish, setAddToWish] = useState(false);
+
   const products = useStoreState((state) => state.products);
 
   const randomNum = useCallback((num) => {
@@ -75,6 +80,8 @@ export const ProductProvider = ({ children }) => {
         setQuantity,
         notificationOpen,
         setNotificationOpen,
+        addToWish,
+        setAddToWish,
       }}
     >
       {children}

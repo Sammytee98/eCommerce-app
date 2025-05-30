@@ -35,38 +35,39 @@ const ShoppingCart = ({ setCartOpen }) => {
           />
         </div>
 
-        <div className="grow my-3 space-y-1 overflow-y-auto">
+        <div className="grow space-y-1 overflow-y-auto">
           {cartItems.length ? (
             cartItems.map((item) => {
               const { id, image, title, quantity, discountPrice } = item;
               const totalPrice = (discountPrice * quantity).toFixed(2);
 
               return (
-                <div key={id} className="py-1 ">
-                  <div className="flex justify-between items-center">
-                    <div className="flex items-center space-x-3">
-                      <img
-                        src={image}
-                        alt={title}
-                        className="h-10 w-10 bg-gray-100 rounded-md"
-                        loading="lazy"
-                      />
-                      <div className="space-y-1">
-                        <h4 className="text-sm">{title}</h4>
-                        <p className="flex text-xs items-center space-x-1 text-gray-600 font-normal">
-                          <span>{quantity}</span>
-                          <span className="text-[10px]">X</span>
-                          <span>${totalPrice}</span>
-                        </p>
-                      </div>
+                <div
+                  key={id}
+                  className="flex justify-between items-center border-b-1 border-b-gray-200 py-2"
+                >
+                  <div className="flex items-center space-x-4">
+                    <img
+                      src={image}
+                      alt={title}
+                      className="h-10 w-10 bg-gray-100 rounded-md"
+                      loading="lazy"
+                    />
+                    <div className="space-y-1 ">
+                      <h4 className="text-sm truncate max-w-48">{title}</h4>
+                      <p className="flex text-xs items-center space-x-1 text-gray-600 font-normal">
+                        <span>{quantity}</span>
+                        <span className="text-[10px]">X</span>
+                        <span>${totalPrice}</span>
+                      </p>
                     </div>
+                  </div>
 
-                    <div
-                      onClick={() => removeFromCart(id)}
-                      className="text-[12px] border-1 border-red-600 text-red-600 cursor-pointer rounded-full grid place-items-center"
-                    >
-                      <FaXmark />
-                    </div>
+                  <div
+                    onClick={() => removeFromCart(id)}
+                    className="text-[12px] border-1 border-red-600 text-red-600 cursor-pointer rounded-full grid place-items-center"
+                  >
+                    <FaXmark />
                   </div>
                 </div>
               );
