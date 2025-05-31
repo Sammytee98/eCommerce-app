@@ -13,7 +13,7 @@ const Footer = () => {
         {/* Logo and tagline */}
         <div className="space-y-1.5">
           <img
-            src="../../public/favicon.svg"
+            src="../../favicon.svg"
             alt="gts logo"
             className="rounded-md"
             loading="lazy"

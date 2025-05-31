@@ -8,7 +8,7 @@ const QuickLinks = () => {
       <h2 className="text-lg tablet:text-xl font-medium text-center">
         QUICK LINKS
       </h2>
-      <ul className="flex flex-col items-center text-center space-y-1.5 list-none text-xs tablet:text-sm">
+      <ul className="flex flex-col items-center text-center space-y-1.5 list-none text-sm">
         <motion.li
           whileTap={{ scaleX: -1.2 }}
           transition={{ duration: 0.3 }}

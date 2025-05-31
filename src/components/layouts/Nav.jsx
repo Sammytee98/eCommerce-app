@@ -41,7 +41,7 @@ const Nav = ({ flexDirection, handleMenuClose, menuOpen }) => {
     <motion.ul
       initial={navContainer}
       animate={isMobile ? (menuOpen ? "visible" : "hidden") : "visible"}
-      className={`w-full flex ${flexDirection} font-oswald text-sm laptop:justify-center laptop:items-center list-none laptop:space-x-5`}
+      className={`w-full flex ${flexDirection} font-oswald text-base laptop:justify-center laptop:items-center list-none laptop:space-x-5`}
     >
       <motion.li
         whileTap={{ scale: -1.2 }}
