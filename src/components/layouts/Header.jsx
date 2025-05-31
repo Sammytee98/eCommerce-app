@@ -73,7 +73,7 @@ const Header = () => {
         {/* Logo */}
         <Link to="/">
           <img
-            src="../../public/favicon.svg"
+            src="../../favicon.svg"
             alt="gts logo"
             className="rounded-md"
             loading="lazy"
@@ -106,11 +106,8 @@ const Header = () => {
             onClick={handleWishlistOpen}
             className="flex flex-col items-center cursor-pointer"
           >
-            {wishlistOpen ? (
-              <FaHeart className="text-orange-500" />
-            ) : (
-              <FaRegHeart className="text-orange-500" />
-            )}
+            <FaRegHeart className="text-orange-500 text-xl" />
+
             {width > 992 && <p className="text-xs font-medium">Wishlist</p>}
           </button>
 
@@ -121,10 +118,10 @@ const Header = () => {
             className="ml-10 group hover:opacity-80 transition cursor-pointer flex flex-col items-center"
           >
             <div className="relative">
-              <HiMiniShoppingBag className="text-lg text-orange-500 group-hover:text-orange-600 transition" />
+              <HiMiniShoppingBag className="text-xl text-orange-500 group-hover:text-orange-600 transition" />
               <p
-                className="absolute w-3 h-3 -top-1 -right-0.5
-           text-[13px] font-semibold flex justify-center items-center bg-orange-500 text-white rounded-full"
+                className="absolute w-4 h-4 -top-1.5 -right-1.5
+           text-sm font-semibold flex justify-center items-center bg-orange-500 text-white rounded-full"
               >
                 {totalQuantity}
               </p>

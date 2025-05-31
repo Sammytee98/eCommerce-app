@@ -30,7 +30,7 @@ const ShoppingCart = ({ setCartOpen }) => {
   return (
     <>
       <div className="w-full h-full flex flex-col font-oswald">
-        <div className="w-full flex justify-between items-center border-b-2 border-gray-200 pb-3">
+        <div className="w-full flex justify-between items-center border-b-2 border-gray-200 py-3">
           <h2 className="text-xl font-medium">SHOPPING CART</h2>
           <FaXmark
             onClick={handleCartClose}

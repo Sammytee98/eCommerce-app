@@ -48,7 +48,7 @@ const LogoSwiper = () => {
             <SwiperSlide key={i + 1}>
               <motion.div
                 whileHover={{ scale: 1.05 }}
-                className="w-36 tablet:w-40 laptop:w-44  mx-auto border-3 border-gray-200 py-2 rounded-md"
+                className="w-40 tablet:w-40 laptop:w-44  mx-auto border-3 border-gray-200 py-3 rounded-md"
               >
                 <img
                   src={logo}

@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 const Categories = () => {
   return (
-    <ul className="flex flex-col items-center text-center space-y-1.5 list-none text-xs tablet:text-sm">
+    <ul className="flex flex-col items-center text-center space-y-1.5 list-none text-sm">
       <motion.li
         whileTap={{ scale: -1.2 }}
         transition={{ duration: 0.3 }}

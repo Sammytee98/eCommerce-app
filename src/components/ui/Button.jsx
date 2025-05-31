@@ -15,7 +15,7 @@ const Button = ({
 
   const variants = {
     primary:
-      "text-sm tablet:text-base bg-orange-500 hover:bg-orange-600 text-white ",
+      "text-base tablet:text-base bg-orange-500 hover:bg-orange-600 text-white ",
     outline: "bg-white hover:bg-orange-100 text-base font-medium space-x-1.5",
   };
 

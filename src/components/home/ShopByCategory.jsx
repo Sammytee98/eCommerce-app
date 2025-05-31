@@ -69,7 +69,7 @@ const ShopByCategory = () => {
         <hr className="w-12 border-1 text-orange-500" />
       </div>
 
-      <div className="w-full grid items-center grid-cols-2 tablet:grid-cols-3 laptop:grid-cols-4 gap-10 p-2 my-10">
+      <div className="w-full grid justify-items-center grid-cols-2 mobile:grid-cols-3 laptop:grid-cols-4 gap-10 p-2 my-10">
         {data.map((category) => {
           const { id, title, image, productLength } = category;
           const lowerCaseTitle = title.toLocaleLowerCase();
