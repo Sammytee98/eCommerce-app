@@ -4,9 +4,13 @@ import useRelatedProduct from "../../hooks/useRelatedProducts";
 import ProductCard from "../ui/ProductCard";
 
 const RelatedProducts = () => {
+  // Get current product category and id from context
   const { cat, productId, setNotificationOpen } = useContext(ProductContext);
+
+  // Fetch related products excluding the current one
   const { data: related = [], isLoading } = useRelatedProduct(cat, productId);
 
+  // Close any open notification when product card is clicked
   const handleClick = useCallback(() => setNotificationOpen(false), []);
 
   return (

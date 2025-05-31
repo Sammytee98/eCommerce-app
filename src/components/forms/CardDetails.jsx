@@ -2,8 +2,8 @@ import CC from "../../assets/cc.png";
 import useCheckoutContext from "../../hooks/useCheckoutContext";
 
 const CardDetails = () => {
+  // Access current card details and handler from CheckoutContext
   const { cardDetails, handleCardDetailsChange } = useCheckoutContext();
-
   const { cardHolderName, cardNumber, cardExp, cardCVV } = cardDetails;
 
   return (
@@ -13,6 +13,7 @@ const CardDetails = () => {
         <img src={CC} alt="Paypal Logo" className="w-14 h-10" />
       </h4>
 
+      {/* Card Form Fields */}
       <div className="grid grid-cols-2 gap-3 px-2">
         <div className="flex flex-col col-span-full space-y-1">
           <label

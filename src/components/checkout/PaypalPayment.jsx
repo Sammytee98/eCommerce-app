@@ -1,5 +1,5 @@
 import { FaLock } from "react-icons/fa6";
-import Button from "./Button";
+import Button from "../ui/Button";
 import paypalLogo from "../../assets/paypal.png";
 
 const PaypalPayment = () => {

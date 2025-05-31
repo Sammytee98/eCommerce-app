@@ -2,6 +2,7 @@ import { useContext } from "react";
 import ProductContext from "../../contexts/ProductContext";
 
 const AdditionalInfo = () => {
+  // Pull openSection(name of section), waranty, weight, toggleSection handler from context
   const { openSection, warranty, weight, toggleSection } =
     useContext(ProductContext);
 
@@ -17,6 +18,7 @@ const AdditionalInfo = () => {
         </span>
       </button>
 
+      {/* Display only if the current openSection === information */}
       {openSection === "information" && (
         <div className="p-5 text-base">
           <div className="flex w-full h-10 border-2 border-gray-200">

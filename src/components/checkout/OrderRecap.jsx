@@ -3,13 +3,17 @@ import useCheckoutContext from "../../hooks/useCheckoutContext";
 import { useEffect } from "react";
 
 const OrderRecap = () => {
+  // Pull orderTotal and its setter from context
   const { orderTotal, setOrderTotal } = useCheckoutContext();
+  // Fetch cartItems from the global store
   const cartItems = useStoreState((state) => state.cartItems);
 
+  // Modify cart items, add subtotal to the existing key-value pair
   const modifiedItem = cartItems.map((item) => {
     return { ...item, subtotal: item.quantity * item.discountPrice };
   });
 
+  // Calculate the subtotal of all item in the cart
   const subtotalCalc = modifiedItem.reduce(
     (sum, item) => sum + item.subtotal,
     0
@@ -19,6 +23,7 @@ const OrderRecap = () => {
   const total = subtotalCalc + Number(shippingFee);
   const formattedTotal = total.toFixed(2);
 
+  // Side effect to setOrderTotal to the formattedTotal whenever formattedTotal value changes
   useEffect(() => {
     setOrderTotal(formattedTotal);
   }, [formattedTotal]);

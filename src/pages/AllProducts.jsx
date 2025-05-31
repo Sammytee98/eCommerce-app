@@ -60,10 +60,14 @@ const AllProducts = () => {
         <h2 className=" not-mobile:col-span-2 text-3xl tablet:text-4xl">
           SHOP ALL
         </h2>
+
+        {/* Filtering */}
         <Filter
           selectedCategory={selectedCategory}
           handleCategorySelect={handleCategorySelect}
         />
+
+        {/* Sorting */}
         <Sort sortBy={sortBy} handleSorting={handleSorting} />
         <div className="flex justify-between space-x-8 "></div>
       </div>

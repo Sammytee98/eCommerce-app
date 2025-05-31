@@ -14,14 +14,6 @@ const ReviewOrder = () => {
       <BillingInfoReview labelStyle={labelStyle} listStyle={listStyle} />
       <ShippingInfoReview labelStyle={labelStyle} listStyle={listStyle} />
       <OrderSummary />
-
-      {/* <div className="w-full bg-gray-100 p-4 rounded-md">
-
-        <hr className="border border-gray-200 my-6" />
-
-
-        <hr className="border border-gray-200 my-6" />
-      </div> */}
     </section>
   );
 };

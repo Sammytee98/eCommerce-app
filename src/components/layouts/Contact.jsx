@@ -1,5 +1,5 @@
 import { memo } from "react";
-import Socials from "./ui/Socials";
+import Socials from "../ui/Socials";
 
 const Contact = () => {
   return (

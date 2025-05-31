@@ -6,7 +6,7 @@ import Button from "../ui/Button";
 import { useAuthModal } from "../../contexts/AuthModalContext";
 
 const MobileMenu = ({ handleMenuClose, handleNavMenuClose, menuOpen }) => {
-  const { openModal } = useAuthModal();
+  const { openModal } = useAuthModal(); // Access modal handler from context
 
   return (
     <motion.aside
@@ -18,6 +18,8 @@ const MobileMenu = ({ handleMenuClose, handleNavMenuClose, menuOpen }) => {
       className="bg-white fixed top-0 overflow-y-auto left-0 bottom-0  right-2/6 z-50 flex flex-col items-center p-3.5"
     >
       <FaXmark className="text-lg self-end text-gray-800 hover:text-orange-600 cursor-pointer transition" />
+
+      {/* Mobile navigation content */}
       <nav aria-label="mobile-nav" className="w-full mt-5 text-lg space-y-3">
         <div className="w-fit text-sm hover:bg-orange-200 transition cursor-pointer border-3 border-neutral-700 p-2 rounded-full bg-neutral-100">
           <FaUser className="text-neutral-700" />
@@ -28,6 +30,8 @@ const MobileMenu = ({ handleMenuClose, handleNavMenuClose, menuOpen }) => {
           handleMenuClose={handleMenuClose}
           mobile={true}
         />
+
+        {/* Auth actions */}
         <div className="flex flex-col space-y-2.5 mt-5 ">
           <Link
             onClick={(e) => {

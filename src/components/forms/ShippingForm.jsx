@@ -2,43 +2,15 @@ import useCheckoutContext from "../../hooks/useCheckoutContext";
 import ScrollToTop from "../../layouts/ScrollToTop";
 
 const ShippingForm = ({ inputFieldStyle }) => {
-  const {
-    countries,
-    formData,
-    handleChange,
-    sameAsBilling,
-    handleSameAsBilling,
-    register,
-    errors,
-    getValues,
-  } = useCheckoutContext();
-
-  // const {
-  //   sameAsBilling,
-  //   shipFirstName,
-  //   shipLastName,
-  //   shipEmail,
-  //   shipAddress1,
-  //   shipAddress2,
-  //   shipCity,
-  //   shipState,
-  //   shipCountry,
-  //   shipZipCode,
-  // } = formData;
-
-  // const nameValidation = {
-  //   value: 2,
-  //   message: "Name is too short",
-  // };
-
-  // const emailValidation = {
-  //   value: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
-  //   message: "Please enter a valid email address",
-  // };
+  // Pul in error handling, list of countries, samAsBilling(Boolean), sameAsBilling handler from context
+  const { countries, sameAsBilling, handleSameAsBilling, register, errors } =
+    useCheckoutContext();
 
   return (
     <>
       <ScrollToTop />
+
+      {/* Same as billing checkbox */}
       <div className="flex items-center space-x-1 col-span-full mb-5">
         <input
           type="checkbox"
@@ -55,6 +27,7 @@ const ShippingForm = ({ inputFieldStyle }) => {
         </label>
       </div>
 
+      {/* First Name */}
       <div className="flex flex-col space-y-1">
         <label
           htmlFor="firstName"
@@ -77,6 +50,7 @@ const ShippingForm = ({ inputFieldStyle }) => {
         )}
       </div>
 
+      {/* Last Name */}
       <div className="flex flex-col space-y-1">
         <label htmlFor="lastName" className="text-xs text-gray-700 font-medium">
           Last Name
@@ -96,6 +70,7 @@ const ShippingForm = ({ inputFieldStyle }) => {
         )}
       </div>
 
+      {/* Email */}
       <div className="flex flex-col space-y-1 col-span-full">
         <label htmlFor="email" className="text-xs text-gray-700 font-medium">
           Email
@@ -115,6 +90,7 @@ const ShippingForm = ({ inputFieldStyle }) => {
         )}
       </div>
 
+      {/* Address Line 1 + Line 2 (optional) */}
       <div className="flex flex-col space-y-1 col-span-full">
         <label
           htmlFor="shipAddress1"
@@ -136,6 +112,7 @@ const ShippingForm = ({ inputFieldStyle }) => {
           <p className="text-xs text-red-600">{errors.shipAddress1.message}</p>
         )}
 
+        {/* Optional address field */}
         <label htmlFor="shipAddress"></label>
         <input
           type="text"
@@ -147,6 +124,7 @@ const ShippingForm = ({ inputFieldStyle }) => {
         />
       </div>
 
+      {/* City */}
       <div className="flex flex-col space-y-1 col-span-full">
         <label htmlFor="city" className="text-xs text-gray-700 font-medium">
           City
@@ -167,6 +145,7 @@ const ShippingForm = ({ inputFieldStyle }) => {
         )}
       </div>
 
+      {/* State */}
       <div className="flex flex-col space-y-1 col-span-full">
         <label htmlFor="state" className="text-xs text-gray-700 font-medium">
           State
@@ -186,6 +165,7 @@ const ShippingForm = ({ inputFieldStyle }) => {
         )}
       </div>
 
+      {/* Country -Select Dropdown */}
       <div className="flex flex-col space-y-1 col-span-full">
         <p className="text-xs text-gray-700 font-medium">Country</p>
         <select
@@ -210,6 +190,8 @@ const ShippingForm = ({ inputFieldStyle }) => {
           <p className="text-xs text-red-600">{errors.shipCountry.message}</p>
         )}
       </div>
+
+      {/* Zip Code */}
       <div className="flex flex-col space-y-1 col-span-full">
         <label htmlFor="zipCode" className="text-xs text-gray-700 font-medium">
           Zip Code

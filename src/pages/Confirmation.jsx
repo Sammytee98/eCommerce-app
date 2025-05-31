@@ -41,7 +41,7 @@ const Confirmation = () => {
         <Button
           children="Go to Orders"
           className="py-2.5"
-          onClick={() => alert("Order page is not implemented yet.")}
+          onClick={() => alert("Order page has not been implemented yet.")}
         />
         <Button
           children="Continue Shoping"

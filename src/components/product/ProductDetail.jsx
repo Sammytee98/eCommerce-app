@@ -5,7 +5,7 @@ import visa from "../../assets/payment_icon/visa.png";
 import mastercard from "../..//assets/payment_icon/mastercard.png";
 import americanExpress from "../../assets/payment_icon/american-express.png";
 import discover from "../../assets/payment_icon/discover.png";
-import { useCallback, useContext, useEffect, useState } from "react";
+import { useCallback, useContext, useEffect, useRef } from "react";
 import ProductContext from "../../contexts/ProductContext";
 import { useStoreActions } from "easy-peasy";
 import { HiOutlineShoppingCart } from "react-icons/hi2";
@@ -13,12 +13,14 @@ import { FaRegHeart, FaHeart } from "react-icons/fa6";
 import { motion } from "framer-motion";
 
 const ProductDetail = () => {
+  // Store actions
   const addToCart = useStoreActions((action) => action.addToCart);
   const addToWishlist = useStoreActions((action) => action.addToWishlist);
   const removeFromWishlist = useStoreActions(
     (action) => action.removeFromWishlist
   );
 
+  // Context values
   const {
     product,
     productId,
@@ -36,14 +38,22 @@ const ProductDetail = () => {
 
   const icons = [visa, mastercard, americanExpress, discover];
 
-  const increaseQuantity = useCallback(() => {
-    setQuantity((prev) => prev + 1);
-  }, []);
+  // Avoid triggering useEffect on intial render
+  const isMounted = useRef(false);
 
-  const decreaseQuantity = useCallback(() => {
-    setQuantity((prev) => (prev === 1 ? 1 : prev - 1));
-  }, []);
+  // Increase product quantity
+  const increaseQuantity = useCallback(
+    () => setQuantity((prev) => prev + 1),
+    []
+  );
 
+  // Decrease product quantity
+  const decreaseQuantity = useCallback(
+    () => setQuantity((prev) => (prev === 1 ? 1 : prev - 1)),
+    []
+  );
+
+  // Add current product to cart
   const handleAddToCart = () => {
     addToCart({ ...product, quantity, discountPrice });
     setNotificationOpen((prev) => ({ ...prev, cart: true }));
@@ -54,19 +64,28 @@ const ProductDetail = () => {
     }, 5000);
   };
 
+  // Add product to wishlist
   const handleAddtoWishlist = () => {
     addToWishlist({ ...product, discountPrice, quantity });
   };
 
+  // Remove product from wishlist
   const handleRemoveFromWishlist = () => {
     removeFromWishlist(productId);
   };
 
+  // Toggle wishlist addToWish state
   const handleWishlistToggle = () => {
     setAddToWish((prev) => !prev);
   };
 
+  // Wishlist side-effect with initial render guard
   useEffect(() => {
+    if (!isMounted.current) {
+      isMounted.current = true;
+      return;
+    }
+
     if (addToWish) {
       handleAddtoWishlist();
       setNotificationOpen((prev) => ({ ...prev, wishlist: true }));

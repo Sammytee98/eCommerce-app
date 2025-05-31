@@ -4,12 +4,13 @@ import Button from "../ui/Button";
 import { FaEye, FaEyeSlash } from "react-icons/fa6";
 
 const AuthForm = () => {
-  const { authMode } = useAuthModal();
+  const { authMode } = useAuthModal(); // Determines whether user is signing up or logging in
   const [passwordReveal, setPasswordReveal] = useState({
     password: false,
     confirmPassword: false,
   });
 
+  // Toggle visibility for password and confirm password fields
   const revealPassword = () =>
     setPasswordReveal((prev) => ({
       ...prev,
@@ -24,6 +25,7 @@ const AuthForm = () => {
 
   return (
     <form action="" className="space-y-4">
+      {/* Email Field */}
       <div className="flex flex-col space-y-0.5">
         <label className=" text-sm font-medium" htmlFor="email">
           Email
@@ -35,6 +37,7 @@ const AuthForm = () => {
         />
       </div>
 
+      {/* Password Field */}
       <div className="flex flex-col space-y-0.5">
         <label className=" text-sm font-medium" htmlFor="password">
           Password
@@ -54,6 +57,7 @@ const AuthForm = () => {
         </div>
       </div>
 
+      {/* Confirm Password Field for Signup */}
       {authMode === "signup" && (
         <div className="flex flex-col space-y-0.5">
           <label className=" text-sm font-medium" htmlFor="confirmPassword">
@@ -75,6 +79,7 @@ const AuthForm = () => {
         </div>
       )}
 
+      {/* Remeber Me + Forgot Password */}
       <div className="flex justify-between">
         <div className="flex items-center space-x-0.5 w-fit">
           <input type="checkbox" id="rememberMe" className="cursor-pointer" />
@@ -94,6 +99,7 @@ const AuthForm = () => {
         </a>
       </div>
 
+      {/* Submit Button */}
       <Button
         onClick={(e) => e.preventDefault()}
         children={authMode === "login" ? "LOG IN" : "CREATE ACCOUNT"}

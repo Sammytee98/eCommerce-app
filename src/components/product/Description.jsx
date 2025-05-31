@@ -2,6 +2,7 @@ import { useContext } from "react";
 import ProductContext from "../../contexts/ProductContext";
 
 const Description = () => {
+  // Pull openSection(name of section), description and toggleSection handler from context
   const { description, openSection, toggleSection } =
     useContext(ProductContext);
 
@@ -17,6 +18,7 @@ const Description = () => {
         </span>
       </button>
 
+      {/* Display only if the current openSection === description */}
       {openSection === "description" && (
         <section
           key="description"

@@ -9,7 +9,6 @@ const OrderSummaryBox = () => {
   const customerCC = useStoreState((state) => state.customerCC);
   // const { paymentMethod } = useCheckoutContext();
   const userPaymentMethod = useStoreState((state) => state.userPaymentMethod);
-  console.log(userPaymentMethod);
 
   const orderNumber = "GTS" + Date.now();
   const orderDate = new Date();

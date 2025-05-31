@@ -1,23 +1,27 @@
 import { FaXmark } from "react-icons/fa6";
 import { useStoreActions, useStoreState } from "easy-peasy";
-import Button from "./ui/Button";
+import Button from "../ui/Button";
 import { useCallback, useState } from "react";
 import { motion } from "framer-motion";
 
 const Wishlist = ({ setWishlistOpen }) => {
+  // Global actions & state
   const addToCart = useStoreActions((action) => action.addToCart);
   const wishlistItems = useStoreState((state) => state.wishlistItems);
   const removeFromWishlist = useStoreActions(
     (action) => action.removeFromWishlist
   );
+
+  // Local state for showing toast notification
   const [cartNotificationOpen, setCartNotificationOpen] = useState(false);
   const [deleteNotificationOpen, setDeleteNotificationOpen] = useState(false);
 
+  // Handle close button
   const handleWishlistClose = useCallback(() => {
     setWishlistOpen(false);
   }, []);
 
-  // Add to cart and remove from wishlist after adding
+  // Add item to cart, removes from wishlist, shows toast
   const handleAddToCart = (product, quantity = 1, price, id) => {
     addToCart({ ...product, quantity, price });
     setCartNotificationOpen(true);
@@ -29,6 +33,7 @@ const Wishlist = ({ setWishlistOpen }) => {
     }, 5000);
   };
 
+  // Remove from wishlist
   const handleDelete = (id) => {
     removeFromWishlist(id);
     setDeleteNotificationOpen(true);
@@ -41,6 +46,7 @@ const Wishlist = ({ setWishlistOpen }) => {
   return (
     <>
       <div className="w-full h-full flex flex-col font-oswald relative">
+        {/* Toast for add to cart */}
         {cartNotificationOpen && (
           <motion.p
             initial={{ y: "-100%", opacity: 0 }}
@@ -52,6 +58,7 @@ const Wishlist = ({ setWishlistOpen }) => {
             Your cart has been updated.
           </motion.p>
         )}
+        {/* Toast for delete */}
         {deleteNotificationOpen && (
           <motion.p
             initial={{ y: "-100%", opacity: 0 }}
@@ -64,6 +71,7 @@ const Wishlist = ({ setWishlistOpen }) => {
           </motion.p>
         )}
 
+        {/* === Wishlist Header === */}
         <div className="w-full flex justify-between items-center border-b-2 border-gray-200 p-2">
           <h2 className="text-xl font-medium text-gray-800">WHISHLISTS</h2>
           <FaXmark
@@ -72,6 +80,7 @@ const Wishlist = ({ setWishlistOpen }) => {
           />
         </div>
 
+        {/* === Wishlist Items === */}
         <div className="w-full grow space-y-2 overflow-y-auto bg-gray-100">
           {wishlistItems.length ? (
             wishlistItems.map((item) => {

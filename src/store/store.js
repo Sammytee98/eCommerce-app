@@ -2,6 +2,7 @@ import axios from "axios";
 import { createStore, action, thunk, computed } from "easy-peasy";
 import { setLocalStorage, getLocalStorage } from "../hooks/localStorage";
 
+// get intial items using their key in local storage
 const getInitialItems = (key) => {
   try {
     const items = getLocalStorage(key);
@@ -72,7 +73,6 @@ const store = createStore({
         const products = res.data;
 
         actions.setCategoryProduct({ category, products });
-        // mergedProducts = mergedProducts.concat(products);
       });
     } catch (err) {
       console.log("Error: ", err.message);
@@ -99,13 +99,16 @@ const store = createStore({
     setLocalStorage("cart", state.cartItems);
   }),
 
+  // Action to clear cart items
   clearCartItems: action((state) => {
     state.cartItems = [];
     state.totalQuantity = 0;
 
+    // Save cartItems new state in local storage
     setLocalStorage("cart", state.cartItems);
   }),
 
+  // Action to update cart items
   updateCartItem: action((state, { id, action }) => {
     const item = state.cartItems.find((prod) => prod.id === id);
     if (action === "increase") {
@@ -119,12 +122,15 @@ const store = createStore({
       }
     }
 
+    // Save cartItems new state in local storage
     setLocalStorage("cart", state.cartItems);
   }),
 
+  // Action o remove a product from cart
   removeFromCart: action((state, productId) => {
     state.cartItems = state.cartItems.filter((item) => item.id !== productId);
 
+    // Save cartItems new state in local storage
     setLocalStorage("cart", state.cartItems);
   }),
 
@@ -147,6 +153,7 @@ const store = createStore({
   // ====================
   wishlistItems: getInitialItems("wishlist"), // Array of items in the wishlist
 
+  // Action to add product to wishlist
   addToWishlist: action((state, product) => {
     const existing = state.wishlistItems.find((item) => item.id === product.id);
 
@@ -157,20 +164,17 @@ const store = createStore({
       state.wishlistItems.push({ ...product });
     }
 
+    // Save wishlistItems new state in local storage
     setLocalStorage("wishlist", state.wishlistItems);
   }),
 
+  // Action to remove product from wishlist
   removeFromWishlist: action((state, productId) => {
     state.wishlistItems = state.wishlistItems.filter(
       (item) => item.id !== productId
     );
 
-    setLocalStorage("wishlist", state.wishlistItems);
-  }),
-
-  clearCartItems: action((state) => {
-    state.wishListItems = [];
-
+    // Save wishlistItems new state in local storage
     setLocalStorage("wishlist", state.wishlistItems);
   }),
 });

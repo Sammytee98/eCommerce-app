@@ -2,38 +2,39 @@ import { createContext, useCallback, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useStoreState } from "easy-peasy";
 
+// Create product context
 const ProductContext = createContext(null);
 
 export const ProductProvider = ({ children }) => {
   const { id } = useParams();
-  const [openSection, setOpenSection] = useState(null);
-  const [quantity, setQuantity] = useState(1);
+
+  // UI sates
+  const [openSection, setOpenSection] = useState(null); // For toggling additional info/description/review...
+  const [quantity, setQuantity] = useState(1); // Product quantity
   const [notificationOpen, setNotificationOpen] = useState({
     cart: false,
     wishlist: false,
   });
-  const [addToWish, setAddToWish] = useState(false);
+  const [addToWish, setAddToWish] = useState(false); // Wishlist toggle
 
+  // Fetch products from store
   const products = useStoreState((state) => state.products);
 
-  const randomNum = useCallback((num) => {
-    return (Math.random() * num + 1).toFixed(1);
-  }, []);
-
+  // Handle toggling product accordion sections
   const toggleSection = useCallback((section) => {
     setOpenSection((prev) => (prev === section ? null : section));
   }, []);
 
-  // console.log(id);
-
+  // Get product by ID from store
   const product = products.find((p) => p.id === Number(id));
 
-  setTimeout(() => {
-    if (!product) {
-      return <p className="text-center">Couldn't find product</p>;
-    }
-  }, 10000);
+  if (!product) {
+    <ProductContext.Provider value={{}}>
+      <p className="text-center mt-10">Product not found.</p>;
+    </ProductContext.Provider>;
+  }
 
+  // Destructure product values
   const {
     id: productId,
     image,
@@ -43,19 +44,21 @@ export const ProductProvider = ({ children }) => {
     description,
   } = product;
 
-  const discountPercentage = 3;
-
+  // Discount logic
+  const discountPercentage = product.discountPercentage || 3;
   const discountPrice = ((price * (100 - discountPercentage)) / 100).toFixed(2);
 
+  // Format category name (capitalize first letter)
   const category =
     cat.slice(0, 1).toUpperCase() + cat.slice(1, cat.length).toLowerCase();
 
+  // Mock reviews
   const defaultReview = [
     {
       comment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
       date: "23-03-2021",
       reviewerName: "John Doe",
-      rating: randomNum(5),
+      rating: "4.5",
     },
   ];
 
@@ -72,7 +75,7 @@ export const ProductProvider = ({ children }) => {
         cat,
         category,
         reviews: defaultReview,
-        weight: randomNum(20),
+        weight: "4.3",
         warranty: "1 year warranty",
         openSection,
         toggleSection,

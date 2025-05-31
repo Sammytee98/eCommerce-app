@@ -3,6 +3,7 @@ import RatingStar from "../ui/RatingStar";
 import ProductContext from "../../contexts/ProductContext";
 
 const Review = () => {
+  // Pull reviews, openSection(name of section), toggleSection handler context
   const { reviews, openSection, toggleSection } = useContext(ProductContext);
 
   return (
@@ -17,6 +18,7 @@ const Review = () => {
         </span>
       </button>
 
+      {/* Display only if the current openSection === review */}
       {openSection === "review" && (
         <div className="p-5">
           <div>
