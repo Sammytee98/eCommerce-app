@@ -10,6 +10,7 @@ import { useStoreState } from "easy-peasy";
 import { AnimatePresence, motion } from "framer-motion";
 import MobileMenu from "./MobileMenu";
 import Wishlist from "../Wishlist";
+import { useAuthModal } from "../../contexts/AuthModalContext";
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -17,6 +18,7 @@ const Header = () => {
   const [wishlistOpen, setWishlistOpen] = useState(false);
   const { width } = useWindowSize();
   const totalQuantity = useStoreState((state) => state.totalQuantity);
+  const { openModal } = useAuthModal();
 
   const handleMenuOpen = useCallback(() => {
     setMenuOpen(true);
@@ -72,9 +74,14 @@ const Header = () => {
         >
           <Nav mobile={false} />
 
-          <Link to="signup">
-            <Button children="SIGN UP" className="w-32 rounded-sm" />
-          </Link>
+          <Button
+            onClick={(e) => {
+              e.preventDefault();
+              openModal("signup");
+            }}
+            children="SIGN UP"
+            className="w-32 "
+          />
         </nav>
 
         {/* Cart and WishList Icon */}
