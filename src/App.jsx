@@ -18,6 +18,8 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ProductProvider } from "./contexts/ProductContext";
 import { CheckoutProvider } from "./contexts/CheckoutContext";
 import { AnimatePresence } from "framer-motion";
+import { AuthModalProvider } from "./contexts/AuthModalContext";
+import AuthModal from "./components/AuthModal";
 
 const App = () => {
   const queryClient = new QueryClient();
@@ -33,48 +35,51 @@ const App = () => {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <AnimatePresence mode="wait">
-        <Routes location={location} key={location.pathname}>
-          <Route element={<MainLayout />}>
-            <Route path="/" element={<Home />} />
-            <Route path="products" element={<AllProducts />} />
-            <Route
-              path="products/:category/:id"
-              element={
-                <ProductProvider>
-                  <ProductPage />
-                </ProductProvider>
-              }
-            />
-            <Route
-              path="products/category/:category"
-              element={<CategoryPage />}
-            />
-            <Route path="cart" element={<Cart />} />
-            <Route
-              path="checkout"
-              element={
-                <CheckoutProvider>
-                  <Checkout />
-                </CheckoutProvider>
-              }
-            />
-            <Route
-              path="/checkout/order-confirmation"
-              element={
-                <CheckoutProvider>
-                  <Confirmation />
-                </CheckoutProvider>
-              }
-            />
-            <Route path="about" element={<About />} />
-            <Route path="contact" element={<Contact />} />
-            <Route path="signup" element={<Signup />} />
-            <Route path="login" element={<Login />} />
-            <Route path="*" element={<Error />} />
-          </Route>
-        </Routes>
-      </AnimatePresence>
+      <AuthModalProvider>
+        <AnimatePresence mode="wait">
+          <Routes location={location} key={location.pathname}>
+            <Route element={<MainLayout />}>
+              <Route path="/" element={<Home />} />
+              <Route path="products" element={<AllProducts />} />
+              <Route
+                path="products/:category/:id"
+                element={
+                  <ProductProvider>
+                    <ProductPage />
+                  </ProductProvider>
+                }
+              />
+              <Route
+                path="products/category/:category"
+                element={<CategoryPage />}
+              />
+              <Route path="cart" element={<Cart />} />
+              <Route
+                path="checkout"
+                element={
+                  <CheckoutProvider>
+                    <Checkout />
+                  </CheckoutProvider>
+                }
+              />
+              <Route
+                path="/checkout/order-confirmation"
+                element={
+                  <CheckoutProvider>
+                    <Confirmation />
+                  </CheckoutProvider>
+                }
+              />
+              <Route path="about" element={<About />} />
+              <Route path="contact" element={<Contact />} />
+              <Route path="signup" element={<Signup />} />
+              <Route path="login" element={<Login />} />
+              <Route path="*" element={<Error />} />
+            </Route>
+          </Routes>
+          <AuthModal />
+        </AnimatePresence>
+      </AuthModalProvider>
     </QueryClientProvider>
   );
 };
