@@ -6,7 +6,6 @@ import LoadingSpinner from "../components/ui/LoadingSpinner";
 
 const Checkout = () => {
   const {
-    formData,
     page,
     setPage,
     title,
@@ -16,11 +15,9 @@ const Checkout = () => {
     nextHide,
     continueToPaymentHide,
     confirmAndPayButtonHide,
-    // handleChange,
     handleSubmit,
     onSubmit,
     isSubmitting,
-    isValid,
     register,
     errors,
   } = useCheckoutContext();
@@ -28,7 +25,6 @@ const Checkout = () => {
   const handlePrev = () => setPage((prev) => prev - 1);
   const handleNext = () => {
     setPage((prev) => prev + 1);
-    console.log("Submitted:", formData);
   };
 
   return (

@@ -7,6 +7,7 @@ import ScrollToTop from "../../layouts/ScrollToTop";
 import { motion } from "framer-motion";
 
 const CartNotification = () => {
+  // Pull product title and quantity from context
   const { title, quantity } = useContext(ProductContext);
 
   return (
@@ -17,6 +18,7 @@ const CartNotification = () => {
       transition={{ duration: 0.5, ease: "easeOut" }}
       className="w-full flex flex-col mobile:flex-row mobile:justify-between mobile:items-center space-y-3 border-t-2 border-t-orange-500 bg-gray-100 p-3 rounded-b-md"
     >
+      {/* Scroll to top on display */}
       <ScrollToTop />
       <div className="flex space-x-3 items-center">
         <FaCheckCircle className="text-green-500 text-sm" />

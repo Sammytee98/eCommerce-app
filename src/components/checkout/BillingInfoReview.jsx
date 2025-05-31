@@ -1,7 +1,9 @@
 import useCheckoutContext from "../../hooks/useCheckoutContext";
 
 const BillingInfoReview = ({ labelStyle, listStyle }) => {
-  const { formData, getValues } = useCheckoutContext();
+  const { getValues } = useCheckoutContext();
+
+  // Get billing form fields values and store them in object
   const info = {
     name: getValues("billFirstName") + getValues("billLastName"),
     email: getValues("billEmail"),

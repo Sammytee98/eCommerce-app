@@ -1,7 +1,7 @@
 import { memo, useCallback, useState } from "react";
 import { Link } from "react-router-dom";
 import { AiOutlineDown, AiOutlineUp } from "react-icons/ai";
-import Categories from "../CategoriesLink";
+import Categories from "./CategoriesLink";
 import { AnimatePresence, motion } from "framer-motion";
 import useWindowSize from "../../hooks/useWindowSize";
 
@@ -9,15 +9,18 @@ const Nav = ({ flexDirection, handleMenuClose, menuOpen }) => {
   const [categoryOpen, setCategoryOpen] = useState(false);
   const { width } = useWindowSize();
 
+  // Toogle category dropdown
   const handleCategoryDropdownToggle = useCallback(() => {
     setCategoryOpen((prev) => !prev);
   }, []);
 
+  // Close dropdown and menu click on link click
   const handleCategoryDropDownClose = useCallback(() => {
     setCategoryOpen(false);
     handleMenuClose();
   }, []);
 
+  // Motion animation config
   const navContainer = {
     hidden: {},
     visible: {

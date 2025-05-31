@@ -1,49 +1,61 @@
 import { useCallback, useEffect, useState, memo } from "react";
 import { Link } from "react-router-dom";
 import useWindowSize from "../../hooks/useWindowSize";
-import { FaBars, FaXmark, FaUser, FaRegHeart, FaHeart } from "react-icons/fa6";
+import { FaBars, FaRegHeart, FaHeart } from "react-icons/fa6";
 import { HiMiniShoppingBag } from "react-icons/hi2";
 import Nav from "./Nav";
 import Button from "../ui/Button";
-import ShoppingCart from "../ShoppingCart";
+import ShoppingCart from "./ShoppingCart";
 import { useStoreState } from "easy-peasy";
 import { AnimatePresence, motion } from "framer-motion";
 import MobileMenu from "./MobileMenu";
-import Wishlist from "../Wishlist";
+import Wishlist from "./Wishlist";
 import { useAuthModal } from "../../contexts/AuthModalContext";
 
 const Header = () => {
+  // Local UI states
   const [menuOpen, setMenuOpen] = useState(false);
   const [cartOpen, setCartOpen] = useState(false);
   const [wishlistOpen, setWishlistOpen] = useState(false);
+
+  // Responsive width
   const { width } = useWindowSize();
+
+  // Get total cart quantity from global store
   const totalQuantity = useStoreState((state) => state.totalQuantity);
+
+  // Modal handler from context
   const { openModal } = useAuthModal();
 
+  // Handlers for toggling menu/cart/wishlist
   const handleMenuOpen = useCallback(() => {
     setMenuOpen(true);
-    setCartOpen(false);
+    setCartOpen(false); // Close cart when menu opens
+    setWishlistOpen(false); // Close wishlist when menu opens
   }, []);
 
   const handleCartOpen = useCallback(() => {
     setCartOpen(true);
-    setMenuOpen(false);
+    setMenuOpen(false); // Close menu when cart opens
   }, []);
 
   const handleWishlistOpen = useCallback(() => {
     setWishlistOpen(true);
+    setMenuOpen(false); // Close menu when wishlist opens
   });
 
   const handleMenuClose = useCallback(() => {
     setMenuOpen(false);
   }, []);
 
+  // If clicking outside the dropdown, close the menu
   const handleNavMenuClose = useCallback((e) => {
     if (e.target.closest(".dropdown")) return;
 
     handleMenuClose();
   });
 
+  // Auto-close mobile menu on desktop resize
   useEffect(() => {
     if (width >= 922 && menuOpen) {
       setMenuOpen(false);
@@ -58,6 +70,7 @@ const Header = () => {
       className="sticky top-0 left-0 right-0 z-50 flex justify-between items-center shadow"
     >
       <section className="bg-gray-50 grow flex justify-between items-center px-5 py-3">
+        {/* Logo */}
         <Link to="/">
           <img
             src="../../public/favicon.svg"
@@ -67,13 +80,14 @@ const Header = () => {
           />
         </Link>
 
-        {/* Navigation menu for large screen */}
+        {/* Navigation bar (only visble on larg screens) */}
         <nav
           aria-label="large-screen-nav"
           className="hidden w-3/4 laptop:flex text-lg space-x-2 justify-around"
         >
           <Nav mobile={false} />
 
+          {/* Signup button (opens auth modal) */}
           <Button
             onClick={(e) => {
               e.preventDefault();
@@ -84,9 +98,9 @@ const Header = () => {
           />
         </nav>
 
-        {/* Cart and WishList Icon */}
+        {/* WishList and Cart Icon */}
         <div className="flex items-center">
-          {/* Wishlist icon */}
+          {/* Wishlist toggle */}
           <button
             type="button"
             onClick={handleWishlistOpen}
@@ -100,7 +114,7 @@ const Header = () => {
             {width > 992 && <p className="text-xs font-medium">Wishlist</p>}
           </button>
 
-          {/* Cart icon */}
+          {/* Cart toggle */}
           <button
             type="button"
             onClick={handleCartOpen}
@@ -119,7 +133,7 @@ const Header = () => {
           </button>
         </div>
 
-        {/* Wishlist slider */}
+        {/* Wishlist Slide-In Panel */}
         <AnimatePresence>
           {wishlistOpen && (
             <motion.aside
@@ -134,7 +148,7 @@ const Header = () => {
           )}
         </AnimatePresence>
 
-        {/* Shopping cart slider */}
+        {/* Shopping Cart Slide-In Panel */}
         <AnimatePresence>
           {cartOpen && (
             <motion.aside
@@ -149,16 +163,16 @@ const Header = () => {
           )}
         </AnimatePresence>
 
-        {/* Hamburger menu for small screen navigation */}
-        <div
+        {/* Hamburger icon for mobile menu */}
+        <button
           onClick={handleMenuOpen}
           className="laptop:hidden -order-1 cursor-pointer p-2 "
         >
           <FaBars className="text-lg font-light text-gray-800 hover:text-orange-600 transition" />
-        </div>
+        </button>
       </section>
 
-      {/* Navbar for small screen */}
+      {/* Mobile Navigation Panel */}
       <AnimatePresence>
         {menuOpen && (
           <MobileMenu
@@ -172,4 +186,4 @@ const Header = () => {
   );
 };
 
-export default memo(Header);
+export default memo(Header); // Prevent unnecessary re-renders

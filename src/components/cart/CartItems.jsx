@@ -5,7 +5,6 @@ import QualityControl from "../ui/QualitityControl";
 const CartItems = ({ cartItems }) => {
   const updateCartItem = useStoreActions((action) => action.updateCartItem);
   const removeFromCart = useStoreActions((action) => action.removeFromCart);
-  console.log(cartItems);
 
   const cartDynamicStyle =
     "w-full flex justify-between items-center laptop:flex-col laptop:space-y-2 px-2 py-3.5 border-b-1 border-b-gray-300";

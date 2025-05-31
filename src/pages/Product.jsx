@@ -6,7 +6,7 @@ import RelatedProducts from "../components/product/RelatedProducts";
 import CartNotification from "../components/product/CartNotification";
 import WishlistNotification from "../components/product/WishlistNotification";
 import { useContext } from "react";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 
 const ProductPage = () => {
   const { notificationOpen, addToWish } = useContext(ProductContext);
@@ -19,11 +19,12 @@ const ProductPage = () => {
       transition={{ duration: 0.3, ease: "easeOut" }}
       className=" font-oswald"
     >
+      <AnimatePresence mode="wait"></AnimatePresence>
       {notificationOpen.cart && <CartNotification />}
       {notificationOpen.wishlist && (
         <WishlistNotification
           children={
-            addToWish && notificationOpen.wishlist
+            addToWish
               ? "Item has been added to wishlist"
               : "Item has been removed from wishlist"
           }

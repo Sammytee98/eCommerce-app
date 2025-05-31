@@ -2,12 +2,15 @@ import useCheckoutContext from "../../hooks/useCheckoutContext";
 import ScrollToTop from "../../layouts/ScrollToTop";
 
 const BillingForm = ({ inputFieldStyle }) => {
-  const { countries, formData, handleChange, register, errors } =
-    useCheckoutContext();
+  // Pull in error handling, register and list of countries from context
+  const { countries, handleChange, register, errors } = useCheckoutContext();
 
   return (
     <>
+      {/* Ensures page scrolls to top on mount */}
       <ScrollToTop />
+
+      {/* First Name */}
       <div className="flex flex-col space-y-1">
         <label
           htmlFor="firstName"
@@ -29,6 +32,7 @@ const BillingForm = ({ inputFieldStyle }) => {
         )}
       </div>
 
+      {/* Last Name */}
       <div className="flex flex-col space-y-1">
         <label htmlFor="lastName" className="text-xs text-gray-700 font-medium">
           Last Name
@@ -47,6 +51,7 @@ const BillingForm = ({ inputFieldStyle }) => {
         )}
       </div>
 
+      {/* Email */}
       <div className="flex flex-col space-y-1 col-span-full">
         <label htmlFor="email" className="text-xs text-gray-700 font-medium">
           Email
@@ -65,6 +70,7 @@ const BillingForm = ({ inputFieldStyle }) => {
         )}
       </div>
 
+      {/* Address Line 1 + Line 2 (optional) */}
       <div className="flex flex-col space-y-1 col-span-full">
         <label
           htmlFor="billAddress1"
@@ -85,6 +91,7 @@ const BillingForm = ({ inputFieldStyle }) => {
           <p className="text-xs text-red-600">{errors.billAddress1.message}</p>
         )}
 
+        {/* Optional address field */}
         <label htmlFor="billAddress2"></label>
         <input
           type="text"
@@ -95,6 +102,7 @@ const BillingForm = ({ inputFieldStyle }) => {
         />
       </div>
 
+      {/* City */}
       <div className="flex flex-col space-y-1 col-span-full">
         <label htmlFor="city" className="text-xs text-gray-700 font-medium">
           City
@@ -114,6 +122,7 @@ const BillingForm = ({ inputFieldStyle }) => {
         )}
       </div>
 
+      {/* State */}
       <div className="flex flex-col space-y-1 col-span-full">
         <label htmlFor="state" className="text-xs text-gray-700 font-medium">
           State
@@ -133,6 +142,7 @@ const BillingForm = ({ inputFieldStyle }) => {
         )}
       </div>
 
+      {/* Country - Select Dropdown */}
       <div className="flex flex-col space-y-1 col-span-full">
         <p className="text-xs text-gray-700 font-medium">Country</p>
         <select
@@ -156,6 +166,8 @@ const BillingForm = ({ inputFieldStyle }) => {
           <p className="text-xs text-red-600">{errors.billCountry.message}</p>
         )}
       </div>
+
+      {/* Zip Code */}
       <div className="flex flex-col space-y-1 col-span-full">
         <label htmlFor="zipCode" className="text-xs text-gray-700 font-medium">
           Zip Code

@@ -11,12 +11,13 @@ const ShopByCategory = () => {
   const navigate = useNavigate();
   const categoryProducts = useStoreState((state) => state.categoryProducts);
 
+  // Extract categories with fallback arrays
   const electronics = categoryProducts.electronics || [];
   const jewelery = categoryProducts.jewelery || [];
   const mensClothing = categoryProducts[`men's clothing`] || [];
   const womensClothing = categoryProducts[`women's clothing`] || [];
-  console.log(womensClothing);
 
+  // Memoized array of card data
   const data = useMemo(
     () => [
       {
@@ -77,6 +78,7 @@ const ShopByCategory = () => {
 
           return (
             <motion.figure
+              role="button"
               whileHover={{
                 backgroundColor: "rgba(249, 115, 22, 0.1)",
               }}

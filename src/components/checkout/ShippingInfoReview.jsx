@@ -1,19 +1,9 @@
 import useCheckoutContext from "../../hooks/useCheckoutContext";
 
 const ShippingInfoReview = ({ labelStyle, listStyle }) => {
-  const { formData, sameAsBilling, getValues } = useCheckoutContext();
-  // const {
-  //   sameAsBilling,
-  //   shipFirstName,
-  //   shipLastName,
-  //   shipEmail,
-  //   shipAddress1,
-  //   shipCity,
-  //   shipState,
-  //   shipCountry,
-  //   shipZipCode,
-  // } = formData;
+  const { sameAsBilling, getValues } = useCheckoutContext();
 
+  // Get shipping form fields value
   const info = {
     name: getValues("shipFirstName") + getValues("shipLastName"),
     email: getValues("shipEmail"),

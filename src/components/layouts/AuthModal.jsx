@@ -1,13 +1,14 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { useAuthModal } from "../contexts/AuthModalContext";
+import { useAuthModal } from "../../contexts/AuthModalContext";
 import { useEffect } from "react";
-import AuthForm from "./forms/AuthForm";
-import AuthLinks from "./Auth Modal/AuthLinks";
-import AuthSocials from "./Auth Modal/AuthSocials";
+import AuthForm from "../forms/AuthForm";
+import AuthLinks from "../Auth Modal/AuthLinks";
+import AuthSocials from "../Auth Modal/AuthSocials";
 
 const AuthModal = () => {
-  const { isModalOpen, authMode, setAuthMode, closeModal } = useAuthModal();
+  const { isModalOpen, closeModal } = useAuthModal();
 
+  // Prevent background scroll when modal is open
   useEffect(() => {
     if (isModalOpen) {
       document.body.style.overflow = "hidden";
@@ -45,6 +46,7 @@ const AuthModal = () => {
               </button>
             </div>
 
+            {/* Auth links, form, and socials */}
             <AuthLinks />
             <AuthForm />
             <AuthSocials />

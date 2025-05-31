@@ -9,8 +9,6 @@ import Checkout from "./pages/Checkout";
 import Confirmation from "./pages/Confirmation";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
-import Signup from "./pages/Signup";
-import Login from "./pages/Login";
 import Error from "./pages/Error";
 import { useStoreActions } from "easy-peasy";
 import { useEffect } from "react";
@@ -19,7 +17,7 @@ import { ProductProvider } from "./contexts/ProductContext";
 import { CheckoutProvider } from "./contexts/CheckoutContext";
 import { AnimatePresence } from "framer-motion";
 import { AuthModalProvider } from "./contexts/AuthModalContext";
-import AuthModal from "./components/AuthModal";
+import AuthModal from "./components/layouts/AuthModal";
 
 const App = () => {
   const queryClient = new QueryClient();
@@ -72,8 +70,6 @@ const App = () => {
               />
               <Route path="about" element={<About />} />
               <Route path="contact" element={<Contact />} />
-              <Route path="signup" element={<Signup />} />
-              <Route path="login" element={<Login />} />
               <Route path="*" element={<Error />} />
             </Route>
           </Routes>

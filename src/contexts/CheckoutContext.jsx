@@ -6,10 +6,12 @@ import { useForm, useFormState } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 
+// Create checkout context
 const CheckoutContext = createContext({});
 
-// Billing Input validation
+// Define validation schema using Zod
 const schema = z.object({
+  // Billing validation
   billFirstName: z
     .string()
     .min(2, { message: "This field must contain at least 2 character(s)" }),
@@ -23,12 +25,11 @@ const schema = z.object({
   billState: z.string().min(1, { message: "This field cannot be empty" }),
   billCountry: z.string().min(1, { message: "Please select a country" }),
   billZipCode: z.string().min(5, { message: "This field cannot be empty" }),
-
   terms: z.literal(true, {
     errorMap: () => ({ message: "You must accept the terms." }),
   }),
 
-  // Shipping input validation
+  // Shipping validation
   sameAsBilling: z.boolean().optional(),
 
   shipFirstName: z
@@ -45,13 +46,14 @@ const schema = z.object({
   shipCountry: z.string().min(1, { message: "Please select a country" }),
   shipZipCode: z.string().min(5, { message: "This field cannot be empty" }),
 
-  //Payment method shema
+  //Payment method validation
   paymentMethod: z.enum(["card", "paypal", "cod"], {
     errorMap: () => ({ message: "please select a payment method" }),
   }),
 });
 
 export const CheckoutProvider = ({ children }) => {
+  // Setup form handling
   const {
     register,
     handleSubmit,
@@ -67,6 +69,7 @@ export const CheckoutProvider = ({ children }) => {
 
   const { errors, isValid, isSubmitting } = useFormState({ control });
 
+  // Easy-peasy store actions
   const setCustomerAddress = useStoreActions(
     (action) => action.setCustomerAddress
   );
@@ -80,7 +83,8 @@ export const CheckoutProvider = ({ children }) => {
   const [orderTotal, setOrderTotal] = useState(0.0);
   const navigate = useNavigate();
   const [page, setPage] = useState(0);
-  // const [paymentMethod, setPaymentMethod] = useState("");
+
+  // Form state
   const [formData, setFormData] = useState({
     billFirstName: "",
     billLastName: "",
@@ -121,6 +125,7 @@ export const CheckoutProvider = ({ children }) => {
 
   const sameAsBilling = watch("sameAsBilling");
 
+  // Auto-fill shipping fields if "sameAsBilling" is checked
   useEffect(() => {
     if (sameAsBilling) {
       setValue("shipFirstName", getValues("billFirstName"));
@@ -145,6 +150,7 @@ export const CheckoutProvider = ({ children }) => {
     }
   }, [sameAsBilling]);
 
+  // Watch and validate fields step-by-step
   const billingFields = [
     "billFirstName",
     "billLastName",
@@ -166,7 +172,6 @@ export const CheckoutProvider = ({ children }) => {
     "shipCountry",
     "shipZipCode",
   ];
-  console.log(getValues("paymentMethod"));
 
   const watchBillingValues = watch(billingFields);
   const watchShippingValues = watch(shippingFields);
@@ -186,34 +191,21 @@ export const CheckoutProvider = ({ children }) => {
   );
 
   const disablePrev = page === 0;
-
   const disableNext =
     (page === 0 && !isBillingValid) || (page === 1 && !isShippingValid);
-  console.log(disableNext);
-
   const prevHide = (page === 0 || page > key) && "hidden";
-
   const nextHide = page >= key && "hidden";
-
   const continueToPaymentHide =
     title[page] !== "Review & Confirm Order" && "hidden";
-
   const confirmAndPayButtonHide =
     page !== Object.keys(title).length - 1 && "hidden";
 
-  const handleChange = (e) => {
-    const { name, type } = e.target;
-
-    const value = type === "checkbox" ? e.target.checked : e.target.value;
-
-    setFormData((prev) => ({ ...prev, [name]: value }));
-    console.log(formData);
-  };
+  // Trigger RHF sameAsBilling toggle
   const handleSameAsBilling = (e) => {
-    console.log(e.target.checked);
     setValue("sameAsBilling", e.target.checked);
   };
 
+  // Card input formatting (space, slash, cvv)
   const handleCardDetailsChange = (e) => {
     const { name, value } = e.target;
     let formattedValue = value;
@@ -240,6 +232,7 @@ export const CheckoutProvider = ({ children }) => {
     setCardDetails((prev) => ({ ...prev, [name]: formattedValue }));
   };
 
+  // Final submit handler
   const onSubmit = async (data) => {
     const paymentMethod = getValues("paymentMethod");
 
@@ -269,7 +262,6 @@ export const CheckoutProvider = ({ children }) => {
         setPage,
         formData,
         setFormData,
-        handleChange,
         disablePrev,
         disableNext,
         prevHide,
