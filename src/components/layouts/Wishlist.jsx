@@ -53,7 +53,7 @@ const Wishlist = ({ setWishlistOpen }) => {
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: "-100%", opacity: 0 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
-            className="w-full absolute py-2 bg-green-500 text-white text-xs text-center"
+            className="w-full absolute py-3 bg-green-500 text-white text-xs text-center"
           >
             Your cart has been updated.
           </motion.p>
@@ -65,18 +65,18 @@ const Wishlist = ({ setWishlistOpen }) => {
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: "-100%", opacity: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="w-full absolute py-2 bg-green-500 text-white text-xs text-center"
+            className="w-full absolute py-3 bg-green-500 text-white text-xs text-center"
           >
             Item has been removed from wishlist.
           </motion.p>
         )}
 
         {/* === Wishlist Header === */}
-        <div className="w-full flex justify-between items-center border-b-2 border-gray-200 p-2">
-          <h2 className="text-xl font-medium text-gray-800">WHISHLISTS</h2>
+        <div className="w-full flex justify-between items-center border-b-2 border-gray-200 p-3">
+          <h2 className="text-2xl font-medium text-gray-800">WHISHLISTS</h2>
           <FaXmark
             onClick={handleWishlistClose}
-            className="text-xl text-gray-700 hover:text-orange-600 cursor-pointer transition"
+            className="text-2xl text-gray-700 hover:text-orange-600 cursor-pointer transition"
           />
         </div>
 
@@ -99,7 +99,7 @@ const Wishlist = ({ setWishlistOpen }) => {
                     <img
                       src={image}
                       alt={title}
-                      className="h-8 w-8 bg-gray-100 rounded-md"
+                      className="h-10 w-10 bg-gray-100 rounded-md"
                       loading="lazy"
                     />
                     <div className="space-y-1">
@@ -120,7 +120,7 @@ const Wishlist = ({ setWishlistOpen }) => {
                       onClick={() => handleDelete(id)}
                       type="button"
                       variant="outine"
-                      className="text-orange-500 text-xs shadow-none"
+                      className="text-orange-500 text-sm shadow-none"
                     >
                       Delete
                     </Button>
@@ -131,7 +131,7 @@ const Wishlist = ({ setWishlistOpen }) => {
                       }
                       type="button"
                       children="Add to Cart"
-                      className="text-xs py-1"
+                      className="text-sm py-1"
                     />
                   </div>
                 </div>

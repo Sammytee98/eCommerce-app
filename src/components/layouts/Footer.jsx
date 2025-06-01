@@ -3,6 +3,7 @@ import QuickLinks from "./QuickLinks";
 import Subscription from "../ui/Subscription";
 import Categories from "./CategoriesLink";
 import Contact from "./Contact";
+import Favicon from "../../assets/favicon.svg";
 
 const Footer = () => {
   const year = new Date().getFullYear(); // Current year for copyright
@@ -13,7 +14,7 @@ const Footer = () => {
         {/* Logo and tagline */}
         <div className="space-y-1.5">
           <img
-            src="../../favicon.svg"
+            src={Favicon}
             alt="gts logo"
             className="rounded-md"
             loading="lazy"

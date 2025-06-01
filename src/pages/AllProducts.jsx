@@ -56,8 +56,8 @@ const AllProducts = () => {
       className="flex flex-col font-oswald px-5 py-10"
     >
       <BreadCrumb />
-      <div className="w-full space-y-5 mb-16 grid grid-cols-2 mobile:grid-cols-3 gap-4 mobile:gap-8">
-        <h2 className=" not-mobile:col-span-2 text-3xl tablet:text-4xl">
+      <div className="w-full space-y-5 mb-8 grid grid-cols-2 mobile:grid-cols-3 gap-4 mobile:gap-8">
+        <h2 className=" not-mobile:col-span-2 text-4xl tablet:text-5xl">
           SHOP ALL
         </h2>
 
@@ -69,14 +69,14 @@ const AllProducts = () => {
 
         {/* Sorting */}
         <Sort sortBy={sortBy} handleSorting={handleSorting} />
-        <div className="flex justify-between space-x-8 "></div>
+        <div className="col-span-full"></div>
       </div>
 
       <motion.div
         variants={containerVariants}
         initial="hidden"
         animate="show"
-        className=" grid justify-items-center grid-cols-2 tablet:grid-cols-3 laptop:grid-cols-4 gap-y-7 gap-x-10"
+        className=" grid justify-items-center grid-cols-2 tablet:grid-cols-3 laptop:grid-cols-4 gap-y-7 gap-x-8"
       >
         {/* Display loading when fetching products */}
         {isFetching && (

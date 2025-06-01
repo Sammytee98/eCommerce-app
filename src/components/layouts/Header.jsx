@@ -11,6 +11,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import MobileMenu from "./MobileMenu";
 import Wishlist from "./Wishlist";
 import { useAuthModal } from "../../contexts/AuthModalContext";
+import Favicon from "../../assets/favicon.svg";
 
 const Header = () => {
   // Local UI states
@@ -73,7 +74,7 @@ const Header = () => {
         {/* Logo */}
         <Link to="/">
           <img
-            src="../../favicon.svg"
+            src={Favicon}
             alt="gts logo"
             className="rounded-md"
             loading="lazy"
@@ -106,7 +107,7 @@ const Header = () => {
             onClick={handleWishlistOpen}
             className="flex flex-col items-center cursor-pointer"
           >
-            <FaRegHeart className="text-orange-500 text-xl" />
+            <FaRegHeart className="text-orange-500 text-2xl" />
 
             {width > 992 && <p className="text-xs font-medium">Wishlist</p>}
           </button>
@@ -118,9 +119,9 @@ const Header = () => {
             className="ml-10 group hover:opacity-80 transition cursor-pointer flex flex-col items-center"
           >
             <div className="relative">
-              <HiMiniShoppingBag className="text-xl text-orange-500 group-hover:text-orange-600 transition" />
+              <HiMiniShoppingBag className="text-2xl text-orange-500 group-hover:text-orange-600 transition" />
               <p
-                className="absolute w-4 h-4 -top-1.5 -right-1.5
+                className="absolute w-5 h-5 -top-2 -right-2.5
            text-sm font-semibold flex justify-center items-center bg-orange-500 text-white rounded-full"
               >
                 {totalQuantity}
@@ -165,7 +166,7 @@ const Header = () => {
           onClick={handleMenuOpen}
           className="laptop:hidden -order-1 cursor-pointer p-2 "
         >
-          <FaBars className="text-lg font-light text-gray-800 hover:text-orange-600 transition" />
+          <FaBars className="text-2xl font-light text-gray-800 hover:text-orange-600 transition" />
         </button>
       </section>
 

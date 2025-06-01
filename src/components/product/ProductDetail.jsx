@@ -128,9 +128,12 @@ const ProductDetail = () => {
       <hr className="mt-6 mb-4 border-gray-300" />
 
       <div className="flex space-x-3">
-        <button className="cursor-pointer" onClick={handleWishlistToggle}>
+        <button
+          className="cursor-pointer text-2xl"
+          onClick={handleWishlistToggle}
+        >
           {addToWish ? (
-            <FaHeart className="text-orange-500" />
+            <FaHeart className="text-orange-500 " />
           ) : (
             <FaRegHeart className="text-orange-500" />
           )}
