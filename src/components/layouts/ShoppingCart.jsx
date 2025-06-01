@@ -34,7 +34,7 @@ const ShoppingCart = ({ setCartOpen }) => {
           <h2 className="text-xl font-medium">SHOPPING CART</h2>
           <FaXmark
             onClick={handleCartClose}
-            className="text-xl hover:text-orange-600 cursor-pointer transition"
+            className="text-2xl hover:text-orange-600 cursor-pointer transition"
           />
         </div>
 
@@ -48,7 +48,7 @@ const ShoppingCart = ({ setCartOpen }) => {
               return (
                 <div
                   key={id}
-                  className="flex justify-between items-center border-b-1 border-b-gray-200 py-2"
+                  className="flex justify-between items-center border-b-1 border-b-gray-200 py-3"
                 >
                   {/* Product Info */}
                   <div className="flex items-center space-x-4">
@@ -59,8 +59,8 @@ const ShoppingCart = ({ setCartOpen }) => {
                       loading="lazy"
                     />
                     <div className="space-y-1 ">
-                      <h4 className="text-sm truncate max-w-48">{title}</h4>
-                      <p className="flex text-xs items-center space-x-1 text-gray-600 font-normal">
+                      <h4 className="textbase truncate max-w-48">{title}</h4>
+                      <p className="flex text-sm items-center space-x-1 text-gray-600 font-normal">
                         <span>{quantity}</span>
                         <span className="text-[10px]">X</span>
                         <span>${totalPrice}</span>
@@ -71,7 +71,7 @@ const ShoppingCart = ({ setCartOpen }) => {
                   {/* Remove Item */}
                   <div
                     onClick={() => removeFromCart(id)}
-                    className="text-[12px] border-1 border-red-600 text-red-600 cursor-pointer rounded-full grid place-items-center"
+                    className="text-[14px] border-1 border-red-600 text-red-600 cursor-pointer rounded-full grid place-items-center"
                   >
                     <FaXmark />
                   </div>
@@ -88,7 +88,7 @@ const ShoppingCart = ({ setCartOpen }) => {
 
         {/* Subtotal display if cart not empty */}
         {cartItems.length >= 1 && (
-          <div className="w-full flex justify-between mb-3 items-center border-t-2 border-b-2 border-gray-300 py-1.5">
+          <div className="w-full flex justify-between mb-4 items-center border-t-2 border-b-2 border-gray-300 py-1.5">
             <h5>SUBTOTAL:</h5>
             <span>${subtotal.toFixed(2)}</span>
           </div>
@@ -96,7 +96,11 @@ const ShoppingCart = ({ setCartOpen }) => {
 
         {/* Primary action button: View cart or continue shopping */}
         <Link to={cartItems.length ? "/cart" : "/products"}>
-          <Button onClick={handleCartClose} type="button" className="w-full">
+          <Button
+            onClick={handleCartClose}
+            type="button"
+            className="w-full text-lg"
+          >
             {cartItems.length ? "VIEW CART" : "CONTINUE SHOPPING"}
           </Button>
         </Link>
@@ -108,7 +112,7 @@ const ShoppingCart = ({ setCartOpen }) => {
               type="button"
               onClick={handleCartClose}
               children="CHECKOUT"
-              className="w-full"
+              className="w-full text-lg"
             />
           </Link>
         )}

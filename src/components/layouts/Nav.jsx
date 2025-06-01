@@ -2,12 +2,10 @@ import { memo, useCallback, useState } from "react";
 import { Link } from "react-router-dom";
 import { AiOutlineDown, AiOutlineUp } from "react-icons/ai";
 import Categories from "./CategoriesLink";
-import { AnimatePresence, motion } from "framer-motion";
-import useWindowSize from "../../hooks/useWindowSize";
+import { AnimatePresence } from "framer-motion";
 
-const Nav = ({ flexDirection, handleMenuClose, menuOpen }) => {
+const Nav = ({ flexDirection, handleMenuClose }) => {
   const [categoryOpen, setCategoryOpen] = useState(false);
-  const { width } = useWindowSize();
 
   // Toogle category dropdown
   const handleCategoryDropdownToggle = useCallback(() => {
@@ -20,88 +18,49 @@ const Nav = ({ flexDirection, handleMenuClose, menuOpen }) => {
     handleMenuClose();
   }, []);
 
-  // Motion animation config
-  const navContainer = {
-    hidden: {},
-    visible: {
-      transition: {
-        staggerChildren: 0.1,
-      },
-    },
-  };
-
-  const navItem = {
-    hidden: { opactiy: 0, x: -15 },
-    visible: { opacity: 1, x: 0 },
-  };
-
-  const isMobile = width < 992;
-
   return (
-    <motion.ul
-      initial={navContainer}
-      animate={isMobile ? (menuOpen ? "visible" : "hidden") : "visible"}
+    <ul
       className={`w-full flex ${flexDirection} font-oswald text-base laptop:justify-center laptop:items-center list-none laptop:space-x-5`}
     >
-      <motion.li
-        whileTap={{ scale: -1.2 }}
-        transition={{ duration: 0.3 }}
-        variants={navItem}
-        className=" max-laptop:py-2.5 max-laptop:border-b-2 max-laptop:border-b-gray-200 "
-      >
+      <li className=" max-laptop:py-2.5 max-laptop:border-b-2 max-laptop:border-b-gray-200 ">
         <Link
           to="/"
           className="cursor-pointer hover:text-orange-600 transition"
         >
           HOME
         </Link>
-      </motion.li>
+      </li>
 
-      <motion.li
-        whileTap={{ scale: -1.2 }}
-        transition={{ duration: 0.3 }}
-        variants={navItem}
-        className=" max-laptop:py-2.5 max-laptop:border-b-2 max-laptop:border-b-gray-200"
-      >
+      <li className=" max-laptop:py-2.5 max-laptop:border-b-2 max-laptop:border-b-gray-200">
         <Link
           to="/products"
           className="cursor-pointer hover:text-orange-600 transition"
         >
           SHOP ALL
         </Link>
-      </motion.li>
+      </li>
 
       <ul className="dropdown relative max-laptop:py-2.5 max-laptop:border-b-2 max-laptop:border-b-gray-200 cursor-pointer">
-        <motion.li
-          whileTap={{ scale: -1.2 }}
-          transition={{ duration: 0.3 }}
-          variants={navItem}
+        <li
           onClick={handleCategoryDropdownToggle}
           className="flex justify-between items-center space-x-2 hover:text-orange-600 transition"
         >
           <span>CATEGORIES</span>{" "}
           {categoryOpen ? <AiOutlineUp /> : <AiOutlineDown />}
-        </motion.li>
+        </li>
         <AnimatePresence>
           {categoryOpen && (
-            <motion.div
-              initial={{ y: "-100%", opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              exit={{ y: "-100%", opacity: 0 }}
-              transition={{ duration: 0.3, ease: "easeOut" }}
+            <div
               onClick={handleCategoryDropDownClose}
               className="w-full min-w-48 absolute top-12 laptop:-left-16 z-50 p-2.5 bg-white border-2 border-gray-200 rounded-sm"
             >
               <Categories />
-            </motion.div>
+            </div>
           )}
         </AnimatePresence>
       </ul>
 
-      <motion.li
-        whileTap={{ scale: -1.2 }}
-        transition={{ duration: 0.3 }}
-        variants={navItem}
+      <li
         className="max-laptop:py-2.5 max-laptop:border-b-2
         max-laptop:border-b-gray-200"
       >
@@ -111,22 +70,17 @@ const Nav = ({ flexDirection, handleMenuClose, menuOpen }) => {
         >
           ABOUT
         </Link>
-      </motion.li>
+      </li>
 
-      <motion.li
-        whileTap={{ scale: -1.2 }}
-        transition={{ duration: 0.3 }}
-        variants={navItem}
-        className="max-laptop:py-2.5 max-laptop:border-b-2 max-laptop:border-b-gray-200"
-      >
+      <li className="max-laptop:py-2.5 max-laptop:border-b-2 max-laptop:border-b-gray-200">
         <Link
           to="/contact"
           className="cursor-pointer hover:text-orange-600 transition"
         >
           CONTACT
         </Link>
-      </motion.li>
-    </motion.ul>
+      </li>
+    </ul>
   );
 };
 

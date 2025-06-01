@@ -8,35 +8,19 @@ const QuickLinks = () => {
       <h2 className="text-lg tablet:text-xl font-medium text-center">
         QUICK LINKS
       </h2>
-      <ul className="flex flex-col items-center text-center space-y-1.5 list-none text-sm">
-        <motion.li
-          whileTap={{ scaleX: -1.2 }}
-          transition={{ duration: 0.3 }}
-          className="w-fit hover:text-orange-600 transition"
-        >
+      <ul className="flex flex-col items-center text-center space-y-2 list-none text-sm">
+        <li className="w-fit hover:text-orange-600 transition">
           <Link to="/">HOME</Link>
-        </motion.li>
-        <motion.li
-          whileTap={{ scaleX: -1.2 }}
-          transition={{ duration: 0.3 }}
-          className="w-fit hover:text-orange-600 transition"
-        >
+        </li>
+        <li className="w-fit hover:text-orange-600 transition">
           <Link to="products">SHOP ALL</Link>
-        </motion.li>
-        <motion.li
-          whileTap={{ scaleX: -1.2 }}
-          transition={{ duration: 0.3 }}
-          className="w-fit hover:text-orange-600 transition"
-        >
+        </li>
+        <li className="w-fit hover:text-orange-600 transition">
           <Link to="about">ABOUT</Link>
-        </motion.li>
-        <motion.li
-          whileTap={{ scaleX: -1.2 }}
-          transition={{ duration: 0.3 }}
-          className="w-fit hover:text-orange-600 transition"
-        >
+        </li>
+        <li className="w-fit hover:text-orange-600 transition">
           <Link to="contact">CONTACT</Link>
-        </motion.li>
+        </li>
       </ul>
     </section>
   );

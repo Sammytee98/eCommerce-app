@@ -8,7 +8,7 @@ const BreadCrumb = () => {
   const segments = location.pathname.split("/").filter(Boolean);
 
   return (
-    <nav className="text-xs tablet:text-sm text-gray-500 font-oswald mb-5">
+    <nav className="text-sm text-gray-500 font-oswald mb-5">
       <ol className="flex items-center ">
         {/* Always start with Home */}
         <li>
