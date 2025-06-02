@@ -44,11 +44,11 @@ const Checkout = () => {
 
       {page === Object.keys(title).length - 1 && (
         <div>
-          <div className="flex space-x-1 items-center text-sm">
+          <div className="flex space-x-2 items-center text-base">
             <input
               type="checkbox"
               id="terms"
-              className="w-3 h-3 mt-0.5 cursor-pointer"
+              className="w-4 h-4 mt-0.5 cursor-pointer"
               {...register("terms")}
             />
             <label htmlFor="terms" className="cursor-pointer">

@@ -5,21 +5,20 @@ const PaymentMethod = ({ handlePaymentSelect }) => {
 
   return (
     <section className="w-full space-y-2">
-      <h4 className="text-sm font-medium">Select a payment method</h4>
+      <h4 className="text-lg font-medium">Select a payment method</h4>
 
-      <div className="flex space-x-3 text-sm px-2">
+      <div className="flex space-x-3 text-sm px-1">
         <div className="flex items-center space-x-2">
           <input
             className="hidden peer"
             type="radio"
-            // onClick={handlePaymentSelect}
             id="card"
             value="card"
             {...register("paymentMethod")}
           />{" "}
           <label
             htmlFor="card"
-            className="px-3 py-1 border-2 border-gray-300 peer-checked:border-orange-500 rounded-md cursor-pointer"
+            className="px-2.5 py-1 border-2 border-gray-300 peer-checked:border-orange-500 rounded-md cursor-pointer"
           >
             Card
           </label>
@@ -27,7 +26,6 @@ const PaymentMethod = ({ handlePaymentSelect }) => {
         <div className="flex items-center space-x-2">
           <input
             className="hidden peer"
-            // onClick={handlePaymentSelect}
             type="radio"
             id="paypal"
             value="paypal"
@@ -35,7 +33,7 @@ const PaymentMethod = ({ handlePaymentSelect }) => {
           />{" "}
           <label
             htmlFor="paypal"
-            className="px-3 py-1 border-2 border-gray-300 peer-checked:border-orange-500 rounded-md cursor-pointer"
+            className="px-2.5 py-1 border-2 border-gray-300 peer-checked:border-orange-500 rounded-md cursor-pointer"
           >
             Paypal
           </label>
@@ -43,7 +41,6 @@ const PaymentMethod = ({ handlePaymentSelect }) => {
         <div className="flex items-center space-x-2">
           <input
             className="hidden peer"
-            // onClick={handlePaymentSelect}
             type="radio"
             id="cod"
             value="cod"
@@ -51,7 +48,7 @@ const PaymentMethod = ({ handlePaymentSelect }) => {
           />{" "}
           <label
             htmlFor="cod"
-            className="px-3 py-1 border-2 border-gray-300 peer-checked:border-orange-500 rounded-md cursor-pointer"
+            className="px-2.5 py-1 border-2 border-gray-300 peer-checked:border-orange-500 rounded-md cursor-pointer"
           >
             Cash on Delivery
           </label>

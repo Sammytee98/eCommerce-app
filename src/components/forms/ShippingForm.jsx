@@ -11,17 +11,17 @@ const ShippingForm = ({ inputFieldStyle }) => {
       <ScrollToTop />
 
       {/* Same as billing checkbox */}
-      <div className="flex items-center space-x-1 col-span-full mb-5">
+      <div className="flex items-center space-x-1.5 col-span-full mb-5">
         <input
           type="checkbox"
           id="sameAsBilling"
           onChange={handleSameAsBilling}
-          className="w-3 h-3 mt-0.5 peer"
+          className="w-4 h-4 mt-0.5 peer"
           {...register("sameAsBilling")}
         />
         <label
           htmlFor="sameAsBilling"
-          className="text-xs tablet:sm tracking-wide peer-hover:cursor-pointer"
+          className="text-base tracking-wide peer-hover:cursor-pointer"
         >
           Same as Billing Address
         </label>
@@ -31,7 +31,7 @@ const ShippingForm = ({ inputFieldStyle }) => {
       <div className="flex flex-col space-y-1">
         <label
           htmlFor="firstName"
-          className="text-xs text-gray-700 font-medium"
+          className="text-base text-gray-700 font-medium"
         >
           First Name
         </label>
@@ -52,7 +52,10 @@ const ShippingForm = ({ inputFieldStyle }) => {
 
       {/* Last Name */}
       <div className="flex flex-col space-y-1">
-        <label htmlFor="lastName" className="text-xs text-gray-700 font-medium">
+        <label
+          htmlFor="lastName"
+          className="text-base text-gray-700 font-medium"
+        >
           Last Name
         </label>
         <input
@@ -72,7 +75,7 @@ const ShippingForm = ({ inputFieldStyle }) => {
 
       {/* Email */}
       <div className="flex flex-col space-y-1 col-span-full">
-        <label htmlFor="email" className="text-xs text-gray-700 font-medium">
+        <label htmlFor="email" className="text-base text-gray-700 font-medium">
           Email
         </label>
         <input
@@ -94,7 +97,7 @@ const ShippingForm = ({ inputFieldStyle }) => {
       <div className="flex flex-col space-y-1 col-span-full">
         <label
           htmlFor="shipAddress1"
-          className="text-xs text-gray-700 font-medium"
+          className="text-base text-gray-700 font-medium"
         >
           Address
         </label>
@@ -126,7 +129,7 @@ const ShippingForm = ({ inputFieldStyle }) => {
 
       {/* City */}
       <div className="flex flex-col space-y-1 col-span-full">
-        <label htmlFor="city" className="text-xs text-gray-700 font-medium">
+        <label htmlFor="city" className="text-base text-gray-700 font-medium">
           City
         </label>
         <input
@@ -147,7 +150,7 @@ const ShippingForm = ({ inputFieldStyle }) => {
 
       {/* State */}
       <div className="flex flex-col space-y-1 col-span-full">
-        <label htmlFor="state" className="text-xs text-gray-700 font-medium">
+        <label htmlFor="state" className="text-base text-gray-700 font-medium">
           State
         </label>
         <input
@@ -167,7 +170,7 @@ const ShippingForm = ({ inputFieldStyle }) => {
 
       {/* Country -Select Dropdown */}
       <div className="flex flex-col space-y-1 col-span-full">
-        <p className="text-xs text-gray-700 font-medium">Country</p>
+        <p className="text-base text-gray-700 font-medium">Country</p>
         <select
           disabled={sameAsBilling}
           className={`${inputFieldStyle} ${
@@ -193,7 +196,10 @@ const ShippingForm = ({ inputFieldStyle }) => {
 
       {/* Zip Code */}
       <div className="flex flex-col space-y-1 col-span-full">
-        <label htmlFor="zipCode" className="text-xs text-gray-700 font-medium">
+        <label
+          htmlFor="zipCode"
+          className="text-base text-gray-700 font-medium"
+        >
           Zip Code
         </label>
         <input

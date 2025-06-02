@@ -31,7 +31,7 @@ const ProductPage = () => {
         />
       )}
 
-      <div className="my-10 px-4">
+      <div className="my-10 px-3">
         <div className="flex flex-col laptop:flex-row items-center space-y-5 laptop:space-x-5 ">
           <ProductImageSwiper />
           <ProductDetail />

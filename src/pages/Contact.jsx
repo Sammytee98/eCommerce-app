@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
-import Hero from "../components/Contact/Hero";
-import InfoCards from "../components/Contact/InfoCards";
+import Hero from "../components/contact/Hero";
+import InfoCards from "../components/contact/InfoCards";
 import ContactForm from "../components/forms/ContactForm";
 import { useState } from "react";
 import { FaCircleCheck } from "react-icons/fa6";

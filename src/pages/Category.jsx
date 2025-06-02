@@ -32,7 +32,7 @@ const CategoryPage = () => {
           {category.toUpperCase()}
         </h1>
       </div>
-      <div className=" grid justify-items-center grid-cols-2 tablet:grid-cols-3 laptop:grid-cols-4 gap-y-7 gap-x-10 my-10">
+      <div className=" grid justify-items-center grid-cols-2 mobile:grid-cols-3 laptop:grid-cols-4 gap-y-7 gap-x-10 my-10">
         {products.map((product) => {
           const { id, image, rating, title, price, category } = product;
 

@@ -2,8 +2,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useAuthModal } from "../../contexts/AuthModalContext";
 import { useEffect } from "react";
 import AuthForm from "../forms/AuthForm";
-import AuthLinks from "../Auth Modal/AuthLinks";
-import AuthSocials from "../Auth Modal/AuthSocials";
+import AuthLinks from "../auth/AuthLinks";
+import AuthSocials from "../auth/AuthSocials";
 
 const AuthModal = () => {
   const { isModalOpen, closeModal } = useAuthModal();

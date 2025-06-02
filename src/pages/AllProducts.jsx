@@ -5,8 +5,8 @@ import PaginationButton from "../components/ui/PaginationButton";
 import BreadCrumb from "../components/layouts/BreadCrumb";
 import { motion } from "framer-motion";
 import LoadingSpinner from "../components/ui/LoadingSpinner";
-import Filter from "../components/All Products/Filter";
-import Sort from "../components/All Products/Sort";
+import Filter from "../components/allProducts/Filter";
+import Sort from "../components/allProducts/Sort";
 
 const AllProducts = () => {
   const [page, setPage] = useState(1);
@@ -76,7 +76,7 @@ const AllProducts = () => {
         variants={containerVariants}
         initial="hidden"
         animate="show"
-        className=" grid justify-items-center grid-cols-2 tablet:grid-cols-3 laptop:grid-cols-4 gap-y-7 gap-x-8"
+        className=" grid justify-items-center grid-cols-2 mobile:grid-cols-3 laptop:grid-cols-4 gap-y-7 gap-x-8"
       >
         {/* Display loading when fetching products */}
         {isFetching && (

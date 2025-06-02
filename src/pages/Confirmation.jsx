@@ -9,10 +9,6 @@ import { motion } from "framer-motion";
 const Confirmation = () => {
   const navigate = useNavigate();
 
-  const handleClick = useCallback(() => {
-    navigate("/products");
-  }, []);
-
   return (
     <motion.main
       initial={{ opacity: 0, y: "-100%" }}
@@ -27,7 +23,7 @@ const Confirmation = () => {
         <h2 className="text-2xl tablet:text-3xl font-bold text-gray-800">
           Thank you for your order!
         </h2>
-        <p className="text-sm tablet:text-base text-gray-600">
+        <p className="text-base text-gray-600">
           We've recieved your order and will contact you shortly.
         </p>
       </div>
@@ -39,14 +35,14 @@ const Confirmation = () => {
 
       <div className="w-full max-w-[900px] grid grid-cols-1 tablet:grid-cols-2 gap-4 tablet:gap-8">
         <Button
-          children="Go to Orders"
+          children="Go Home"
           className="py-2.5"
-          onClick={() => alert("Order page has not been implemented yet.")}
+          onClick={() => navigate("/")}
         />
         <Button
           children="Continue Shoping"
           className="py-2.5 "
-          onClick={handleClick}
+          onClick={() => navigate("/products")}
         />
       </div>
     </motion.main>
