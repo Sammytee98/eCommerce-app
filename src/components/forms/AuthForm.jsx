@@ -27,11 +27,11 @@ const AuthForm = () => {
     <form action="" className="space-y-4">
       {/* Email Field */}
       <div className="flex flex-col space-y-0.5">
-        <label className=" text-sm font-medium" htmlFor="email">
+        <label className=" text-base font-medium" htmlFor="email">
           Email
         </label>
         <input
-          className="border-2 border-gray-300 rounded-md px-3 py-1 text-xs"
+          className="border-2 border-gray-300 focus:outline-orange-600 rounded-md px-3 py-1 text-sm"
           type="text"
           id="email"
         />
@@ -39,18 +39,18 @@ const AuthForm = () => {
 
       {/* Password Field */}
       <div className="flex flex-col space-y-0.5">
-        <label className=" text-sm font-medium" htmlFor="password">
+        <label className=" text-base font-medium" htmlFor="password">
           Password
         </label>
         <div className="relative mb-5">
           <input
-            className="border-2 border-gray-300 rounded-md px-3 py-1 text-xs absolute top-0 right-0 left-0 "
+            className="border-2 border-gray-300 focus:outline-orange-600 rounded-md px-3 py-1 text-sm absolute top-0 right-0 left-0 "
             type={passwordReveal.password ? "text" : "password"}
             id="password"
           />
           <div
             onClick={revealPassword}
-            className="absolute right-3 top-2 text-xs text-gray-500 cursor-pointer"
+            className="absolute right-3 top-2 text-lg text-gray-500 cursor-pointer"
           >
             {passwordReveal.password ? <FaEye /> : <FaEyeSlash />}
           </div>
@@ -60,18 +60,18 @@ const AuthForm = () => {
       {/* Confirm Password Field for Signup */}
       {authMode === "signup" && (
         <div className="flex flex-col space-y-0.5">
-          <label className=" text-sm font-medium" htmlFor="confirmPassword">
+          <label className=" text-base font-medium" htmlFor="confirmPassword">
             Confirm Password
           </label>
           <div className="relative mb-5">
             <input
-              className="border-2 border-gray-300 rounded-md px-3 py-1 text-xs absolute top-0 right-0 left-0"
+              className="border-2 border-gray-300 focus:outline-orange-600 rounded-md px-3 py-1 text-sm absolute top-0 right-0 left-0"
               type={passwordReveal.confirmPassword ? "text" : "password"}
               id="confirmPassword"
             />
             <div
               onClick={revealConfirmPassword}
-              className="absolute right-3 top-2 text-xs text-gray-500 cursor-pointer"
+              className="absolute right-3 top-2 text-lg text-gray-500 cursor-pointer"
             >
               {passwordReveal.confirmPassword ? <FaEye /> : <FaEyeSlash />}
             </div>
@@ -81,11 +81,11 @@ const AuthForm = () => {
 
       {/* Remeber Me + Forgot Password */}
       <div className="flex justify-between">
-        <div className="flex items-center space-x-0.5 w-fit">
+        <div className="flex items-center space-x-1 w-fit">
           <input type="checkbox" id="rememberMe" className="cursor-pointer" />
           <label
             htmlFor="rememberMe"
-            className="text-[14px] font-medium cursor-pointer"
+            className="text-base font-medium cursor-pointer"
           >
             Remember me
           </label>

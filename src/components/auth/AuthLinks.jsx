@@ -4,7 +4,7 @@ const AuthLinks = () => {
   const { authMode, setAuthMode } = useAuthModal();
 
   return (
-    <div className="flex justify-center mb-4 gap-4 text-sm font-medium">
+    <div className="flex justify-center mb-5 gap-4 text-base font-medium">
       <button
         onClick={() => setAuthMode("login")}
         className={`pb-1 cursor-pointer border-b-2 ${

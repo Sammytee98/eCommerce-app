@@ -31,7 +31,7 @@ const AuthModal = () => {
           className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-black/50 backdrop-blur-sm"
         >
           <motion.div
-            className="bg-white rounded-md shadow-cs max-w-md w-[90%] px-6 py-2 relative font-oswald"
+            className="bg-white rounded-md shadow-cs max-w-md w-[90%] px-6  relative font-oswald overflow-x-scroll"
             initial={{ scale: 0.9, y: 20 }}
             animate={{ scale: 1, y: 0 }}
             exit={{ scale: 0.9, y: 20 }}
