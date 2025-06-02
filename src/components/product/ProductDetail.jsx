@@ -104,10 +104,11 @@ const ProductDetail = () => {
   }, [addToWish]);
 
   return (
-    <motion.div
+    <motion.section
       initial={{ opacity: 0, x: 30 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.5 }}
+      className="not-laptop:w-full"
     >
       <BreadCrumb />
       <h2 className="text-gray-600 text-sm">{category}</h2>
@@ -127,7 +128,7 @@ const ProductDetail = () => {
 
       <hr className="mt-6 mb-4 border-gray-300" />
 
-      <div className="flex space-x-3">
+      <div className="flex items-center space-x-4">
         <button
           className="cursor-pointer text-2xl"
           onClick={handleWishlistToggle}
@@ -147,10 +148,10 @@ const ProductDetail = () => {
         <Button
           onClick={handleAddToCart}
           type="button"
-          className="grow text-base text-white flex justify-around items-center bg-orange-500 hover:bg-orange-600 transition py-0.5 px-3 rounded-md cursor-pointer"
+          className="grow text-base text-white flex justify-around space-x-2 items-center bg-orange-500 hover:bg-orange-600 transition py-0.5 rounded-md cursor-pointer"
         >
           <HiOutlineShoppingCart className="pointer-events-none" />
-          ADD TO CART
+          <span className="uppercase">add to cart</span>
         </Button>
       </div>
 
@@ -175,7 +176,7 @@ const ProductDetail = () => {
           ))}
         </div>
       </fieldset>
-    </motion.div>
+    </motion.section>
   );
 };
 

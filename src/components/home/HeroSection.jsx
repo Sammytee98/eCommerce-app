@@ -17,7 +17,7 @@ const HeroSection = () => {
       <div className="absolute inset-0 bg-inherit bg-cover bg-center bg-no-repeat brightness-60">
         <Slider images={images} />
       </div>
-      <div className="absolute z-10 max-w-3xl w-full space-y-8 p-4 border-none">
+      <div className="absolute z-10 max-w-3xl w-full space-y-6 p-4 border-none">
         <motion.h2
           initial={{ opacity: 0, y: "-100%" }}
           animate={{ opacity: 1, y: 0 }}
@@ -30,7 +30,7 @@ const HeroSection = () => {
           initial={{ opacity: 0, x: "-100%" }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, ease: "easeOut", delay: 0.3 }}
-          className="text-base  tracking-wide text-white font-oswald uppercase"
+          className="text-base tracking-wide text-white font-oswald uppercase"
         >
           explore handpicked gadgets and self-care-must-haves &mdash; all in one
           smooth shopping experience.
@@ -39,7 +39,7 @@ const HeroSection = () => {
         <motion.div
           initial={{ opacity: 0, y: "100%" }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut", delay: 1 }}
+          transition={{ duration: 0.8, ease: "easeOut", delay: 1.5 }}
           className="w-fit rounded-md"
         >
           <Link to="products">

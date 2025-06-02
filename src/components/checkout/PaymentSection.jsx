@@ -7,7 +7,7 @@ import OrderRecap from "./OrderRecap";
 import useCheckoutContext from "../../hooks/useCheckoutContext";
 
 const PaymentSection = () => {
-  const { paymentMethod, setPaymentMethod, watch } = useCheckoutContext();
+  const { watch } = useCheckoutContext();
 
   const selectedPayment = watch("paymentMethod");
 
@@ -17,7 +17,6 @@ const PaymentSection = () => {
 
       <h3 className="text-xl text-gray-900 font-semibold">Payment Details</h3>
 
-      {/* <PaymentMethod handlePaymentSelect={handlePaymentSelect} /> */}
       <PaymentMethod />
 
       {selectedPayment === "card" && <CardDetails />}

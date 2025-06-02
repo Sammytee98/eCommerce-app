@@ -5,7 +5,7 @@ const ShippingInfoReview = ({ labelStyle, listStyle }) => {
 
   // Get shipping form fields value
   const info = {
-    name: getValues("shipFirstName") + getValues("shipLastName"),
+    name: `${getValues("shipFirstName")} ${getValues("shipLastName")}`,
     email: getValues("shipEmail"),
     address: getValues("shipAddress1"),
     city: getValues("shipCity"),
@@ -16,12 +16,10 @@ const ShippingInfoReview = ({ labelStyle, listStyle }) => {
 
   return (
     <div className="w-full bg-gray-100 px-4 py-2 rounded-md space-y-5">
-      <h3 className="text-base text-gray-800 font-bold">
-        Shipping Information
-      </h3>
+      <h3 className="text-lg text-gray-800 font-bold">Shipping Information</h3>
 
       {sameAsBilling ? (
-        <p className="italic text-sm text-gray-600">Same as Billing</p>
+        <p className="italic text-base text-gray-600">Same as Billing</p>
       ) : (
         <ul className="list-none text-gray-600 space-y-1.5">
           <li className={listStyle}>

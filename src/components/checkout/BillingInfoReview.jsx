@@ -5,7 +5,7 @@ const BillingInfoReview = ({ labelStyle, listStyle }) => {
 
   // Get billing form fields values and store them in object
   const info = {
-    name: getValues("billFirstName") + getValues("billLastName"),
+    name: `${getValues("billFirstName")} ${getValues("billLastName")}`,
     email: getValues("billEmail"),
     address: getValues("billAddress1"),
     city: getValues("billCity"),

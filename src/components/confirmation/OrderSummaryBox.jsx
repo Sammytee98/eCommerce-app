@@ -43,44 +43,44 @@ const OrderSummaryBox = () => {
     >
       <motion.div
         variants={itemVariants}
-        className="flex flex-col space-y-1 text-sm text-gray-500"
+        className="flex flex-col space-y-1 text-base text-gray-500"
       >
         <p>Order Number</p>
-        <p className="text-base text-gray-800 font-medium">{orderNumber}</p>
+        <p className="text-lg text-gray-800 font-medium">{orderNumber}</p>
       </motion.div>
 
       <motion.div
         variants={itemVariants}
-        className="flex flex-col space-y-1 text-sm text-gray-500"
+        className="flex flex-col space-y-1  text-base text-gray-500"
       >
         <p>Date Placed</p>
-        <p className="text-base text-gray-800 font-medium">
+        <p className="text-lg text-gray-800 font-medium">
           {formattedOrderDate}
         </p>
       </motion.div>
 
       <motion.div
         variants={itemVariants}
-        className="flex flex-col space-y-1 text-sm text-gray-500"
+        className="flex flex-col space-y-1 text-base text-gray-500"
       >
         <p>Email</p>
-        <p className="text-base text-gray-800 font-medium">{shipEmail}</p>
+        <p className="text-lg text-gray-800 font-medium">{shipEmail}</p>
       </motion.div>
 
       <motion.div
         variants={itemVariants}
-        className="flex flex-col space-y-1 text-sm text-gray-500"
+        className="flex flex-col space-y-1 text-base text-gray-500"
       >
         <p>Total Paid</p>
-        <p className="text-base text-gray-800 font-medium">${totalPaid}</p>
+        <p className="text-lg text-gray-800 font-medium">${totalPaid}</p>
       </motion.div>
 
       <motion.div
         variants={itemVariants}
-        className="flex flex-col space-y-1 text-sm text-gray-500"
+        className="flex flex-col space-y-1 text-base text-gray-500"
       >
         <p>Payment Method</p>
-        <p className="text-base text-gray-800 font-medium">
+        <p className="text-lg text-gray-800 font-medium">
           {userPaymentMethod === "paypal"
             ? "Paypal"
             : userPaymentMethod === "cod"
@@ -91,10 +91,10 @@ const OrderSummaryBox = () => {
 
       <motion.div
         variants={itemVariants}
-        className="flex flex-col space-y-1 text-sm text-gray-500"
+        className="flex flex-col space-y-1 text-base text-gray-500"
       >
         <p>Estimated Delivery</p>
-        <p className="text-base text-gray-800 font-medium">
+        <p className="text-lg text-gray-800 font-medium">
           {`${formattedOrderDate} - ${formattedEstimedDate}`}
         </p>
       </motion.div>

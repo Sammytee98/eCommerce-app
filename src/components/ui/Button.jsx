@@ -11,7 +11,7 @@ const Button = ({
   ...props
 }) => {
   const baseClasses =
-    "px-5 py-1.5 rounded-sm shadow-md font-oswald text-center flex justify-center transition cursor-pointer flex items-center";
+    "px-3 py-2 rounded-sm shadow-md font-oswald text-center flex justify-center transition cursor-pointer flex items-center";
 
   const variants = {
     primary:

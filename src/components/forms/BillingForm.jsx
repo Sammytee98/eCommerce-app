@@ -14,7 +14,7 @@ const BillingForm = ({ inputFieldStyle }) => {
       <div className="flex flex-col space-y-1">
         <label
           htmlFor="firstName"
-          className="text-xs text-gray-700 font-medium"
+          className="text-base text-gray-700 font-medium"
         >
           First Name
         </label>
@@ -34,7 +34,10 @@ const BillingForm = ({ inputFieldStyle }) => {
 
       {/* Last Name */}
       <div className="flex flex-col space-y-1">
-        <label htmlFor="lastName" className="text-xs text-gray-700 font-medium">
+        <label
+          htmlFor="lastName"
+          className="text-base text-gray-700 font-medium"
+        >
           Last Name
         </label>
         <input
@@ -53,7 +56,7 @@ const BillingForm = ({ inputFieldStyle }) => {
 
       {/* Email */}
       <div className="flex flex-col space-y-1 col-span-full">
-        <label htmlFor="email" className="text-xs text-gray-700 font-medium">
+        <label htmlFor="email" className="text-base text-gray-700 font-medium">
           Email
         </label>
         <input
@@ -74,7 +77,7 @@ const BillingForm = ({ inputFieldStyle }) => {
       <div className="flex flex-col space-y-1 col-span-full">
         <label
           htmlFor="billAddress1"
-          className="text-xs text-gray-700 font-medium"
+          className="text-base text-gray-700 font-medium"
         >
           Address
         </label>
@@ -104,7 +107,7 @@ const BillingForm = ({ inputFieldStyle }) => {
 
       {/* City */}
       <div className="flex flex-col space-y-1 col-span-full">
-        <label htmlFor="city" className="text-xs text-gray-700 font-medium">
+        <label htmlFor="city" className="text-base text-gray-700 font-medium">
           City
         </label>
         <input
@@ -124,7 +127,7 @@ const BillingForm = ({ inputFieldStyle }) => {
 
       {/* State */}
       <div className="flex flex-col space-y-1 col-span-full">
-        <label htmlFor="state" className="text-xs text-gray-700 font-medium">
+        <label htmlFor="state" className="text-base text-gray-700 font-medium">
           State
         </label>
         <input
@@ -144,7 +147,7 @@ const BillingForm = ({ inputFieldStyle }) => {
 
       {/* Country - Select Dropdown */}
       <div className="flex flex-col space-y-1 col-span-full">
-        <p className="text-xs text-gray-700 font-medium">Country</p>
+        <p className="text-base text-gray-700 font-medium">Country</p>
         <select
           className={`${inputFieldStyle} ${
             errors.billCountry && "border-red-600"
@@ -169,7 +172,10 @@ const BillingForm = ({ inputFieldStyle }) => {
 
       {/* Zip Code */}
       <div className="flex flex-col space-y-1 col-span-full">
-        <label htmlFor="zipCode" className="text-xs text-gray-700 font-medium">
+        <label
+          htmlFor="zipCode"
+          className="text-base text-gray-700 font-medium"
+        >
           Zip Code
         </label>
         <input

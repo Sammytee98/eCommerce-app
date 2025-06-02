@@ -8,7 +8,7 @@ import { AnimatePresence, motion } from "framer-motion";
 const FormInputs = () => {
   const { page } = useCheckoutContext();
   const inputFieldStyle =
-    "w-full h-10 text-xs border-2 border-gray-300 px-2 rounded-md border-gray-300 focus:outline-orange-500";
+    "w-full h-10 text-base border-2 border-gray-300 px-2 rounded-md border-gray-300 focus:outline-orange-500";
 
   // Pages display object
   const display = {

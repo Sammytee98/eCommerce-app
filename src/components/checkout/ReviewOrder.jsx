@@ -5,8 +5,8 @@ import OrderSummary from "./OrderSummary";
 
 const ReviewOrder = () => {
   const listStyle =
-    "flex space-x-5 justify-between items-center w-full text-xs";
-  const labelStyle = "text-sm font-medium";
+    "flex space-x-5 justify-between items-center w-full text-base";
+  const labelStyle = "text-base font-medium";
 
   return (
     <section className="w-full col-span-full space-y-6">

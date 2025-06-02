@@ -25,7 +25,7 @@ const ProductCard = ({
       variants={cardVariants}
       whileHover={{ boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)", scale: 1.01 }}
       transition={{ duration: 0.3, ease: "easeOut" }}
-      className="w-40 tablet:w-48 min-h-68 flex flex-col rounded-md  cursor-pointer overflow-hidden p-2"
+      className="w-36 small:w-44 tablet:w-48 min-h-68 flex flex-col rounded-md  cursor-pointer overflow-hidden p-2"
     >
       <div className="relative w-full h-32 bg-gray-200">
         <p className="absolute right-2 top-3 z-10 bg-orange-100 text-orange-500 px-1 py-[1px] text-[12px] rounded-xs">

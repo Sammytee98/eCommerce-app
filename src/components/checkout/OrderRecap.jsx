@@ -31,18 +31,18 @@ const OrderRecap = () => {
   return (
     <section className="mt-8 text-sm text-gray-900">
       <div className="flex justify-between items-center border-b-2 border-t-2 border-gray-300 py-2">
-        <p>Subtotal</p>
-        <p>${subtotalCalc.toFixed(2)}</p>
+        <p className="text-base">Subtotal</p>
+        <p className="text-base">${subtotalCalc.toFixed(2)}</p>
       </div>
 
       <div className="flex justify-between items-center border-b-2 border-b-gray-300 py-2">
-        <p>Shipping</p>
-        <p>${shippingFee}</p>
+        <p className="text-base">Shipping</p>
+        <p className="text-base">${shippingFee}</p>
       </div>
 
       <div className="flex justify-between items-center border-b-2 border-b-gray-300 py-2">
-        <p>Total</p>
-        <p className="font-bold text-lg">${orderTotal}</p>
+        <p className="text-base">Total</p>
+        <p className="font-bold text-xl">${orderTotal}</p>
       </div>
     </section>
   );

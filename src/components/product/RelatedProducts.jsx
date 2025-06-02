@@ -22,7 +22,7 @@ const RelatedProducts = () => {
         <hr className="w-12 border-1 border-orange-500 rounded-md" />
       </div>
 
-      <div className="grid justify-items-center grid-cols-2 tablet:grid-cols-3 laptop:grid-cols-4 gap-x-10 gap-y-7 p-2 my-10">
+      <div className="grid justify-items-center grid-cols-2 mobile:grid-cols-3 laptop:grid-cols-4 gap-x-10 gap-y-7 p-2 my-10">
         {isLoading && <p className="text-center col-span-full">Loading...</p>}
 
         {!isLoading && !related.length && (

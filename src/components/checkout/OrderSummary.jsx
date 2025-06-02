@@ -17,14 +17,16 @@ const OrderSummary = () => {
               className="flex justify-between items-center text-xs text-gray-600 border-b-1 border-gray-200 pb-2"
             >
               <img src={image} alt={title} className="w-8 h-8 bg-gray-50" />
-              <div className="flex">
+              <div className="flex text-base items-center">
                 <p className="truncate w-[100px] mr-1" title={title}>
                   {title}
                 </p>
                 x <span className="ml-1">{quantity}</span>
               </div>
 
-              <p>${(discountPrice * quantity).toFixed(2)}</p>
+              <p className="text-base">
+                ${(discountPrice * quantity).toFixed(2)}
+              </p>
             </li>
           );
         })}

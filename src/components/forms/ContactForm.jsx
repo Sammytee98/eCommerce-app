@@ -25,7 +25,7 @@ const ContactForm = ({ contactFormData, handleChange, handleSubmit }) => {
             value={fullName}
             placeholder="Enter your full name"
             required
-            className="py-2 px-3 border-2 border-gray-200 focus:outline-orange-500 text-sm tablet:text-base rounded-md"
+            className="py-2 px-3 border-2 border-gray-200 focus:outline-orange-500 text-base rounded-md"
           />
         </div>
         <div className="w-full flex flex-col space-y-1.5">
@@ -43,7 +43,7 @@ const ContactForm = ({ contactFormData, handleChange, handleSubmit }) => {
             value={email}
             placeholder="you@example.com"
             required
-            className="py-2 px-2 border-2 border-gray-200 focus:outline-orange-500 text-sm tablet:text-base rounded-md"
+            className="py-2 px-2 border-2 border-gray-200 focus:outline-orange-500 text-base rounded-md"
           />
         </div>
         <div className="w-full flex flex-col space-y-1.5">
@@ -61,7 +61,7 @@ const ContactForm = ({ contactFormData, handleChange, handleSubmit }) => {
             value={subject}
             placeholder="What's you messsage about?"
             required
-            className="py-2 px-2 border-2 border-gray-200 focus:outline-orange-500 text-sm tablet:text-base rounded-md"
+            className="py-2 px-2 border-2 border-gray-200 focus:outline-orange-500 text-base rounded-md"
           />
         </div>
         <div className="w-full flex flex-col space-y-1.5">
@@ -79,7 +79,7 @@ const ContactForm = ({ contactFormData, handleChange, handleSubmit }) => {
             rows="8"
             value={message}
             placeholder="Write your message here..."
-            className="resize-none py-2 px-2 border-2 border-gray-200 focus:outline-orange-500 text-sm tablet:text-base rounded-md"
+            className="resize-none py-2 px-2 border-2 border-gray-200 focus:outline-orange-500 text-base rounded-md"
           ></textarea>
         </div>
 
