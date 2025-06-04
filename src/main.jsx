@@ -5,13 +5,16 @@ import "./main.css";
 import App from "./App.jsx";
 import { StoreProvider } from "easy-peasy";
 import store from "./store/store.js";
+import { HelmetProvider } from "react-helmet-async";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <StoreProvider store={store}>
-      <Router>
-        <App />
-      </Router>
-    </StoreProvider>
+    <HelmetProvider>
+      <StoreProvider store={store}>
+        <Router>
+          <App />
+        </Router>
+      </StoreProvider>
+    </HelmetProvider>
   </StrictMode>
 );
