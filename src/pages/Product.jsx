@@ -9,7 +9,24 @@ import { useContext } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
 const ProductPage = () => {
-  const { notificationOpen, addToWish } = useContext(ProductContext);
+  const { notificationOpen, addToWish, loading, err, product } =
+    useContext(ProductContext);
+  console.log(loading);
+
+  if (loading)
+    return (
+      <div className="w-fit flex items-center mx-auto mt-10 space-x-2">
+        <LoadingSpinner />
+        <span className="text-lg font-medium">loading...</span>
+      </div>
+    );
+
+  if (err)
+    return (
+      <p className="text-xl text-red-600 text-center mt-10">
+        Failed to fetch product: <span className="text-gray-700">{err}</span>
+      </p>
+    );
 
   return (
     <motion.main

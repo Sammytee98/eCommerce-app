@@ -129,16 +129,6 @@ const ProductDetail = () => {
       <hr className="mt-6 mb-4 border-gray-300" />
 
       <div className="flex items-center space-x-4">
-        <button
-          className="cursor-pointer text-2xl"
-          onClick={handleWishlistToggle}
-        >
-          {addToWish ? (
-            <FaHeart className="text-orange-500 " />
-          ) : (
-            <FaRegHeart className="text-orange-500" />
-          )}
-        </button>
         <QualityControl
           quantity={quantity}
           increaseQuantity={increaseQuantity}
@@ -153,6 +143,17 @@ const ProductDetail = () => {
           <HiOutlineShoppingCart className="pointer-events-none" />
           <span className="uppercase">add to cart</span>
         </Button>
+
+        <button
+          className="cursor-pointer text-2xl"
+          onClick={handleWishlistToggle}
+        >
+          {addToWish ? (
+            <FaHeart className="text-orange-500 " />
+          ) : (
+            <FaRegHeart className="text-orange-500" />
+          )}
+        </button>
       </div>
 
       <hr className="my-4 border-gray-300" />
