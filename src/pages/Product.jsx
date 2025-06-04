@@ -7,6 +7,7 @@ import CartNotification from "../components/product/CartNotification";
 import WishlistNotification from "../components/product/WishlistNotification";
 import { useContext } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import SEO from "../components/utils/SEO";
 
 const ProductPage = () => {
   const { notificationOpen, addToWish, loading, err, product } =
@@ -36,6 +37,14 @@ const ProductPage = () => {
       transition={{ duration: 0.3, ease: "easeOut" }}
       className=" font-oswald"
     >
+      <SEO
+        title={`${product?.title} | Buy Now at Gadget Store`}
+        description={product?.description.slice(0, 150)}
+        keywords={`${product?.category}, buy ${product?.title}, gadget store`}
+        canonical={`https://gtstore-nu.vercel.app/products/${product?.category}/${product?.id}`}
+        image={product?.image}
+      />
+
       <AnimatePresence mode="wait"></AnimatePresence>
       {notificationOpen.cart && <CartNotification />}
       {notificationOpen.wishlist && (
