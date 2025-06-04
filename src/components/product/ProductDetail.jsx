@@ -124,7 +124,9 @@ const ProductDetail = () => {
         <p className="text-xs">& Free Shipping</p>
       </div>
 
-      <p className="mt-3 text-sm">{`${description.slice(0, 100)}...`}</p>
+      <p className="mt-3 text-sm truncate max-w-full" title={description}>
+        {description}
+      </p>
 
       <hr className="mt-6 mb-4 border-gray-300" />
 

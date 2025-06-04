@@ -59,15 +59,6 @@ export const ProductProvider = ({ children }) => {
     };
   }, [id]);
 
-  // const {
-  //   id: productId,
-  //   image,
-  //   category: cat,
-  //   title,
-  //   price,
-  //   description,
-  // } = product
-
   // Allow context to mount regardless of loading/error state
   const productId = product?.id;
   const image = product?.image;
