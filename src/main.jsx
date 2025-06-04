@@ -8,12 +8,10 @@ import store from "./store/store.js";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <HelmetProvider>
-      <StoreProvider store={store}>
-        <Router>
-          <App />
-        </Router>
-      </StoreProvider>
-    </HelmetProvider>
+    <StoreProvider store={store}>
+      <Router>
+        <App />
+      </Router>
+    </StoreProvider>
   </StrictMode>
 );
