@@ -7,12 +7,12 @@ import CartNotification from "../components/product/CartNotification";
 import WishlistNotification from "../components/product/WishlistNotification";
 import { useContext } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import LoadingSpinner from "../components/ui/LoadingSpinner";
 import SEO from "../components/utils/SEO";
 
 const ProductPage = () => {
   const { notificationOpen, addToWish, loading, err, product } =
     useContext(ProductContext);
-  console.log(loading);
 
   if (loading)
     return (
