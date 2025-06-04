@@ -7,7 +7,6 @@ import { motion } from "framer-motion";
 import LoadingSpinner from "../components/ui/LoadingSpinner";
 import Filter from "../components/allProducts/Filter";
 import Sort from "../components/allProducts/Sort";
-import SEO from "../components/utils/SEO";
 
 const AllProducts = () => {
   const [page, setPage] = useState(1);
@@ -56,14 +55,6 @@ const AllProducts = () => {
       transition={{ duration: 0.3, ease: "easeOut" }}
       className="flex flex-col font-oswald px-5 py-10"
     >
-      <SEO
-        title="Shop All Products | Gadget Store"
-        description="Browse all our premium tech, fashion, and lifestyle products in one place. Find your perfect item today."
-        keywords="shop all, tech store, all products, online store, latest gadgets, best products"
-        canonical="https://gtstore-nu.vercel.app/products"
-        image="../assets/all_products_ss.jpeg"
-      />
-
       <BreadCrumb />
       <div className="w-full space-y-5 mb-8 grid grid-cols-2 mobile:grid-cols-3 gap-4 mobile:gap-8">
         <h2 className=" not-mobile:col-span-2 text-4xl tablet:text-5xl">

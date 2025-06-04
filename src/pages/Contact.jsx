@@ -5,7 +5,6 @@ import ContactForm from "../components/forms/ContactForm";
 import { useState } from "react";
 import { FaCircleCheck } from "react-icons/fa6";
 import ScrollToTop from "../layouts/ScrollToTop";
-import SEO from "../components/utils/SEO";
 
 const Contact = () => {
   const [isMessageSent, setIsMessageSent] = useState(false);
@@ -53,13 +52,6 @@ const Contact = () => {
       transition={{ duration: 0.3, ease: "easeOut" }}
       className="font-oswald pb-10 bg-gray-50 space-y-10"
     >
-      <SEO
-        title="Contact Us | Gadget Store"
-        description="Have questions? Contact our support team. We're here to help with orders, returns and product inquiries."
-        canonical="https://gtstore-nu.vercel.app/contact"
-        image="../assets/contact_page_ss.jpeg"
-      />
-
       {isMessageSent && (
         <motion.section
           initial={{ opacity: 0, y: -30 }}
